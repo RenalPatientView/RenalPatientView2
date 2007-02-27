@@ -1,0 +1,163 @@
+<project name="patientview" default="all" basedir=".">
+
+    <property name="src"                value="src"/>
+    <property name="java"               value="${src}/java"/>
+    <property name="test"               value="${src}/test"/>
+    <property name="unit"               value="${test}/unit"/>
+    <property name="system"             value="${test}/system"/>
+    <property name="mock"               value="${test}/mock"/>
+
+    <property name="classes"            value="classes"/>
+    <property name="lib"                value="lib"/>
+    <property name="build"              value="build"/>
+
+    <property name="webapp"             value="webapp"/>
+    <property name="webinf"             value="${webapp}/WEB-INF"/>
+    <property name="webinf_struts"      value="${webinf}/struts"/>
+    <property name="webinf_lib"         value="${webinf}/lib"/>
+    <property name="webinf_classes"     value="${webinf}/classes"/>
+
+    <property name="jarfile"            value="${build}/${ant.project.name}.jar" />
+    <property name="warfile"            value="${build}/${ant.project.name}.war" />
+    <property name="project_zip"        value="${build}/${ant.project.name}.zip" />
+
+    <property name="doc"                value="doc"/>
+    <property name="reports"            value="reports"/>
+
+    <property name="all_projects"       value="../all_projects"/>
+    <property name="all_projects_build" value="${all_projects}/build"/>
+    <property name="all_projects_lib"   value="${all_projects_build}/lib"/>
+    <property name="checkstyle_xml"     value="${all_projects_build}/checkstyle.xml"/>
+
+    <property file="${all_projects_build}/ant.properties" />
+
+    <property name="database_module"      value="../database/src"/>
+    <property name="database_module_java" value="${database_module}/java"/>
+    <property name="database_module_mock" value="${database_module_java}/mock"/>
+    <property name="database_module_unit" value="${database_module_java}/unit"/>
+
+    <property name="build__lib_hibernate"      value="${build}/lib/hibernate"/>
+
+    <target name="checkstyle" description="checks code for niceness">
+        <checkstyle config="${checkstyle_xml}">
+            <fileset dir="${java}" includes="**/*.java"/>
+            <fileset dir="${unit}" includes="**/*.java"/>
+            <fileset dir="${system}" includes="**/*.java"/>
+            <fileset dir="${mock}" includes="**/*.java"/>
+        </checkstyle>
+    </target>
+
+    <target name="compile">
+        <delete dir="${classes}"/>
+        <mkdir dir="${classes}"/>
+
+        <javac destdir="${classes}" debug="on">
+            <src path="${java}"/>
+            <src path="${unit}"/>
+            <src path="${system}"/>
+            <src path="${mock}"/>
+            <src path="${database_module}"/>
+            <classpath>
+                <fileset dir="${lib}">
+                    <include name="**/*.jar"/>
+                </fileset>
+                <fileset dir="${webinf_lib}">
+                    <include name="**/*.jar"/>
+                </fileset>
+                <fileset dir="${all_projects_lib}">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="unittest">
+        <delete dir="${reports}"/>
+         <mkdir dir="${reports}"/>
+
+
+        <junit printsummary="yes" haltonerror="yes" haltonfailure="yes">
+            <classpath>
+                <fileset dir="${lib}">
+                    <include name="**/*.jar"/>
+                </fileset>
+                <fileset dir="${webinf_lib}">
+                    <include name="**/*.jar"/>
+                </fileset>
+                <fileset dir="${all_projects_lib}">
+                    <include name="**/*.jar"/>
+                </fileset>
+                <pathelement location="${classes}" />
+                <pathelement location="${webapp}" />
+                <pathelement location="${webinf}" />
+                <pathelement location="${webinf_struts}" />
+            </classpath>
+
+            <formatter type="xml" />
+
+            <batchtest fork="yes" todir="${reports}">
+                <fileset dir="${classes}">
+                    <include name="**/*Test.class" />
+                    <exclude name="**/*SystemTest.class" />
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target name="systemtest">
+        <junit printsummary="yes" haltonerror="yes" haltonfailure="yes">
+            <classpath>
+                <fileset dir="${lib}">
+                    <include name="**/*.jar"/>
+                </fileset>
+                <fileset dir="${webinf_lib}">
+                    <include name="**/*.jar"/>
+                </fileset>
+                <pathelement location="${classes}" />
+            </classpath>
+
+            <formatter type="xml" />
+
+            <batchtest fork="yes" todir="${reports}">
+                <fileset dir="${classes}">
+                    <include name="**/*SystemTest.class" />
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target name="jar" description="jar up classes">
+        <jar    destfile="${jarfile}"
+                basedir="classes" />
+    </target>
+
+    <target name="war" >
+        <delete file="${warfile}" />
+        <delete file="${webinf_lib}/${ant.project.name}.jar" />
+
+        <war
+            basedir="${webapp}"
+            destfile="${warfile}"
+            webxml="${webinf}/web.xml">
+            <lib dir="${build}">
+                <include name="**/*.jar" />
+            </lib>
+<!--            <lib dir="${all_projects_lib}/hibernate">
+              <include name="**/*.jar" />
+            </lib>-->
+        </war>
+    </target>
+
+    <target name="build" depends="checkstyle, compile, jar, war" description="builds app and runs tests">
+        <echo message="build of ${ant.project.name} complete" />
+    </target>
+
+    <target name="all" depends="build" description="Does everything test, build and deploy" />
+
+    <taskdef resource="checkstyletask.properties">
+        <classpath>
+            <pathelement location="${all_projects_lib}/checkstyle-all.jar"/>
+        </classpath>
+    </taskdef>
+
+</project>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/" docBase="/Users/robworth/Documents/work/java/patientview"
+        debug="0" crossContext="true">
+
+  <Realm  className="org.apache.catalina.realm.JDBCRealm"
+    driverName="com.mysql.jdbc.Driver"
+    connectionURL="jdbc:mysql://localhost/patientview"
+    connectionName="rpv" connectionPassword="rpv"
+    userTable="user" userNameCol="username" userCredCol="password"
+    userRoleTable="user" roleNameCol="role" />
+
+    <Parameter name="run.import.export.threads" value="false" override="false"/>
+
+    <Parameter name="xml.archive.directory" value="/Users/robworth/Documents/work/rpv/app/xmlarchive" override="false"/>
+    <Parameter name="xml.directory" value="/Users/robworth/Documents/work/rpv/app" override="false"/>
+    <Parameter name="xml.minutes.to.wait" value="2" override="false"/>
+
+    <Parameter name="ukt.archive.directory" value="/Users/robworth/Documents/work/rpv/app/uktarchive" override="false"/>
+    <Parameter name="ukt.directory" value="/Users/robworth/Documents/work/rpv/app/ukt_import" override="false"/>
+    <Parameter name="ukt.minutes.to.wait" value="2" override="false"/>
+
+    <Parameter name="uktexport.archive.directory" value="/Users/robworth/Documents/work/rpv/app/uktarchive" override="false"/>
+    <Parameter name="uktexport.directory" value="/Users/robworth/Documents/work/rpv/app/ukt_export" override="false"/>
+    <Parameter name="uktexport.minutes.to.wait" value="2" override="false"/>
+
+    <Parameter name="default.results.per.page" value="50" override="false"/>
+
+    <Resource name="jdbc/patientview" auth="Container"
+              type="javax.sql.DataSource"
+              maxActive="0"
+              maxIdle="-1"
+              maxWait="10000"
+              username="rpv"
+              password="rpv"
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://localhost/patientview"
+     />
+  <Logger className="org.apache.catalina.logger.FileLogger"
+             prefix="renalpatientview.org_patientview_log." suffix=".txt"
+          timestamp="true"/>
+
+</Context>

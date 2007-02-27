@@ -1,0 +1,1186 @@
+<?xml version="1.0"?>
+<patientview>
+<sequence>000972</sequence>
+<dateofreport>2006-07-20T17:01:07</dateofreport>
+<flag>Followup</flag>
+<centredetails>
+<centrecode>RSC02</centrecode>
+<centrename>Royal Infirmary Edinburgh</centrename>
+<centreaddress1>Renal Unit</centreaddress1>
+<centreaddress2>51 Little France Crescent</centreaddress2>
+<centreaddress3>Old Dalkeith Road</centreaddress3>
+<centreaddress4>Edinburgh</centreaddress4>
+<centrepostcode>EH16 4SA</centrepostcode>
+<centretelephone>0131 536 1000</centretelephone>
+</centredetails>
+<gpdetails>
+<gpname>Fs Wells</gpname>
+<gpaddress1>Slateford Surgery</gpaddress1>
+<gpaddress2>79 Slateford Road</gpaddress2>
+<gppostcode>EH11 1QW</gppostcode>
+<gptelephone>0131 313 2211</gptelephone>
+</gpdetails>
+<patient>
+<personaldetails>
+<surname>SHARIF</surname>
+<forename>Tabassum</forename>
+<dateofbirth>1969-03-23</dateofbirth>
+<sex>M</sex>
+<nhsno>2303691419</nhsno>
+<ethnicorig>Asian</ethnicorig>
+<hospitalnumber>620042240R</hospitalnumber>
+<address1>7b Redford Gardens</address1>
+<address2>Edinburgh</address2>
+<postcode>EH13 0AR</postcode>
+<telephone1>0131 441 6343</telephone1>
+</personaldetails>
+<clinicaldetails>
+<diagnosis>Nephrotic syndrome Jan 06</diagnosis>
+<diagnosis>Renal Bx: Probable FSGS but minimal glomerular scarring</diagnosis>
+<diagnosis>Interstial nephritis also seen ? mesalazine related</diagnosis>
+<diagnosis>Commenced on high dose steroids 03.02.06</diagnosis>
+<diagnosis>Clear response by 15.02.06</diagnosis>
+<diagnosis>Ulceratice colitis</diagnosis>
+<diagnosis>Asthma</diagnosis>
+<diagnosis>Iron deficiency anaemia</diagnosis>
+<diagnosis>Hb fall from 123-86 over March</diagnosis>
+<diagnosis>For UGIE</diagnosis>
+<bloodgroup> </bloodgroup>
+</clinicaldetails>
+<testdetails>
+<test>
+<testname>Hb</testname>
+<testcode>hb</testcode>
+<units>gm/l</units>
+<daterange start="2006-02-07" stop="2006-07-20"/>
+<result>
+<datestamp>2006-06-28T00:00</datestamp>
+<value>118</value>
+</result>
+<result>
+<datestamp>2006-04-05T00:00</datestamp>
+<value>860</value>
+</result>
+<result>
+<datestamp>2006-03-22T00:00</datestamp>
+<value>102</value>
+</result>
+<result>
+<datestamp>2006-03-08T00:00</datestamp>
+<value>123</value>
+</result>
+<result>
+<datestamp>2006-02-22T00:00</datestamp>
+<value>135</value>
+</result>
+<result>
+<datestamp>2006-02-15T00:00</datestamp>
+<value>134</value>
+</result>
+<result>
+<datestamp>2006-02-09T00:00</datestamp>
+<value>136</value>
+</result>
+<result>
+<datestamp>2006-02-09T02:55</datestamp>
+<value>148</value>
+</result>
+<result>
+<datestamp>2006-02-08T00:00</datestamp>
+<value>151</value>
+</result>
+<result>
+<datestamp>2006-02-07T00:00</datestamp>
+<value>150</value>
+</result>
+</test>
+<test>
+<testname>WBC</testname>
+<testcode>wbc</testcode>
+<units>x10^9/l</units>
+<daterange start="2006-02-07" stop="2006-07-20"/>
+<result>
+<datestamp>2006-06-28T00:00</datestamp>
+<value> 7.4</value>
+</result>
+<result>
+<datestamp>2006-04-05T00:00</datestamp>
+<value> 8.0</value>
+</result>
+<result>
+<datestamp>2006-03-22T00:00</datestamp>
+<value>12.3</value>
+</result>
+<result>
+<datestamp>2006-03-08T00:00</datestamp>
+<value>10.4</value>
+</result>
+<result>
+<datestamp>2006-02-22T00:00</datestamp>
+<value>14.3</value>
+</result>
+<result>
+<datestamp>2006-02-15T00:00</datestamp>
+<value>12.0</value>
+</result>
+<result>
+<datestamp>2006-02-09T00:00</datestamp>
+<value>16.5</value>
+</result>
+<result>
+<datestamp>2006-02-09T02:55</datestamp>
+<value>18.9</value>
+</result>
+<result>
+<datestamp>2006-02-08T00:00</datestamp>
+<value>14.7</value>
+</result>
+<result>
+<datestamp>2006-02-07T00:00</datestamp>
+<value>12.4</value>
+</result>
+</test>
+<test>
+<testname>Platelets</testname>
+<testcode>platelets</testcode>
+<units>x10^12/l</units>
+<daterange start="2006-02-07" stop="2006-07-20"/>
+<result>
+<datestamp>2006-06-28T00:00</datestamp>
+<value> 379</value>
+</result>
+<result>
+<datestamp>2006-04-05T00:00</datestamp>
+<value> 462</value>
+</result>
+<result>
+<datestamp>2006-03-22T00:00</datestamp>
+<value> 409</value>
+</result>
+<result>
+<datestamp>2006-03-08T00:00</datestamp>
+<value> 414</value>
+</result>
+<result>
+<datestamp>2006-02-22T00:00</datestamp>
+<value> 520</value>
+</result>
+<result>
+<datestamp>2006-02-15T00:00</datestamp>
+<value> 504</value>
+</result>
+<result>
+<datestamp>2006-02-09T00:00</datestamp>
+<value> 373</value>
+</result>
+<result>
+<datestamp>2006-02-09T02:55</datestamp>
+<value> 431</value>
+</result>
+<result>
+<datestamp>2006-02-08T00:00</datestamp>
+<value> 494</value>
+</result>
+<result>
+<datestamp>2006-02-07T00:00</datestamp>
+<value> 458</value>
+</result>
+</test>
+<test>
+<testname>Serum Urea</testname>
+<testcode>urea</testcode>
+<units>mmol/l</units>
+<daterange start="2006-02-07" stop="2006-07-20"/>
+<result>
+<datestamp>2006-06-28T00:00</datestamp>
+<value>  3.8</value>
+</result>
+<result>
+<datestamp>2006-04-05T00:00</datestamp>
+<value>  6.5</value>
+</result>
+<result>
+<datestamp>2006-03-22T00:00</datestamp>
+<value>  7.6</value>
+</result>
+<result>
+<datestamp>2006-03-08T00:00</datestamp>
+<value>  5.1</value>
+</result>
+<result>
+<datestamp>2006-02-22T00:00</datestamp>
+<value>  6.2</value>
+</result>
+<result>
+<datestamp>2006-02-15T00:00</datestamp>
+<value>  4.2</value>
+</result>
+<result>
+<datestamp>2006-02-09T00:00</datestamp>
+<value>  8.4</value>
+</result>
+<result>
+<datestamp>2006-02-09T02:55</datestamp>
+<value>  7.0</value>
+</result>
+<result>
+<datestamp>2006-02-08T00:00</datestamp>
+<value>  6.6</value>
+</result>
+<result>
+<datestamp>2006-02-07T00:00</datestamp>
+<value>  4.9</value>
+</result>
+</test>
+<test>
+<testname>Serum Creatinine</testname>
+<testcode>creatinine</testcode>
+<units>umol/l</units>
+<daterange start="2006-02-07" stop="2006-07-20"/>
+<result>
+<datestamp>2006-06-28T00:00</datestamp>
+<value>  77</value>
+</result>
+<result>
+<datestamp>2006-04-05T00:00</datestamp>
+<value>  83</value>
+</result>
+<result>
+<datestamp>2006-03-22T00:00</datestamp>
+<value>  94</value>
+</result>
+<result>
+<datestamp>2006-03-08T00:00</datestamp>
+<value>  80</value>
+</result>
+<result>
+<datestamp>2006-02-22T00:00</datestamp>
+<value>  82</value>
+</result>
+<result>
+<datestamp>2006-02-15T00:00</datestamp>
+<value>  79</value>
+</result>
+<result>
+<datestamp>2006-02-09T00:00</datestamp>
+<value>  97</value>
+</result>
+<result>
+<datestamp>2006-02-09T02:55</datestamp>
+<value>  83</value>
+</result>
+<result>
+<datestamp>2006-02-08T00:00</datestamp>
+<value>  96</value>
+</result>
+<result>
+<datestamp>2006-02-07T00:00</datestamp>
+<value>  87</value>
+</result>
+</test>
+<test>
+<testname>Potassium</testname>
+<testcode>potassium</testcode>
+<units>mmol/l</units>
+<daterange start="2006-02-07" stop="2006-07-20"/>
+<result>
+<datestamp>2006-06-28T00:00</datestamp>
+<value>4.0</value>
+</result>
+<result>
+<datestamp>2006-04-05T00:00</datestamp>
+<value>4.0</value>
+</result>
+<result>
+<datestamp>2006-03-22T00:00</datestamp>
+<value>4.7</value>
+</result>
+<result>
+<datestamp>2006-03-08T00:00</datestamp>
+<value>4.8</value>
+</result>
+<result>
+<datestamp>2006-02-22T00:00</datestamp>
+<value>5.6</value>
+</result>
+<result>
+<datestamp>2006-02-15T00:00</datestamp>
+<value>5.1</value>
+</result>
+<result>
+<datestamp>2006-02-09T00:00</datestamp>
+<value>3.8</value>
+</result>
+<result>
+<datestamp>2006-02-09T02:55</datestamp>
+<value>4.3</value>
+</result>
+<result>
+<datestamp>2006-02-08T00:00</datestamp>
+<value>4.3</value>
+</result>
+<result>
+<datestamp>2006-02-07T00:00</datestamp>
+<value>4.5</value>
+</result>
+</test>
+<test>
+<testname>Calcium</testname>
+<testcode>calcium</testcode>
+<units>mmol/l</units>
+<daterange start="2006-02-04" stop="2006-07-20"/>
+<result>
+<datestamp>2006-06-28T00:00</datestamp>
+<value>2.28</value>
+</result>
+<result>
+<datestamp>2006-04-05T00:00</datestamp>
+<value>2.40</value>
+</result>
+<result>
+<datestamp>2006-03-22T00:00</datestamp>
+<value>2.41</value>
+</result>
+<result>
+<datestamp>2006-03-08T00:00</datestamp>
+<value>2.38</value>
+</result>
+<result>
+<datestamp>2006-02-22T00:00</datestamp>
+<value>2.39</value>
+</result>
+<result>
+<datestamp>2006-02-15T00:00</datestamp>
+<value>2.08</value>
+</result>
+<result>
+<datestamp>2006-02-09T02:55</datestamp>
+<value>2.03</value>
+</result>
+<result>
+<datestamp>2006-02-08T00:00</datestamp>
+<value>2.27</value>
+</result>
+<result>
+<datestamp>2006-02-06T00:00</datestamp>
+<value>2.04</value>
+</result>
+<result>
+<datestamp>2006-02-04T00:00</datestamp>
+<value>2.02</value>
+</result>
+</test>
+<test>
+<testname>Adjusted Calcium</testname>
+<testcode>adjustedcalcium</testcode>
+<units>mmol/l</units>
+<daterange start="2006-02-04" stop="2006-07-20"/>
+<result>
+<datestamp>2006-06-28T00:00</datestamp>
+<value> 2.46</value>
+</result>
+<result>
+<datestamp>2006-04-05T00:00</datestamp>
+<value> 2.40</value>
+</result>
+<result>
+<datestamp>2006-03-22T00:00</datestamp>
+<value> 2.41</value>
+</result>
+<result>
+<datestamp>2006-03-08T00:00</datestamp>
+<value> 2.30</value>
+</result>
+<result>
+<datestamp>2006-02-22T00:00</datestamp>
+<value> 2.45</value>
+</result>
+<result>
+<datestamp>2006-02-15T00:00</datestamp>
+<value> 2.32</value>
+</result>
+<result>
+<datestamp>2006-02-09T02:55</datestamp>
+<value> 2.41</value>
+</result>
+<result>
+<datestamp>2006-02-08T00:00</datestamp>
+<value> 2.59</value>
+</result>
+<result>
+<datestamp>2006-02-06T00:00</datestamp>
+<value> 2.42</value>
+</result>
+<result>
+<datestamp>2006-02-04T00:00</datestamp>
+<value> 2.48</value>
+</result>
+</test>
+<test>
+<testname>Phosphate</testname>
+<testcode>phosphate</testcode>
+<units>mmol/l</units>
+<daterange start="2006-02-04" stop="2006-07-20"/>
+<result>
+<datestamp>2006-06-28T00:00</datestamp>
+<value>1.41</value>
+</result>
+<result>
+<datestamp>2006-04-05T00:00</datestamp>
+<value>1.20</value>
+</result>
+<result>
+<datestamp>2006-03-22T00:00</datestamp>
+<value>1.12</value>
+</result>
+<result>
+<datestamp>2006-03-08T00:00</datestamp>
+<value>0.86</value>
+</result>
+<result>
+<datestamp>2006-02-22T00:00</datestamp>
+<value>1.07</value>
+</result>
+<result>
+<datestamp>2006-02-15T00:00</datestamp>
+<value>0.80</value>
+</result>
+<result>
+<datestamp>2006-02-09T02:55</datestamp>
+<value>1.11</value>
+</result>
+<result>
+<datestamp>2006-02-08T00:00</datestamp>
+<value>1.04</value>
+</result>
+<result>
+<datestamp>2006-02-06T00:00</datestamp>
+<value>0.82</value>
+</result>
+<result>
+<datestamp>2006-02-04T00:00</datestamp>
+<value>1.58</value>
+</result>
+</test>
+<test>
+<testname>Albumin</testname>
+<testcode>albumin</testcode>
+<units>g/l</units>
+<daterange start="2006-02-07" stop="2006-07-20"/>
+<result>
+<datestamp>2006-06-28T00:00</datestamp>
+<value>31</value>
+</result>
+<result>
+<datestamp>2006-04-05T00:00</datestamp>
+<value>40</value>
+</result>
+<result>
+<datestamp>2006-03-22T00:00</datestamp>
+<value>40</value>
+</result>
+<result>
+<datestamp>2006-03-08T00:00</datestamp>
+<value>44</value>
+</result>
+<result>
+<datestamp>2006-02-22T00:00</datestamp>
+<value>37</value>
+</result>
+<result>
+<datestamp>2006-02-15T00:00</datestamp>
+<value>28</value>
+</result>
+<result>
+<datestamp>2006-02-09T00:00</datestamp>
+<value>19</value>
+</result>
+<result>
+<datestamp>2006-02-09T02:55</datestamp>
+<value>21</value>
+</result>
+<result>
+<datestamp>2006-02-08T00:00</datestamp>
+<value>24</value>
+</result>
+<result>
+<datestamp>2006-02-07T00:00</datestamp>
+<value>22</value>
+</result>
+</test>
+<test>
+<testname>Cholesterol</testname>
+<testcode>cholesterol</testcode>
+<units>mmol/l</units>
+<daterange start="2006-02-01" stop="2006-07-20"/>
+<result>
+<datestamp>2006-06-28T00:00</datestamp>
+<value> 5.10</value>
+</result>
+<result>
+<datestamp>2006-03-22T00:00</datestamp>
+<value> 5.30</value>
+</result>
+<result>
+<datestamp>2006-03-08T00:00</datestamp>
+<value> 7.10</value>
+</result>
+<result>
+<datestamp>2006-02-22T00:00</datestamp>
+<value> 7.90</value>
+</result>
+<result>
+<datestamp>2006-02-15T00:00</datestamp>
+<value> 9.20</value>
+</result>
+<result>
+<datestamp>2006-02-01</datestamp>
+<value> 9.40</value>
+</result>
+</test>
+<test>
+<testname>Triglycerides</testname>
+<testcode>tg</testcode>
+<units>mmol/l</units>
+<daterange start="2006-02-15" stop="2006-07-20"/>
+<result>
+<datestamp>2006-02-15T00:00</datestamp>
+<value> 4.00</value>
+</result>
+</test>
+<test>
+<testname>Glucose</testname>
+<testcode>glucose</testcode>
+<units>mmol/l</units>
+<daterange start="2006-02-09" stop="2006-07-20"/>
+<result>
+<datestamp>2006-02-22T00:00</datestamp>
+<value> 8.3</value>
+</result>
+<result>
+<datestamp>2006-02-09T02:55</datestamp>
+<value> 7.0</value>
+</result>
+</test>
+<test>
+<testname>BP sys</testname>
+<testcode>bpsys</testcode>
+<units>mm mg</units>
+<daterange start="2006-02-15" stop="2006-07-20"/>
+<result>
+<datestamp>2006-06-28</datestamp>
+<value>130</value>
+</result>
+<result>
+<datestamp>2006-04-05</datestamp>
+<value>138</value>
+</result>
+<result>
+<datestamp>2006-03-22</datestamp>
+<value>115</value>
+</result>
+<result>
+<datestamp>2006-03-08</datestamp>
+<value>130</value>
+</result>
+<result>
+<datestamp>2006-02-22</datestamp>
+<value>140</value>
+</result>
+<result>
+<datestamp>2006-02-15</datestamp>
+<value>124</value>
+</result>
+</test>
+<test>
+<testname>BP dia</testname>
+<testcode>bpdia</testcode>
+<units>mm mg</units>
+<daterange start="2006-02-15" stop="2006-07-20"/>
+<result>
+<datestamp>2006-06-28</datestamp>
+<value> 78</value>
+</result>
+<result>
+<datestamp>2006-04-05</datestamp>
+<value> 82</value>
+</result>
+<result>
+<datestamp>2006-03-22</datestamp>
+<value> 62</value>
+</result>
+<result>
+<datestamp>2006-03-08</datestamp>
+<value> 73</value>
+</result>
+<result>
+<datestamp>2006-02-22</datestamp>
+<value> 80</value>
+</result>
+<result>
+<datestamp>2006-02-15</datestamp>
+<value> 84</value>
+</result>
+</test>
+<test>
+<testname>Height</testname>
+<testcode>height</testcode>
+<units>m</units>
+<daterange start="2006-02-07" stop="2006-07-20"/>
+<result>
+<datestamp>2006-02-07</datestamp>
+<value>1.92</value>
+</result>
+</test>
+<test>
+<testname>Weight</testname>
+<testcode>weight</testcode>
+<units>kg</units>
+<daterange start="2006-01-31" stop="2006-07-20"/>
+<result>
+<datestamp>2006-06-28</datestamp>
+<value>103.5</value>
+</result>
+<result>
+<datestamp>2006-04-05</datestamp>
+<value> 97.7</value>
+</result>
+<result>
+<datestamp>2006-03-22</datestamp>
+<value> 96.9</value>
+</result>
+<result>
+<datestamp>2006-03-08</datestamp>
+<value> 95.0</value>
+</result>
+<result>
+<datestamp>2006-02-22</datestamp>
+<value> 94.5</value>
+</result>
+<result>
+<datestamp>2006-02-15</datestamp>
+<value> 97.3</value>
+</result>
+<result>
+<datestamp>2006-02-07</datestamp>
+<value> 96.0</value>
+</result>
+<result>
+<datestamp>2006-01-31</datestamp>
+<value>115.8</value>
+</result>
+</test>
+<test>
+<testname>eGFR</testname>
+<testcode>egfr</testcode>
+<units>ml/min/1.73m^2</units>
+<daterange start="2006-02-07" stop="2006-07-20"/>
+<result>
+<datestamp>2006-06-28T00:00</datestamp>
+<value> 98.5</value>
+</result>
+<result>
+<datestamp>2006-04-05T00:00</datestamp>
+<value> 90.5</value>
+</result>
+<result>
+<datestamp>2006-03-22T00:00</datestamp>
+<value> 78.2</value>
+</result>
+<result>
+<datestamp>2006-03-08T00:00</datestamp>
+<value>101.3</value>
+</result>
+<result>
+<datestamp>2006-02-22T00:00</datestamp>
+<value> 90.5</value>
+</result>
+<result>
+<datestamp>2006-02-15T00:00</datestamp>
+<value> 91.9</value>
+</result>
+<result>
+<datestamp>2006-02-09T00:00</datestamp>
+<value> 60.7</value>
+</result>
+<result>
+<datestamp>2006-02-09T02:55</datestamp>
+<value> 73.2</value>
+</result>
+<result>
+<datestamp>2006-02-08T00:00</datestamp>
+<value> 66.7</value>
+</result>
+<result>
+<datestamp>2006-02-07T00:00</datestamp>
+<value> 75.3</value>
+</result>
+</test>
+<test>
+<testname>HCO3</testname>
+<testcode>hco3</testcode>
+<units>mmol/l</units>
+<daterange start="2006-02-07" stop="2006-07-20"/>
+<result>
+<datestamp>2006-06-28T00:00</datestamp>
+<value>26</value>
+</result>
+<result>
+<datestamp>2006-04-05T00:00</datestamp>
+<value>27</value>
+</result>
+<result>
+<datestamp>2006-03-22T00:00</datestamp>
+<value>24</value>
+</result>
+<result>
+<datestamp>2006-03-08T00:00</datestamp>
+<value>25</value>
+</result>
+<result>
+<datestamp>2006-02-22T00:00</datestamp>
+<value>26</value>
+</result>
+<result>
+<datestamp>2006-02-15T00:00</datestamp>
+<value>28</value>
+</result>
+<result>
+<datestamp>2006-02-09T00:00</datestamp>
+<value>27</value>
+</result>
+<result>
+<datestamp>2006-02-09T02:55</datestamp>
+<value>28</value>
+</result>
+<result>
+<datestamp>2006-02-08T00:00</datestamp>
+<value>33</value>
+</result>
+<result>
+<datestamp>2006-02-07T00:00</datestamp>
+<value>28</value>
+</result>
+</test>
+<test>
+<testname>INR</testname>
+<testcode>inr</testcode>
+<units>0</units>
+<daterange start="2006-02-07" stop="2006-07-20"/>
+<result>
+<datestamp>2006-02-07T00:00</datestamp>
+<value>0.9</value>
+</result>
+</test>
+<test>
+<testname>Sodium</testname>
+<testcode>sodium</testcode>
+<units>mmol/l</units>
+<daterange start="2006-02-07" stop="2006-07-20"/>
+<result>
+<datestamp>2006-06-28T00:00</datestamp>
+<value>142</value>
+</result>
+<result>
+<datestamp>2006-04-05T00:00</datestamp>
+<value>142</value>
+</result>
+<result>
+<datestamp>2006-03-22T00:00</datestamp>
+<value>137</value>
+</result>
+<result>
+<datestamp>2006-03-08T00:00</datestamp>
+<value>137</value>
+</result>
+<result>
+<datestamp>2006-02-22T00:00</datestamp>
+<value>137</value>
+</result>
+<result>
+<datestamp>2006-02-15T00:00</datestamp>
+<value>138</value>
+</result>
+<result>
+<datestamp>2006-02-09T00:00</datestamp>
+<value>139</value>
+</result>
+<result>
+<datestamp>2006-02-09T02:55</datestamp>
+<value>136</value>
+</result>
+<result>
+<datestamp>2006-02-08T00:00</datestamp>
+<value>137</value>
+</result>
+<result>
+<datestamp>2006-02-07T00:00</datestamp>
+<value>137</value>
+</result>
+</test>
+</testdetails>
+<drugdetails>
+<drug>
+<drugstartdate>2006-06-29</drugstartdate>
+<drugname>PREDNISOLONE 5mg tablets</drugname>
+<drugdose>3 mane oral</drugdose>
+</drug>
+<drug>
+<drugstartdate>2006-06-29</drugstartdate>
+<drugname>PREDNISOLONE 25mg tablets</drugname>
+<drugdose>1 mane oral</drugdose>
+</drug>
+<drug>
+<drugstartdate>2006-02-09</drugstartdate>
+<drugname>OMEPRAZOLE 40mg capsules</drugname>
+<drugdose>1 mane oral</drugdose>
+</drug>
+<drug>
+<drugstartdate>2006-02-09</drugstartdate>
+<drugname>FOSAMAX ONCE WEEKLY 70mg tablets</drugname>
+<drugdose>1 /wk oral</drugdose>
+</drug>
+<drug>
+<drugstartdate>2006-02-09</drugstartdate>
+<drugname>CALCICHEW 1.25g chewable tablets</drugname>
+<drugdose>1 mane oral</drugdose>
+</drug>
+</drugdetails>
+<letterdetails>
+<letter>
+<letterdate>2006-02-22</letterdate>
+<lettertype>Gen Neph</lettertype>
+<lettercontent>
+<![CDATA[
+FOLLOW UP:  22nd February 2006
+
+I reviewed this gentleman in the Renal Clinic on the 15th
+February following his very recent discharge from the Ward.  I
+doubt that you have had full communication regarding this so in
+brief, he was admitted to the RIE on the 31st January with
+clinical and biochemical nephrotic syndrome.  His oedema had
+been increasing for at least 2 weeks and he was noted on the
+24th January in a Clinic to have an albumin of 17.  24 hour
+urine collection demonstrated 20g of proteinuria.
+
+He has a past history of asthma but has not needed inhalers for
+10 years.  He was at the time of admission taking Mesalazine
+1.6g tds for ulcerative colitis.
+
+He was admitted to the Renal Ward and a renal biopsy was
+performed on the 2nd February.  Whilst this only had 3
+glomeruli, this did show features compatible with FSGS although
+with minimal glomerular or interstitial scarring or tubular
+atrophy.  Additionally there was an eosinophilic interstitial
+infiltrate that is likely to be unrelated to the glomerular
+disease and it was felt most likely to be due to the
+Mesalazine.
+
+His Mesalazine was therefore discontinued and he was commenced
+on 60mg a day of Prednisolone with the plan being for this to
+continue for 8 weeks or until resolution of his nephrotic
+syndrome, whatever should come first.
+
+Because of the Prednisolone dose he was also commenced on
+Omeprazole and Fosamax and Calcichew for bone protection.
+
+His fluid retention was treated with Frusemide.  He initially
+required 160mg a day with additional Bendrofluazide but it was
+clear by discharge that this could be reduced because of a
+major diuresis and rising albumin.  Already by the 7th February
+having been on steroids for less than a week, his 24 hour
+urinary protein had halved to 11.6g.  Because of this
+improvement after discussion with the patient, we elected not
+to anti-coagulate because he was firstly very active and
+secondly we had good reason to hope that the nephrotic syndrome
+would resolve quickly.  The risks of anti-coagulation were
+therefore thought to outweigh the benefits.
+
+He was discharged on the 9th at which point his albumin was
+21g/L (nadir 13 on the 2nd February).  On return to Clinic he
+has been very well and has continued to gently lose weight at
+the rate of about 1kg a day.  On our Clinic scales he was
+97.3kg.  On admission to the Renal Ward for comparison, he was
+115.8kg.  He is now down to 80mg of Frusemide a day and is
+carrying clearly much less excess fluid.
+
+Very encouragingly and in keeping with his reduced requirement
+for diuretic, his albumin has risen to 28g/L and his 24 hour
+urinary protein is down below 1g.  He is clearly therefore very
+steroid sensitive.
+
+I would plan to wait until complete resolution of proteinuria
+before starting to wean his steroids but I suspect this will be
+soon.  I have arranged to see him weekly for the time being for
+review as he will need some fairly major dose titrations of a
+lot of his drugs as his clinical situation improves.
+
+Kind regards.
+
+
+
+]]>
+</lettercontent>
+</letter>
+<letter>
+<letterdate>2006-03-03</letterdate>
+<lettertype>Gen Neph</lettertype>
+<lettercontent>
+<![CDATA[
+FOLLOW UP:  8th March 2006 - Dr Goddard's Renal Clinic
+
+I reviewed this gentleman in the Renal Clinic on the 22nd
+February.
+
+He has been on Prednisolone since the 3rd and now has a normal
+serum albumin and not only no proteinuria on a 24 hour urine
+collection, but has a normal albumin and creatinine ratio at
+2.6mcg/mmol.  This is obviously an excellent response.  Renal
+function remains normal and he now has no excess fluid.  I have
+suggested therefore he stop his Frusemide.
+
+In respect of the steroids, I have suggested continuing for a
+further 1 week and 2 days to make 4 weeks a total of 60mg and
+then reduce to 45mg for a week, 30mg for a week by which time
+we will have reviewed him again in Clinic.  I have also given
+him some urine dipsticks to test his own urine intermittently
+should there be any suggestion of any reoccurrence.
+
+Inkeeping with the resolution of his product syndrome, his
+cholesterol is now falling.  At it's peak it was 9.4mmol/L and
+is now 7.9mmol/L and we would expect this to improve further as
+he moves further out from this illness.  I have arranged to see
+him again in 2 weeks.
+
+Kind regards.
+
+
+
+]]>
+</lettercontent>
+</letter>
+<letter>
+<letterdate>2006-03-23</letterdate>
+<lettertype>Gen Neph</lettertype>
+<lettercontent>
+<![CDATA[
+FOLLOW UP:  5th April 2006 - Dr Goddard's Renal Clinic
+
+RECOMMENDED CHANGES TO TREATMENT:
+
+Patient was advised to reduce Prednisolone further down to 30mg
+daily for 2 weeks and then down to 25mg od.
+
+I saw this gentleman in the Renal Clinic on the 8th March.
+
+He seems to be experiencing a lot of side effects related to
+the high dose steroids.  He particularly complained of shaky
+hands, insomnia, muscle cramps, general lethargy and an altered
+taste in his mouth.  He had been to the dentist who decided to
+take an x-ray of his jaw and found that he had lost a lot of
+bone mass.
+
+He told me of diarrhoea and vomiting that had occurred the
+previous week whereby Frusemide and Lisinopril had been
+discontinued briefly.  Within a short space of time he managed
+to gain about 4«kg of weight and has since re-started Frusemide
+and Lisinopril.
+
+Examination revealed no peripheral oedema and blood pressure
+was very reasonable.
+
+On dipstick testing his urine was negative for protein and
+there was no protein in his 24-hour urine collection either.
+Renal function tests remained normal and he is slightly hyper
+filtrating with a creatinine clearance of 149mls/min.  Urinary
+volume is 2.7L and he has a fairly high amount still with
+sodium in it of 280mmol.  He tells me he is taking
+predominantly fruits and that he is not taking too much salt.
+
+Despite the fact that her serum albumin had risen to 44mmol/L,
+his cholesterol level remains elevated at 7.1.
+
+
+
+]]>
+</lettercontent>
+</letter>
+<letter>
+<letterdate>2006-03-31</letterdate>
+<lettertype>Gen Neph</lettertype>
+<lettercontent>
+<![CDATA[
+FOLLOW UP:  5th April 2006 - Dr Goddard's Renal Clinic
+
+I reviewed this gentleman in the Renal Clinic on the 22nd March
+2006.
+
+His nephrotic syndrome remains in remission.  His urine
+dipstick in Clinic showed + protein but these are notoriously
+sensitive and his formal 24 hour urine demonstrated that his
+protein was below the laboratory detection limit.  Consistent
+with the resolution of his nephrotic syndrome, his albumin is
+now completely normal at 40g/L and his cholesterol has fallen
+dramatically from a peak of 9.4 down to 5.3mmol/L on this
+occasion.
+
+We have agreed that he should reduce his Prednisolone down to
+20mg this week and remain at that level until reviewed in 2
+weeks when we will continue slow weaning.  Mr Sharif raised a
+deep dull ache on the left side which on examination was more
+anterior.  He has had no dysuria, fevers or shivers and had no
+renal tenderness and I am pleased that his MSU was also
+negative both for red and white cells.  I have reassured him in
+Clinic that I don't think this is related to his kidneys.  He
+is taking a small amount of Frusemide a day to remain oedema
+free.  Given his serum albumin is now normal he should
+hopefully not need this for too much longer.
+
+I have been a little remiss in spotting that his MCV is low at
+73.  I will ensure he has iron studies done on his next visit
+and also haemoglobin and electrophoresis, as a thalassaemia
+trait might also explain this.
+
+Finally he has an appointment to see Dr MacGilchrist in respect
+of his ulcerative colitis and treatment thereof on the 9th May.
+
+Kind regards.
+
+
+
+]]>
+</lettercontent>
+</letter>
+<letter>
+<letterdate>2006-04-07</letterdate>
+<lettertype>Gen Neph</lettertype>
+<lettercontent>
+<![CDATA[
+FOLLOW UP: 1 month
+RECOMMENDED CHANGES TO TREATMENT:
+
+I reviewed this gentleman in the Renal Clinic on the 5th of
+April. From the point of view of his nephrotic syndrome, this
+remains in complete remission with an ACR of less than 1, serum
+albumin 40.
+
+Mr Sharif had phoned me during the week because last Sunday he
+had spots in front of his eyes and checked his blood pressure
+with a relative's machine, which read 58/36. We therefore
+discontinued his Furosemide and Lisinopril and he has been fine
+since and blood pressure in clinic was 138/82. I have
+instructed him to reduce his Prednisolone to 17.5mg for two
+weeks and then 15mg for two weeks and we will see him in a
+month.
+
+However, the slight concern is his haemoglobin and iron status.
+On his last letter you will recall that I noted that his MCV
+was low at 73. Mr Sharif confirmed that he has been repeatedly
+checked for thalassaemia trait, as his wife does have this and
+it obviously has implications with the children. He is
+negative. I have not therefore re-checked this on this
+occasion. However, you will see from the attached letter that
+his haemoglobin has been falling. It was 123 at the beginning
+of March, 102 at the end and 86 now. In keeping with this, his
+ferritin is 6 and iron less than 3. The most obvious therefore,
+would be GI bleeding and I do wonder if the event last Sunday
+was something a little more acute. However, he does not give
+any history compatible with melaena.
+
+In the first instance, I would be grateful if you could
+prescribe Ferrous sulphate for him. He is already on 40mg of
+Omeprazole and I will arrange an urgent endoscopy.
+
+Interestingly, while I said steroids will potentially be an
+issue in terms of gastric irritation, I do note that his MCV on
+presentation to us before ever being treated was 75. The other
+option for GI blood loss was of course his ulcerative colitis,
+but again this is currently clinically not causing problems.
+
+
+
+Kind regards,
+
+
+
+Yours sincerely,
+
+
+
+
+Dr J Goddard
+Consultant Renal Physician
+
+
+cc.
+Mr Tabassum Sharif
+Dr Alastair MacGilchrist, Consultant Gastroenterologist, RIE
+
+
+
+
+
+]]>
+</lettercontent>
+</letter>
+<letter>
+<letterdate>2006-07-18</letterdate>
+<lettertype>Gen Neph</lettertype>
+<lettercontent>
+<![CDATA[
+FOLLOW UP: 26/07/2006
+RECOMMENDED CHANGES TO TREATMENT:  Prednisolone to increase
+back up to 40mg for 2 weeks and then reduce to 30mg if
+proteinuria resolves.
+
+This gentleman was seen in the Renal Clinic on 28 June.  He had
+contacted me at the beginning of the week to say he had
+proteinuria again on urine dipstick and indeed he has had a
+recurrence of his nephrotic syndrome with a spot urine showing
+13.5gms/l proteinuria and his albumin having fallen down to
+31gms/l. Hopefully we have caught this however relatively early
+given his vigilance and I have advised him to increase his
+Prednisolone up to 40mg for 2 weeks. If his proteinuria becomes
+negative (he has dipsticks at home and knows how to use them)
+he should then reduce to 30mg for 2 weeks and we will see him
+in 4 weeks.  If he is still positive he should stay at the
+40mg.
+
+He was previously very steroid sensitive and it may be that we
+are dealing with steroid sensitive but relapsing nephrotic
+syndrome, however only a further reduction in Prednisolone will
+tell us this.
+
+I understand also that the GI Physicians are happy for him to
+have no additional treatment for his ulcerative colitis
+providing he remains on more than 1.5mg Prednisolone.  We will
+also need to consider this in our weaning policies.
+
+In respect of other issues his haemoglobin has come back up to
+118gms/l having had a dose of intravenous iron (CosmoFer) in
+May.  His ferritin is now 263 as opposed to unrecordable before
+the transfusion!
+
+I have arranged to see Mr Sharif in 4 weeks in clinic but he
+has my e-mail to contact me if there are further issues in the
+interim.
+
+Kind regards.
+
+Yours sincerely,
+
+
+
+
+Dr J Goddard
+Consultant Renal Physician
+
+
+
+
+]]>
+</lettercontent>
+</letter>
+</letterdetails>
+</patient>
+</patientview>
