@@ -2,8 +2,8 @@ package com.worthsoln.actionutils;
 
 import java.lang.reflect.InvocationTargetException;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.struts.action.ActionForm;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.struts.action.ActionForm;
 
 public class ActionUtils {
 
@@ -13,7 +13,7 @@ public class ActionUtils {
         }
     }
 
-    public static  String retrieveStringPropertyValue(String propertyName, ActionForm form, HttpServletRequest request)
+    public static String retrieveStringPropertyValue(String propertyName, ActionForm form, HttpServletRequest request)
             throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         String nhsno = BeanUtils.getProperty(form, propertyName);
         if (nhsno == null) {
