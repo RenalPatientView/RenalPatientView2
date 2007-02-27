@@ -20,7 +20,6 @@
     <list default="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/com/worthsoln/database/SqlStringUtils.java" afterPath="$PROJECT_DIR$/src/java/com/worthsoln/database/SqlStringUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/com/worthsoln/database/StorableItem.java" afterPath="$PROJECT_DIR$/src/java/com/worthsoln/database/StorableItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/patientview.iws" afterPath="$PROJECT_DIR$/patientview.iws" />
     </list>
   </component>
   <component name="ChangeListSynchronizer" />
