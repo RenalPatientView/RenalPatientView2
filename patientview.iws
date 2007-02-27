@@ -18,17 +18,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/parnes/3-late.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/parnes/invoice_list.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/patientview-webapp.iml" afterPath="$PROJECT_DIR$/webapp/patientview-webapp.iml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/parnes/3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/parnes" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/parnes/1.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/reports" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/patientview.iws" afterPath="$PROJECT_DIR$/patientview.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/patientview.iml" afterPath="$PROJECT_DIR$/src/java/patientview.iml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/parnes/2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/parnes/invoice_enter.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webapp/parnes/invoice_list.jsp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib" afterPath="" />
     </list>
   </component>
   <component name="ChangeListSynchronizer" />
@@ -153,7 +145,17 @@
     </subPane>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="context.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/webapp/META-INF/context.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -992,14 +994,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://parnes/1.html">
+    <entry file="file://$PROJECT_DIR$/webapp/META-INF/context.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="HtmlPreview">
-        <state />
       </provider>
     </entry>
   </component>
