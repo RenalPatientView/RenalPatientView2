@@ -1,8 +1,8 @@
 package com.worthsoln.patientview.parser;
 
 import java.io.File;
-import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletContext;
 import com.worthsoln.database.DatabaseDAO;
 import com.worthsoln.patientview.FindXmlFiles;
@@ -15,8 +15,10 @@ public class XmlParserThread implements Runnable, ParserThread {
     private int minutesBetweenWait;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private ServletContext servletContext;
+    private String[] fileEndings;
 
-    public XmlParserThread() {
+    public XmlParserThread(String[] fileEndings) {
+        this.fileEndings = fileEndings;
     }
 
     public XmlParserThread(ServletContext context, String xmlDirectory,
@@ -30,11 +32,10 @@ public class XmlParserThread implements Runnable, ParserThread {
     public void run() {
         try {
             while (true) {
-                File[] xmlFiles = FindXmlFiles.findXmlFiles(directory);
+                File[] xmlFiles = FindXmlFiles.findXmlFiles(directory, fileEndings);
                 DatabaseDAO dao = new DatabaseDAO("patientview");
                 for (int i = 0; i < xmlFiles.length; i++) {
                     XmlParserUtils.updateXmlData(servletContext, xmlFiles[i], dao);
-//                    xmlFiles[i].renameTo(new File(new File(archiveDirectory), xmlFiles[i].getName()));
                     xmlFiles[i].delete();
                 }
                 Thread.sleep(1000 * 60 * minutesBetweenWait);

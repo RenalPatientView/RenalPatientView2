@@ -15,30 +15,43 @@ import com.worthsoln.patientview.logon.LogonUtils;
 public class FindXmlFiles extends Action {
 
     public ActionForward execute(
-        ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
+            ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         putXmlFilesInRequest(request);
-
         return LogonUtils.logonChecks(mapping, request);
     }
 
     public static void putXmlFilesInRequest(HttpServletRequest request) {
         ServletContext context = request.getSession().getServletContext();
         String xmlDirPath = context.getInitParameter("xml.directory");
-        File[] xmlFiles = findXmlFiles(xmlDirPath);
+        File[] xmlFiles = findXmlFiles(xmlDirPath, new String[]{".xml"});
         request.setAttribute("xmlFiles", Arrays.asList(xmlFiles));
     }
 
-    public static File[] findXmlFiles(String xmlDirPath) {
+    public static File[] findXmlFiles(String xmlDirPath, String[] fileEndings) {
         File xmlDir = new File(xmlDirPath);
-        File[] xmlFiles = xmlDir.listFiles(new XmlFileFilter());
+        File[] xmlFiles = xmlDir.listFiles(new XmlFileFilter(fileEndings));
         return xmlFiles;
     }
 }
 
 class XmlFileFilter implements FilenameFilter {
 
+    String[] fileEndings;
+
+    public XmlFileFilter(String[] fileEndings) {
+        this.fileEndings = fileEndings;
+    }
+
     public boolean accept(File dir, String name) {
-        return name.endsWith(".xml");
+        boolean accepted = false;
+        for (int i = 0; i < fileEndings.length; i++) {
+            if (name.endsWith(fileEndings[i])) {
+                accepted = true;
+                break;
+            }
+
+        }
+        return accepted;
     }
 }

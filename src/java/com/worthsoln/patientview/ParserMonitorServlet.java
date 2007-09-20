@@ -12,7 +12,7 @@ public class ParserMonitorServlet extends HttpServlet {
         super.init();
         String runThreads = getServletContext().getInitParameter("run.import.export.threads");
         if ((runThreads == null) || !"false".equals(runThreads)) {
-            startParseThread("xml", new XmlParserThread());
+            startParseThread("xml", new XmlParserThread(new String[]{".xml",}));
             startParseThread("ukt", new UktParserThread());
             startParseThread("uktexport", new UktExportThread());
         }
