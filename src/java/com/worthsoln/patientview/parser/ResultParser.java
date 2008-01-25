@@ -147,11 +147,14 @@ public class ResultParser {
         NodeList diagnosisNodes = doc.getElementsByTagName("diagnosis");
         for (int i = 0; i < diagnosisNodes.getLength(); i++) {
             Node diagnosisNode = diagnosisNodes.item(i);
-            Diagnosis diagnosis = new Diagnosis();
-            diagnosis.setNhsno(getData("nhsno"));
-            diagnosis.setDiagnosis(diagnosisNode.getFirstChild().getNodeValue());
-            diagnosis.setDisplayorder(i + "");
-            otherDiagnoses.add(diagnosis);
+            Node diagnosisNodeChild = diagnosisNode.getFirstChild();
+            if(diagnosisNodeChild != null) {
+                Diagnosis diagnosis = new Diagnosis();
+                diagnosis.setNhsno(getData("nhsno"));
+                diagnosis.setDiagnosis(diagnosisNode.getFirstChild().getNodeValue());
+                diagnosis.setDisplayorder(i + "");
+                otherDiagnoses.add(diagnosis);
+            }
         }
     }
 
