@@ -27,21 +27,16 @@ public class HibernateUtil {
 
     public static Session currentSession() throws HibernateException {
         Session s = (Session) SESSION.get();
-
         if (s == null) {
             s = SESSION_FACTORY.openSession();
-
             SESSION.set(s);
         }
-
         return s;
     }
 
     public static void closeSession() throws HibernateException {
         Session s = (Session) SESSION.get();
-
         SESSION.set(null);
-
         if (s != null) {
             s.close();
         }
@@ -56,77 +51,67 @@ public class HibernateUtil {
     }
 
     public static void retrievePersistentObjectAndAddToRequest(HttpServletRequest request, Class classs,
-        String parameterName) {
+                                                               String parameterName) {
         String parameterValue = request.getParameter(parameterName);
-
         retrievePersistentObjectAndAddToRequestWithIdParameter(request, classs, parameterValue, parameterName);
     }
 
     public static void retrievePersistentObjectAndAddToRequest(HttpServletRequest request, Class classs,
-        String parameterName, String attributeName) {
+                                                               String parameterName, String attributeName) {
         String parameterValue = request.getParameter(parameterName);
-
         retrievePersistentObjectAndAddToRequestWithIdParameter(request, classs, parameterValue, attributeName);
     }
 
     public static void retrievePersistentObjectAndAddToRequestWithIdParameter(HttpServletRequest request, Class classs,
-        String parameterValue, String attributeName) {
+                                                                              String parameterValue,
+                                                                              String attributeName) {
         if (parameterValue != null) {
             Object persistentItem = getPersistentObject(classs, parameterValue);
-
             request.setAttribute(attributeName, persistentItem);
         }
     }
 
     public static void retrievePersistentObjectAndAddToSession(HttpServletRequest request, Class classs,
-        String parameterName) {
+                                                               String parameterName) {
         String parameterValue = request.getParameter(parameterName);
-
         retrievePersistentObjectAndAddToSessionWithIdParameter(request, classs, parameterValue, parameterName);
     }
 
     public static void retrievePersistentObjectAndAddToSession(HttpServletRequest request, Class classs,
-        String parameterName, String attributeName) {
+                                                               String parameterName, String attributeName) {
         String parameterValue = request.getParameter(parameterName);
-
         retrievePersistentObjectAndAddToSessionWithIdParameter(request, classs, parameterValue, attributeName);
     }
 
     public static void retrievePersistentObjectAndAddToSessionWithIdParameter(HttpServletRequest request, Class classs,
-        String parameterValue, String attributeName) {
+                                                                              String parameterValue,
+                                                                              String attributeName) {
         if (parameterValue != null) {
             Object persistentItem = getPersistentObject(classs, parameterValue);
-
             request.getSession().setAttribute(attributeName, persistentItem);
         }
     }
 
     public static Object getPersistentObject(Class classs, String parameterValue) {
         Object persistentItem = null;
-
         try {
             Session session = HibernateUtil.currentSession();
             Transaction tx = session.beginTransaction();
-
             persistentItem = session.get(classs, parameterValue);
-
             tx.commit();
             HibernateUtil.closeSession();
         } catch (HibernateException e) {
             e.printStackTrace();
         }
-
         return persistentItem;
     }
 
     public static void extractDataFromFormMakeObjectAndAdd(Object objectToBuild, ActionForm form,
-        HttpServletRequest request, String attributeName) {
+                                                           HttpServletRequest request, String attributeName) {
         try {
             buildObject(objectToBuild, form);
-
             Session session = HibernateUtil.currentSession();
             Transaction tx = session.beginTransaction();
-
             session.save(objectToBuild);
             tx.commit();
             HibernateUtil.closeSession();
@@ -139,12 +124,11 @@ public class HibernateUtil {
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
-
         request.setAttribute(attributeName, objectToBuild);
     }
 
     public static void extractDataFromFormMakeObjectAndUpdate(Object objectToBuild, ActionForm form,
-        HttpServletRequest request, String attributeName) {
+                                                              HttpServletRequest request, String attributeName) {
         try {
             buildObject(objectToBuild, form);
             saveOrUpdateWithTransaction(objectToBuild);
@@ -157,41 +141,46 @@ public class HibernateUtil {
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
-
         request.setAttribute(attributeName, objectToBuild);
     }
 
     public static void saveOrUpdateWithTransaction(Object objectToBuild) throws HibernateException {
         Session session = HibernateUtil.currentSession();
         Transaction tx = session.beginTransaction();
-
         session.saveOrUpdate(objectToBuild);
         tx.commit();
         HibernateUtil.closeSession();
     }
 
     private static void buildObject(Object objectToBuild, ActionForm form)
-        throws HibernateException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+            throws HibernateException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         String identifierPropertyName = HibernateUtil.getIdentifierPropertyName(objectToBuild.getClass());
-
         BeanUtils.setProperty(objectToBuild, identifierPropertyName,
-                              BeanUtils.getProperty(form, identifierPropertyName));
-
+                BeanUtils.getProperty(form, identifierPropertyName));
         String[] colNames = HibernateUtil.getPropertyNames(objectToBuild.getClass());
-
         for (int i = 0; i < colNames.length; i++) {
             BeanUtils.setProperty(objectToBuild, colNames[i], BeanUtils.getProperty(form, colNames[i]));
         }
     }
 
     public static void putListInRequest(Class classs, String attributeName, HttpServletRequest request)
-        throws HibernateException {
+            throws HibernateException {
         Session session = HibernateUtil.currentSession();
         Transaction tx = session.beginTransaction();
         List items = session.find("from " + classs.getName());
-
         tx.commit();
         HibernateUtil.closeSession();
         request.setAttribute(attributeName, items);
     }
+
+    public static void deleteFromDatabase(Class classs, int id) throws HibernateException {
+        Session session = HibernateUtil.currentSession();
+        Transaction tx = session.beginTransaction();
+        Object persistentItem = session.get(classs, id);
+        session.delete(persistentItem);
+        tx.commit();
+        HibernateUtil.closeSession();
+    }
+
+
 }

@@ -177,5 +177,13 @@
         </var>
       </field>
     </form>
+    <form name="/control/newsAdd">
+      <field property="headline" depends="required">
+        <msg key="news.headline.required" name="required"/>
+      </field>
+      <field property="body" depends="required">
+        <msg key="news.body.required" name="required"/>
+      </field>
+    </form>
   </formset>
 </form-validation>

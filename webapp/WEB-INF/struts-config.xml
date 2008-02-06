@@ -132,6 +132,16 @@
       <form-property name="startdate" type="java.lang.String"/>
       <form-property name="enddate" type="java.lang.String"/>
     </form-bean>
+    <form-bean name="newsForm" type="org.apache.struts.validator.DynaValidatorActionForm">
+      <form-property name="id" type="java.lang.String"/>
+      <form-property name="unitcode" type="java.lang.String"/>
+      <form-property name="admin" type="java.lang.String"/>
+      <form-property name="patient" type="java.lang.String"/>
+      <form-property name="everyone" type="java.lang.String"/>
+      <form-property name="headline" type="java.lang.String"/>
+      <form-property name="body" type="java.lang.String"/>
+      <form-property name="submission" type="java.lang.String"/>
+    </form-bean>
   </form-beans>
 
   <!-- ========== Global Forward Definitions ============================== -->
@@ -372,6 +382,7 @@
     </action>
     <action path="/control/unitAdminAddInput"
       type="com.worthsoln.patientview.logon.LogonAddInputAction"
+      name="patientForm"
       scope="request">
       <forward name="success" path="/control/unit_admin_add_input.jsp"/>
     </action>
@@ -520,6 +531,46 @@
       scope="request">
       <forward name="input" path="/control/log_view.jsp"/>
       <forward name="success" path="/control/log_view.jsp"/>
+    </action>
+    <action path="/control/newsList"
+      type="com.worthsoln.patientview.news.NewsListAction"
+      name="newsForm"
+      scope="request">
+      <forward name="success" path="/control/news_list.jsp"/>
+    </action>
+    <action path="/control/newsAddInput"
+      type="com.worthsoln.patientview.news.NewsAddInputAction"
+      name="newsForm"
+      scope="request">
+      <forward name="success" path="/control/news_add.jsp"/>
+    </action>
+    <action path="/control/newsPreview"
+      type="com.worthsoln.patientview.news.NewsPreviewAction"
+      name="newsForm"
+      input="preview"
+      scope="request">
+      <forward name="preview" path="/control/news_edit.jsp"/>
+      <forward name="add" path="/control/news_list.jsp"/>
+    </action>
+    <action path="/control/newsEdit"
+      type="com.worthsoln.patientview.news.NewsEditAction"
+      name="newsForm"
+      scope="request">
+      <forward name="success" path="/control/news_edit.jsp"/>
+    </action>
+    <action path="/control/newsDelete"
+      type="com.worthsoln.patientview.news.NewsDeleteAction"
+      name="newsForm"
+      input="input"
+      scope="request">
+      <forward name="input" path="/control/news_list.jsp"/>
+      <forward name="success" path="/control/news_list.jsp"/>
+    </action>
+    <action path="/newsView"
+      type="com.worthsoln.patientview.news.NewsViewAction"
+      name="newsForm"
+      scope="request">
+      <forward name="success" path="/news_view.jsp"/>
     </action>
   </action-mappings>
 

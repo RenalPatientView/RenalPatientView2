@@ -137,6 +137,7 @@ font-size:12px; font-style:normal; font-weight:normal; width:500px; text-align:l
 .allborders {  background-color: White; border: #BAD3ED; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
 
 
+.thinblue {  color: #BAD3ED; background-color: #BAD3ED; border: #BAD3ED; height: 1px}
 
 
 
