@@ -9,6 +9,7 @@
       <generator class="increment"/>
     </id>
     <property name="nhsno"/>
+    <property name="unitcode"/>
     <property name="startdate"/>
     <property name="name"/>
     <property name="dose"/>

@@ -25,7 +25,7 @@ public class UserDeleteAction extends DatabaseAction {
         String mappingToFind = "";
         if (patient != null) {
             if ("patient".equals(patient.getRole())) {
-                UserUtils.removePatientFromSystem(patient.getNhsno());
+                UserUtils.removePatientFromSystem(patient.getNhsno(), patient.getUnitcode());
             }
             dao.deleteItem(new PatientLogonDao(patient));
             mappingToFind = "success";

@@ -14,9 +14,8 @@ import com.worthsoln.patientview.unit.Unit;
 
 public class UnitPatientsAction extends DatabaseAction {
 
-    public ActionForward execute(
-        ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+                                 HttpServletResponse response) throws Exception {
         String unitcode = BeanUtils.getProperty(form, "unitcode");
         unitcode = (unitcode == null) ? "" : unitcode;
         String nhsno = BeanUtils.getProperty(form, "nhsno");
@@ -30,9 +29,7 @@ public class UnitPatientsAction extends DatabaseAction {
         }
         UnitPatientsWithTreatmentDao patientDao = new UnitPatientsWithTreatmentDao(unitcode, nhsno, name, showgps);
         List patients = dao.retrieveList(patientDao);
-
         request.setAttribute("patients", patients);
-
         return LogonUtils.logonChecks(mapping, request);
     }
 

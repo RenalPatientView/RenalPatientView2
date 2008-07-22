@@ -1,3 +1,5 @@
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map" %>
 <%@ taglib uri="/tags/struts-html" prefix="html" %>
 <%@ taglib uri="/tags/struts-bean" prefix="bean" %>
 <%@ taglib uri="/tags/struts-logic" prefix="logic" %>
@@ -34,7 +36,15 @@
         <td class="tableheader">NHS Number<br />(view patient)</td>
         <td class="tableheader">Treatment</td>
       </tr>
-    <logic:iterate id="patient" name="patients">
+    <logic:iterate id="patient" name="patients" type="com.worthsoln.patientview.logon.PatientLogon">
+
+      <%
+        Map <String, String> patientKeyParams = new HashMap <String, String>();
+        patientKeyParams.put("nhsno", patient.getNhsno() );
+        patientKeyParams.put("unitcode", patient.getUnitcode());
+        request.setAttribute("patientKeyParams", patientKeyParams);
+      %>
+
       <tr>
         <td class="tablecell">
           <logic:present role="superadmin,unitadmin">
@@ -47,7 +57,8 @@
           </logic:present>
         </td>
         <td class="tablecell">
-          <html:link action="/control/patientView" paramId="nhsno" paramName="patient" paramProperty="nhsno">
+       <%--   <html:link action="/control/patientView" paramId="nhsno" paramName="patient" paramProperty="nhsno" >   --%>
+          <html:link action="/control/patientView" name="patientKeyParams" >
             <bean:write name="patient" property="nhsno"/>
           </html:link>
         </td>

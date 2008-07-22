@@ -4,14 +4,16 @@ public class Diagnosis {
 
     private int id;
     private String nhsno;
+    private String unitcode;
     private String diagnosis;
     private String displayorder;
 
     public Diagnosis() {
     }
 
-    public Diagnosis(String nhsno, String diagnosis, String displayorder) {
+    public Diagnosis(String nhsno, String unitcode, String diagnosis, String displayorder) {
         this.nhsno = nhsno;
+        this.unitcode = unitcode;
         this.diagnosis = diagnosis;
         this.displayorder = displayorder;
     }
@@ -30,6 +32,14 @@ public class Diagnosis {
 
     public void setNhsno(String nhsno) {
         this.nhsno = nhsno;
+    }
+
+    public String getUnitcode() {
+        return unitcode;
+    }
+
+    public void setUnitcode(String unitcode) {
+        this.unitcode = unitcode;
     }
 
     public String getDiagnosis() {

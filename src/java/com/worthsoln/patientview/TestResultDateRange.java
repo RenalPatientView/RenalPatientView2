@@ -3,6 +3,7 @@ package com.worthsoln.patientview;
 public class TestResultDateRange {
 
     private String nhsNo;
+    private String unitcode;
     private String testCode;
     private String startDate;
     private String stopDate;
@@ -10,8 +11,9 @@ public class TestResultDateRange {
     public TestResultDateRange() {
     }
 
-    public TestResultDateRange(String nhsNo, String testCode, String startDate, String endDate) {
+    public TestResultDateRange(String nhsNo, String unitcode, String testCode, String startDate, String endDate) {
         this.nhsNo = nhsNo;
+        this.unitcode = unitcode;
         this.testCode = testCode;
         this.startDate = startDate;
         this.stopDate = endDate;
@@ -31,6 +33,14 @@ public class TestResultDateRange {
 
     public void setNhsNo(String nhsNo) {
         this.nhsNo = nhsNo;
+    }
+
+    public String getUnitcode() {
+        return unitcode;
+    }
+
+    public void setUnitcode(String unitcode) {
+        this.unitcode = unitcode;
     }
 
     public String getStartDate() {

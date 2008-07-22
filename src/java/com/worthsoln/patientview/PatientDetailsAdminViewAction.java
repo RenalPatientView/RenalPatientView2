@@ -16,24 +16,25 @@ import com.worthsoln.patientview.uktransplant.UktUtils;
 
 public class PatientDetailsAdminViewAction extends DatabaseAction {
 
-    public ActionForward execute(
-            ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+                                 HttpServletResponse response) throws Exception {
         String nhsno = ActionUtils.retrieveStringPropertyValue("nhsno", form, request);
+        String unitcode = ActionUtils.retrieveStringPropertyValue("unitcode", form, request);
         request.getSession().setAttribute("patientBeingViewedNhsNo", nhsno);
+        request.getSession().setAttribute("patientBeingViewedUnitcode", unitcode);
         DatabaseDAO dao = getDao(request);
-        Patient patient = PatientUtils.retrievePatient(nhsno, dao);
+        Patient patient = PatientUtils.retrievePatient(nhsno, unitcode, dao);
         if (patient != null) {
             EdtaCodeUtils.addEdtaCodeToRequest(patient.getDiagnosis(), "edtaCode", dao, request);
             EdtaCodeUtils.addEdtaCodeToRequest(patient.getTreatment(), "treatmentCode", dao, request);
             UktUtils.addUktStatusToRequest(patient.getNhsno(), dao, request);
-            request.setAttribute("otherDiagnoses", DiagnosisUtils.getOtherDiagnoses(patient.getNhsno()));
+            request.setAttribute("otherDiagnoses",
+                    DiagnosisUtils.getOtherDiagnoses(patient.getNhsno(), patient.getCentreCode()));
             request.setAttribute("patient", patient);
             AddLog.addLog(request.getUserPrincipal().getName(), AddLog.PATIENT_VIEW, "", patient.getNhsno());
         }
         EdtaCodeUtils.addEdtaCodeToRequest("static", "staticLinks", dao, request);
         ActionUtils.setUpNavLink(mapping.getParameter(), request);
-
         return LogonUtils.logonChecks(mapping, request);
     }
 

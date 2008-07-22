@@ -1,8 +1,8 @@
 package com.worthsoln.patientview;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.sql.Timestamp;
 import com.worthsoln.database.StorableItem;
 
 public class TestResultDao extends StorableItem {
@@ -25,12 +25,13 @@ public class TestResultDao extends StorableItem {
     }
 
     public String[] getColumnNames() {
-        return new String[]{"testcode", "prepost", "datestamp", "value"};
+        return new String[]{"unitcode", "testcode", "prepost", "datestamp", "value"};
     }
 
     public ArrayList getColumnParameters() {
         ArrayList params = new ArrayList();
 
+        params.add(testResult.getUnitcode());
         params.add(testResult.getTestcode());
 
         Calendar timestampCal = testResult.getDatestamped();

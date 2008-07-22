@@ -13,16 +13,16 @@
     <property name="jta.UserTransaction">java:comp/UserTransaction</property>
 
     <!-- mapping files -->
-    <mapping resource="com/worthsoln/patientview/EdtaCode.hbm.xml"/>
-    <mapping resource="com/worthsoln/patientview/User.hbm.xml"/>
-    <mapping resource="com/worthsoln/patientview/ResultHeading.hbm.xml"/>
-    <mapping resource="com/worthsoln/patientview/Unit.hbm.xml"/>
-    <mapping resource="com/worthsoln/patientview/Letter.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/Diagnosis.hbm.xml"/>
-    <mapping resource="com/worthsoln/patientview/Medicine.hbm.xml"/>
+    <mapping resource="com/worthsoln/patientview/EdtaCode.hbm.xml"/>
+    <mapping resource="com/worthsoln/patientview/Letter.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/LogEntry.hbm.xml"/>
-    <mapping resource="com/worthsoln/patientview/UktStatus.hbm.xml"/>
-    <mapping resource="com/worthsoln/patientview/UktCode.hbm.xml"/>
+    <mapping resource="com/worthsoln/patientview/Medicine.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/News.hbm.xml"/>
+    <mapping resource="com/worthsoln/patientview/ResultHeading.hbm.xml"/>
+    <mapping resource="com/worthsoln/patientview/UktCode.hbm.xml"/>
+    <mapping resource="com/worthsoln/patientview/UktStatus.hbm.xml"/>
+    <mapping resource="com/worthsoln/patientview/Unit.hbm.xml"/>
+    <mapping resource="com/worthsoln/patientview/User.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

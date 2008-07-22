@@ -26,7 +26,8 @@ public class PatientDetailsAction extends DatabaseAction {
             EdtaCodeUtils.addEdtaCodeToRequest(patient.getDiagnosis(), "edtaCode", dao, request);
             EdtaCodeUtils.addEdtaCodeToRequest(patient.getTreatment(), "treatmentCode", dao, request);
             UktUtils.addUktStatusToRequest(patient.getNhsno(), dao, request);
-            request.setAttribute("otherDiagnoses", DiagnosisUtils.getOtherDiagnoses(patient.getNhsno()));
+            request.setAttribute("otherDiagnoses",
+                    DiagnosisUtils.getOtherDiagnoses(patient.getNhsno(), patient.getCentreCode()));
             request.setAttribute("patient", patient);
             AddLog.addLog(request.getUserPrincipal().getName(), AddLog.PATIENT_VIEW, "", patient.getNhsno());
         } else if (!request.isUserInRole("patient")) {

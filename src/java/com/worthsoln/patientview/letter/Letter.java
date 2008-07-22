@@ -8,6 +8,7 @@ public class Letter {
 
     private int id;
     private String nhsno;
+    private String unitcode;
     private Calendar date;
     private String type;
     private String content;
@@ -15,8 +16,9 @@ public class Letter {
     public Letter() {
     }
 
-    public Letter(String nhsno, Calendar date, String type, String content) {
+    public Letter(String nhsno, String unitcode, Calendar date, String type, String content) {
         this.nhsno = nhsno;
+        this.unitcode = unitcode;
         this.content = content;
         this.date = date;
         this.type = type;
@@ -36,6 +38,14 @@ public class Letter {
 
     public void setNhsno(String nhsno) {
         this.nhsno = nhsno;
+    }
+
+    public String getUnitcode() {
+        return unitcode;
+    }
+
+    public void setUnitcode(String unitcode) {
+        this.unitcode = unitcode;
     }
 
     public String getContent() {

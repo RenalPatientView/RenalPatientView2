@@ -29,8 +29,9 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(String nhsno) {
+    public Patient(String nhsno, String centreCode) {
         this.nhsno = nhsno;
+        this.centreCode = centreCode;
     }
 
     public Patient(String nhsno, String surname, String forename, String dateofbirth, String sex, String address1,

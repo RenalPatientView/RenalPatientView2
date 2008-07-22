@@ -41,7 +41,7 @@ public class UnitPatientsWithTreatmentDao extends LogonDao {
                 + "user.username,  user.password, user.name, user.email, user.nhsno, user.unitcode, "
                 + "user.firstlogon, patient.treatment "
                 + "FROM user "
-                + "LEFT JOIN patient ON user.nhsno = patient.nhsno "
+                + "LEFT JOIN patient ON user.nhsno = patient.nhsno AND user.unitcode = patient.centreCode "
                 + "WHERE user.role = ? ";
         if (!"".equals(unitcode)) {
             sql += "AND user.unitcode = ? ";

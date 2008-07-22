@@ -8,6 +8,7 @@ public class Medicine {
 
     private int id;
     private String nhsno;
+    private String unitcode;
     private Calendar startdate;
     private String name;
     private String dose;
@@ -15,8 +16,9 @@ public class Medicine {
     public Medicine() {
     }
 
-    public Medicine(String nhsno, Calendar startdate, String name, String dose) {
+    public Medicine(String nhsno, String unitcode, Calendar startdate, String name, String dose) {
         this.nhsno = nhsno;
+        this.unitcode = unitcode;
         this.dose = dose;
         this.startdate = startdate;
         this.name = name;
@@ -36,6 +38,14 @@ public class Medicine {
 
     public void setNhsno(String nhsno) {
         this.nhsno = nhsno;
+    }
+
+    public String getUnitcode() {
+        return unitcode;
+    }
+
+    public void setUnitcode(String unitcode) {
+        this.unitcode = unitcode;
     }
 
     public String getDose() {

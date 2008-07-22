@@ -29,9 +29,8 @@ public class ResultsUpdater {
         try {
             ResultParser parser = new ResultParser();
             parser.parseResults(context, xmlFile);
-            if ("Remove".equalsIgnoreCase(parser.getFlag())
-                    || "Dead".equalsIgnoreCase(parser.getFlag())
-                    || "Died".equalsIgnoreCase(parser.getFlag())) {
+            if ("Remove".equalsIgnoreCase(parser.getFlag()) || "Dead".equalsIgnoreCase(parser.getFlag()) ||
+                    "Died".equalsIgnoreCase(parser.getFlag())) {
                 removePatientFromSystem(parser);
                 AddLog.addLog(AddLog.ACTOR_SYSTEM, AddLog.PATIENT_DATA_REMOVE, "", parser.getPatient().getNhsno(),
                         xmlFile.getName());
@@ -47,7 +46,8 @@ public class ResultsUpdater {
 
     private void removePatientFromSystem(ResultParser parser) {
         String nhsno = parser.getData("nhsno");
-        UserUtils.removePatientFromSystem(nhsno);
+        String unitcode = parser.getData("centrecode");
+        UserUtils.removePatientFromSystem(nhsno, unitcode);
     }
 
     private void updatePatientData(ResultParser parser) {
@@ -57,9 +57,9 @@ public class ResultsUpdater {
         insertResults(parser.getTestResults());
         deleteLetters(parser.getLetters());
         insertLetters(parser.getLetters());
-        deleteOtherDiagnoses(parser.getData("nhsno"));
+        deleteOtherDiagnoses(parser.getData("nhsno"), parser.getData("centrecode"));
         insertOtherDiagnoses(parser.getOtherDiagnoses());
-        deleteMedicines(parser.getData("nhsno"));
+        deleteMedicines(parser.getData("nhsno"), parser.getData("centrecode"));
         insertMedicines(parser.getMedicines());
     }
 
@@ -76,26 +76,27 @@ public class ResultsUpdater {
     }
 
     private void deleteDateRanges(Collection dateRanges) {
-        String dateRangeDeleteSql =
-                "DELETE FROM testresult WHERE nhsno = ? AND testcode = ? AND datestamp > ? AND datestamp < ?";
-        for (Iterator iterator = dateRanges.iterator(); iterator.hasNext(); ) {
+        String dateRangeDeleteSql = "DELETE FROM testresult WHERE nhsno = ? AND unitcode = ? " +
+                " AND testcode = ? AND datestamp > ? AND datestamp < ?";
+        for (Iterator iterator = dateRanges.iterator(); iterator.hasNext();) {
             TestResultDateRange testResultDateRange = (TestResultDateRange) iterator.next();
             Calendar startDate = TestResultDao.createTimestamp(testResultDateRange.getStartDate() + "T00:00");
             startDate.set(Calendar.SECOND, 0);
             Calendar stopDate = TestResultDao.createTimestamp(testResultDateRange.getStopDate() + "T23:59");
             stopDate.set(Calendar.SECOND, 59);
-            Object[] params = new Object[4];
+            Object[] params = new Object[5];
             params[0] = testResultDateRange.getNhsNo();
-            params[1] = testResultDateRange.getTestCode();
-            params[2] = new Timestamp(startDate.getTimeInMillis());
-            params[3] = new Timestamp(stopDate.getTimeInMillis());
+            params[1] = testResultDateRange.getUnitcode();
+            params[2] = testResultDateRange.getTestCode();
+            params[3] = new Timestamp(startDate.getTimeInMillis());
+            params[4] = new Timestamp(stopDate.getTimeInMillis());
             DatabaseUpdateQuery query = new DatabaseUpdateQuery(dateRangeDeleteSql, params);
             dao.doExecute(query);
         }
     }
 
     private void insertResults(Collection testResults) {
-        for (Iterator iterator = testResults.iterator(); iterator.hasNext(); ) {
+        for (Iterator iterator = testResults.iterator(); iterator.hasNext();) {
             TestResult testResult = (TestResult) iterator.next();
             TestResultDao testResultDao = new TestResultDao(testResult);
             dao.insertItem(testResultDao);
@@ -103,19 +104,20 @@ public class ResultsUpdater {
     }
 
     private void deleteLetters(Collection letters) {
-        String letterDeleteSql = "DELETE FROM letter WHERE nhsno = ? AND date = ?";
-        for (Iterator iterator = letters.iterator(); iterator.hasNext(); ) {
+        String letterDeleteSql = "DELETE FROM letter WHERE nhsno = ? AND unitcode = ? AND date = ?";
+        for (Iterator iterator = letters.iterator(); iterator.hasNext();) {
             Letter letter = (Letter) iterator.next();
-            Object[] params = new Object[2];
+            Object[] params = new Object[3];
             params[0] = letter.getNhsno();
-            params[1] = new Timestamp(letter.getDate().getTimeInMillis());
+            params[1] = letter.getUnitcode();
+            params[2] = new Timestamp(letter.getDate().getTimeInMillis());
             DatabaseUpdateQuery query = new DatabaseUpdateQuery(letterDeleteSql, params);
             dao.doExecute(query);
         }
     }
 
     private void insertLetters(Collection letters) {
-        for (Iterator iterator = letters.iterator(); iterator.hasNext(); ) {
+        for (Iterator iterator = letters.iterator(); iterator.hasNext();) {
             Letter letter = (Letter) iterator.next();
             try {
                 HibernateUtil.saveOrUpdateWithTransaction(letter);
@@ -125,15 +127,15 @@ public class ResultsUpdater {
         }
     }
 
-    private void deleteOtherDiagnoses(String nhsno) {
-        String diagnosesDeleteSql = "DELETE FROM diagnosis WHERE nhsno = ?";
-        Object[] params = new Object[]{nhsno};
+    private void deleteOtherDiagnoses(String nhsno, String unitcode) {
+        String diagnosesDeleteSql = "DELETE FROM diagnosis WHERE nhsno = ? AND unitcode = ?";
+        Object[] params = new Object[]{nhsno, unitcode};
         DatabaseUpdateQuery query = new DatabaseUpdateQuery(diagnosesDeleteSql, params);
         dao.doExecute(query);
     }
 
     private void insertOtherDiagnoses(Collection diagnoses) {
-        for (Iterator iterator = diagnoses.iterator(); iterator.hasNext(); ) {
+        for (Iterator iterator = diagnoses.iterator(); iterator.hasNext();) {
             Diagnosis diagnosis = (Diagnosis) iterator.next();
             try {
                 HibernateUtil.saveOrUpdateWithTransaction(diagnosis);
@@ -143,15 +145,15 @@ public class ResultsUpdater {
         }
     }
 
-    private void deleteMedicines(String nhsno) {
-        String deleteSql = "DELETE FROM medicine WHERE nhsno = ?";
-        Object[] params = new Object[]{nhsno};
+    private void deleteMedicines(String nhsno, String unitcode) {
+        String deleteSql = "DELETE FROM medicine WHERE nhsno = ? AND unitcode = ?";
+        Object[] params = new Object[]{nhsno, unitcode};
         DatabaseUpdateQuery query = new DatabaseUpdateQuery(deleteSql, params);
         dao.doExecute(query);
     }
 
     private void insertMedicines(Collection medicines) {
-        for (Iterator iterator = medicines.iterator(); iterator.hasNext(); ) {
+        for (Iterator iterator = medicines.iterator(); iterator.hasNext();) {
             Medicine medicine = (Medicine) iterator.next();
             try {
                 HibernateUtil.saveOrUpdateWithTransaction(medicine);

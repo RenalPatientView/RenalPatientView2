@@ -1,11 +1,15 @@
 package com.worthsoln.patientview;
 
 import java.util.ArrayList;
+import org.apache.commons.dbutils.ResultSetHandler;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import com.worthsoln.database.DatabaseQuery;
+import com.worthsoln.database.DatabaseUpdateQuery;
 import com.worthsoln.database.StorableItem;
 
 public class PatientDao extends StorableItem {
 
-    private Patient patient;
+    protected Patient patient;
 
     public PatientDao(Patient patient) {
         this.patient = patient;
@@ -66,5 +70,18 @@ public class PatientDao extends StorableItem {
 
     public String getTableName() {
         return "patient";
+    }
+
+    public DatabaseUpdateQuery getDeleteQuery() {
+        Object[] parameters = new Object[]{patient.getNhsno(), patient.getCentreCode()};
+        String sql = "DELETE FROM patient WHERE nhsno = ? AND centreCode = ?";
+        return new DatabaseUpdateQuery(sql, parameters);
+    }
+
+    public DatabaseQuery getRetrieveQuery() {
+        Object[] parameters = new Object[]{patient.getNhsno(), patient.getCentreCode()};
+        String sql = "SELECT * FROM " + getTableName() + " WHERE nhsno = ? AND centreCode = ?";
+        ResultSetHandler rsHandler = new BeanHandler(getTableMapper());
+        return new DatabaseQuery(sql, parameters, rsHandler);
     }
 }

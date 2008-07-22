@@ -29,14 +29,11 @@ public class ResultParser {
     private ArrayList otherDiagnoses = new ArrayList();
     private ArrayList medicines = new ArrayList();
     private Map xmlData = new HashMap();
-    private String[] topLevelElements = new String[]{
-            "flag", "centrecode", "centrename", "centreaddress1", "centreaddress2", "centreaddress3", "centreaddress4",
-            "centrepostcode", "centretelephone", "centreemail", "gpname", "gpaddress1", "gpaddress2", "gpaddress3",
-            "gppostcode", "gptelephone", "diagnosisedta", "rrtstatus", "tpstatus", "surname", "forename", "dateofbirth",
-            "sex", "nhsno", "hospitalnumber", "address1", "address2", "address3", "postcode", "telephone1",
-            "telephone2",
-            "mobile",
-    };
+    private String[] topLevelElements = new String[]{"flag", "centrecode", "centrename", "centreaddress1",
+            "centreaddress2", "centreaddress3", "centreaddress4", "centrepostcode", "centretelephone", "centreemail",
+            "gpname", "gpaddress1", "gpaddress2", "gpaddress3", "gppostcode", "gptelephone", "diagnosisedta",
+            "rrtstatus", "tpstatus", "surname", "forename", "dateofbirth", "sex", "nhsno", "hospitalnumber", "address1",
+            "address2", "address3", "postcode", "telephone1", "telephone2", "mobile",};
 
     public void parseResults(ServletContext context, File resultsFile) throws Exception {
         Document doc = getDocument(context, resultsFile);
@@ -60,17 +57,18 @@ public class ResultParser {
             String stopDate = "";
             for (int j = 0; j < testResultNodes.getLength(); j++) {
                 Node testResultNode = testResultNodes.item(j);
-                if ((testResultNode.getNodeType() == Node.ELEMENT_NODE)
-                        && (testResultNode.getNodeName().equals("daterange"))) {
+                if ((testResultNode.getNodeType() == Node.ELEMENT_NODE) &&
+                        (testResultNode.getNodeName().equals("daterange"))) {
                     NamedNodeMap attributes = testResultNode.getAttributes();
                     startDate = attributes.getNamedItem("start").getNodeValue();
                     stopDate = attributes.getNamedItem("stop").getNodeValue();
-                } else if ((testResultNode.getNodeType() == Node.ELEMENT_NODE)
-                        && (testResultNode.getNodeName().equals("testcode"))) {
+                } else if ((testResultNode.getNodeType() == Node.ELEMENT_NODE) &&
+                        (testResultNode.getNodeName().equals("testcode"))) {
                     testCode = testResultNode.getFirstChild().getNodeValue();
                 }
             }
-            TestResultDateRange dateRange = new TestResultDateRange(getData("nhsno"), testCode, startDate, stopDate);
+            TestResultDateRange dateRange =
+                    new TestResultDateRange(getData("nhsno"), getData("centrecode"), testCode, startDate, stopDate);
             dateRanges.add(dateRange);
         }
     }
@@ -83,26 +81,26 @@ public class ResultParser {
             String testCode = "";
             for (int j = 0; j < testResultNodes.getLength(); j++) {
                 Node testResultNode = testResultNodes.item(j);
-                if ((testResultNode.getNodeType() == Node.ELEMENT_NODE)
-                        && (testResultNode.getNodeName().equals("testname"))) {
+                if ((testResultNode.getNodeType() == Node.ELEMENT_NODE) &&
+                        (testResultNode.getNodeName().equals("testname"))) {
                     int anything = 0;
-                } else if ((testResultNode.getNodeType() == Node.ELEMENT_NODE)
-                        && (testResultNode.getNodeName().equals("testcode"))) {
+                } else if ((testResultNode.getNodeType() == Node.ELEMENT_NODE) &&
+                        (testResultNode.getNodeName().equals("testcode"))) {
                     testCode = testResultNode.getFirstChild().getNodeValue();
-                } else if ((testResultNode.getNodeType() == Node.ELEMENT_NODE)
-                        && (testResultNode.getNodeName().equals("result"))) {
-                    TestResult testResult = new TestResult(getData("nhsno"), null, testCode, "");
+                } else if ((testResultNode.getNodeType() == Node.ELEMENT_NODE) &&
+                        (testResultNode.getNodeName().equals("result"))) {
+                    TestResult testResult = new TestResult(getData("nhsno"), getData("centrecode"), null, testCode, "");
                     NodeList resultDataNodes = testResultNode.getChildNodes();
                     for (int k = 0; k < resultDataNodes.getLength(); k++) {
                         Node resultDataNode = resultDataNodes.item(k);
-                        if ((resultDataNode.getNodeType() == Node.ELEMENT_NODE)
-                                && (resultDataNode.getNodeName().equals("datestamp"))) {
+                        if ((resultDataNode.getNodeType() == Node.ELEMENT_NODE) &&
+                                (resultDataNode.getNodeName().equals("datestamp"))) {
                             parseDatestamp(testResult, resultDataNode);
-                        } else if ((resultDataNode.getNodeType() == Node.ELEMENT_NODE)
-                                && (resultDataNode.getNodeName().equals("prepost"))) {
+                        } else if ((resultDataNode.getNodeType() == Node.ELEMENT_NODE) &&
+                                (resultDataNode.getNodeName().equals("prepost"))) {
                             testResult.setPrepost(resultDataNode.getFirstChild().getNodeValue());
-                        } else if ((resultDataNode.getNodeType() == Node.ELEMENT_NODE)
-                                && (resultDataNode.getNodeName().equals("value"))) {
+                        } else if ((resultDataNode.getNodeType() == Node.ELEMENT_NODE) &&
+                                (resultDataNode.getNodeName().equals("value"))) {
                             testResult.setValue(resultDataNode.getFirstChild().getNodeValue().trim());
                         }
                     }
@@ -118,17 +116,18 @@ public class ResultParser {
             Node letterNode = letterNodes.item(i);
             Letter letter = new Letter();
             letter.setNhsno(getData("nhsno"));
+            letter.setUnitcode(getData("centrecode"));
             NodeList letterDetailNodes = letterNode.getChildNodes();
             for (int j = 0; j < letterDetailNodes.getLength(); j++) {
                 Node letterDetailNode = letterDetailNodes.item(j);
-                if ((letterDetailNode.getNodeType() == Node.ELEMENT_NODE)
-                        && (letterDetailNode.getNodeName().equals("letterdate"))) {
+                if ((letterDetailNode.getNodeType() == Node.ELEMENT_NODE) &&
+                        (letterDetailNode.getNodeName().equals("letterdate"))) {
                     letter.setDate(letterDetailNode.getFirstChild().getNodeValue());
-                } else if ((letterDetailNode.getNodeType() == Node.ELEMENT_NODE)
-                        && (letterDetailNode.getNodeName().equals("lettertype"))) {
+                } else if ((letterDetailNode.getNodeType() == Node.ELEMENT_NODE) &&
+                        (letterDetailNode.getNodeName().equals("lettertype"))) {
                     letter.setType(letterDetailNode.getFirstChild().getNodeValue());
-                } else if ((letterDetailNode.getNodeType() == Node.ELEMENT_NODE)
-                        && (letterDetailNode.getNodeName().equals("lettercontent"))) {
+                } else if ((letterDetailNode.getNodeType() == Node.ELEMENT_NODE) &&
+                        (letterDetailNode.getNodeName().equals("lettercontent"))) {
                     NodeList nodes = letterDetailNode.getChildNodes();
                     for (int k = 0; k < nodes.getLength(); k++) {
                         Node node = nodes.item(k);
@@ -148,9 +147,10 @@ public class ResultParser {
         for (int i = 0; i < diagnosisNodes.getLength(); i++) {
             Node diagnosisNode = diagnosisNodes.item(i);
             Node diagnosisNodeChild = diagnosisNode.getFirstChild();
-            if(diagnosisNodeChild != null) {
+            if (diagnosisNodeChild != null) {
                 Diagnosis diagnosis = new Diagnosis();
                 diagnosis.setNhsno(getData("nhsno"));
+                diagnosis.setUnitcode(getData("centrecode"));
                 diagnosis.setDiagnosis(diagnosisNode.getFirstChild().getNodeValue());
                 diagnosis.setDisplayorder(i + "");
                 otherDiagnoses.add(diagnosis);
@@ -164,18 +164,19 @@ public class ResultParser {
             Node medicineNode = medicineNodes.item(i);
             Medicine medicine = new Medicine();
             medicine.setNhsno(getData("nhsno"));
+            medicine.setUnitcode(getData("centrecode"));
             NodeList medicineDetailNodes = medicineNode.getChildNodes();
             for (int j = 0; j < medicineDetailNodes.getLength(); j++) {
                 try {
                     Node medicineDetailNode = medicineDetailNodes.item(j);
-                    if ((medicineDetailNode.getNodeType() == Node.ELEMENT_NODE)
-                            && (medicineDetailNode.getNodeName().equals("drugstartdate"))) {
+                    if ((medicineDetailNode.getNodeType() == Node.ELEMENT_NODE) &&
+                            (medicineDetailNode.getNodeName().equals("drugstartdate"))) {
                         medicine.setStartdate(medicineDetailNode.getFirstChild().getNodeValue());
-                    } else if ((medicineDetailNode.getNodeType() == Node.ELEMENT_NODE)
-                            && (medicineDetailNode.getNodeName().equals("drugname"))) {
+                    } else if ((medicineDetailNode.getNodeType() == Node.ELEMENT_NODE) &&
+                            (medicineDetailNode.getNodeName().equals("drugname"))) {
                         medicine.setName(medicineDetailNode.getFirstChild().getNodeValue());
-                    } else if ((medicineDetailNode.getNodeType() == Node.ELEMENT_NODE)
-                            && (medicineDetailNode.getNodeName().equals("drugdose"))) {
+                    } else if ((medicineDetailNode.getNodeType() == Node.ELEMENT_NODE) &&
+                            (medicineDetailNode.getNodeName().equals("drugdose"))) {
                         medicine.setDose(medicineDetailNode.getFirstChild().getNodeValue());
                     }
                     medicines.add(medicine);
@@ -252,16 +253,15 @@ public class ResultParser {
 
     public Patient getPatient() {
         Patient patient = new Patient((String) xmlData.get("nhsno"), (String) xmlData.get("surname"),
-                (String) xmlData.get("forename"), (String) xmlData.get("dateofbirth"),
-                (String) xmlData.get("sex"), (String) xmlData.get("address1"),
-                (String) xmlData.get("address2"), (String) xmlData.get("address3"),
+                (String) xmlData.get("forename"), (String) xmlData.get("dateofbirth"), (String) xmlData.get("sex"),
+                (String) xmlData.get("address1"), (String) xmlData.get("address2"), (String) xmlData.get("address3"),
                 (String) xmlData.get("postcode"), (String) xmlData.get("telephone1"),
                 (String) xmlData.get("telephone2"), (String) xmlData.get("mobile"), (String) xmlData.get("centrecode"),
                 (String) xmlData.get("diagnosisedta"), (String) xmlData.get("rrtstatus"),
                 (String) xmlData.get("tpstatus"), (String) xmlData.get("hospitalnumber"),
-                (String) xmlData.get("gpname"), (String) xmlData.get("gpaddress1"),
-                (String) xmlData.get("gpaddress2"), (String) xmlData.get("gpaddress3"),
-                (String) xmlData.get("gppostcode"), (String) xmlData.get("gptelephone"));
+                (String) xmlData.get("gpname"), (String) xmlData.get("gpaddress1"), (String) xmlData.get("gpaddress2"),
+                (String) xmlData.get("gpaddress3"), (String) xmlData.get("gppostcode"),
+                (String) xmlData.get("gptelephone"));
         return patient;
     }
 
