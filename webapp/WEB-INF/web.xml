@@ -23,6 +23,10 @@
   <welcome-file-list>
     <welcome-file>index.do</welcome-file>
   </welcome-file-list>
+  <error-page>
+    <error-code>400</error-code>
+    <location>/patient_details.do</location>
+  </error-page>
   <taglib>
     <taglib-uri>
           /tags/struts-bean
@@ -108,6 +112,8 @@
       <url-pattern>/patient/medicines.jsp</url-pattern>
       <url-pattern>/patient/letters.do</url-pattern>
       <url-pattern>/patient/letters.jsp</url-pattern>
+      <url-pattern>/patient/letterDetail.do</url-pattern>
+      <url-pattern>/patient/letterDetail.jsp</url-pattern>
       <url-pattern>/patient/contact.do</url-pattern>
       <url-pattern>/patient/contact.jsp</url-pattern>
     </web-resource-collection>

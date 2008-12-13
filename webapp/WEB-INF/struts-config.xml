@@ -196,6 +196,7 @@
     <action path="/patient/letterDetail"
       type="com.worthsoln.patientview.letter.LetterDetailAction" parameter="letters">
       <forward name="success" path="/patient/letter_detail.jsp"/>
+      <forward name="nopermission" path="/patient/letter_denied.jsp"/>
     </action>
     <action path="/patient/contact"
       type="com.worthsoln.patientview.ContactAction" parameter="contact">

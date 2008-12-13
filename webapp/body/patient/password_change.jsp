@@ -14,6 +14,8 @@
   <bean:message key="errors.header"/><bean:message key="errors.prefix"/><bean:message key="oldpassword.incorrect" /><bean:message key="errors.suffix"/><bean:message key="errors.footer"/>
 </logic:present>
 
+<bean:message key="passwordstrength.message" /><br /><br />
+
 <html:errors/>
 
 <html:form action="/patient/passwordChange">
