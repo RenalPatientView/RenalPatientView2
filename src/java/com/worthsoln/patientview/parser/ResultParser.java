@@ -137,8 +137,8 @@ public class ResultParser {
                         }
                     }
                 }
-                letters.add(letter);
             }
+            letters.add(letter);
         }
     }
 
@@ -179,11 +179,11 @@ public class ResultParser {
                             (medicineDetailNode.getNodeName().equals("drugdose"))) {
                         medicine.setDose(medicineDetailNode.getFirstChild().getNodeValue());
                     }
-                    medicines.add(medicine);
                 } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
             }
+            medicines.add(medicine);
         }
     }
 
