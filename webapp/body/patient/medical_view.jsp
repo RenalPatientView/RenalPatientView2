@@ -12,7 +12,7 @@ The links on this page are to information that is written for people with some m
 
 <div align="center">
 
-  <table border="0" width="100%">
+  <table border="0"  width="690">
     <logic:notPresent name="edtaCode">
     <tr>
       <td valign="top" class="tablecell">Primary Diagnosis:</td>

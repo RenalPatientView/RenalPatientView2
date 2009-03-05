@@ -4,7 +4,7 @@
 
 <html:xhtml/>
 
-<table width="600" border="0" cellspacing="1" cellpadding="3">
+<table width="690" border="0" cellspacing="1" cellpadding="3">
       <tr valign="top">
         <td colspan="12" align="left">
          Result panels :
