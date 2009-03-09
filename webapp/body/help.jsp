@@ -2,10 +2,13 @@
 
 <html:xhtml/>
 
+<table width="690" height="1"><tr><td>&nbsp;</td></tr></table>
+
         <div align="center">
             <p><b>Renal PatientView Help page</b></p>
         </div>
-        <p><b>Questions about your own information<br />
+
+          <p><b>Questions about your own information<br />
             </b>If you are a patient, and suspect that wrong information is being shown, you need to contact your local Renal PatientView administrator.  <html:link action="/patient/contact">Click here to send a message.</html:link>  </p>
         <p><b>Questions about the system <br />
             </b>First see our Frequently Asked Questions, listed below.  </p>
