@@ -8,7 +8,7 @@
 
 <div align="center">
 
-  <table border="0" width="100%">
+  <table border="0" width="690">
 
       <tr valign="top">
         <td colspan="4"><bean:message key="cautionary.alllinks" /></td>
