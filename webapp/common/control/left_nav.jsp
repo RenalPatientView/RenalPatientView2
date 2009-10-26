@@ -57,6 +57,14 @@
                 <td><html:link action="/control/newsList">News Edit</html:link></td>
               </tr>
             </logic:present>
+            <logic:present role="superadmin">
+              <tr>
+                <td><hr class="thinblue"/></td>
+              </tr>
+              <tr>
+                <td><html:link action="/control/version">RPV Version</html:link></td>
+              </tr>
+            </logic:present>
             <tr>
               <td>&nbsp;</td>
             </tr>

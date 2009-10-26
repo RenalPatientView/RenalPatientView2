@@ -573,6 +573,10 @@
       scope="request">
       <forward name="success" path="/news_view.jsp"/>
     </action>
+    <action path="/control/version"
+      type="com.worthsoln.patientview.IndexAction" parameter="index">
+      <forward name="success" path="/control/version.jsp"/>
+    </action>
   </action-mappings>
 
   <!-- ========== Controller Definitions =========================== -->
