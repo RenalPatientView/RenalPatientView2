@@ -27,13 +27,7 @@ public final class DatabaseConnectionManager implements ConnectionManager {
     public Connection getConnection() throws NamingException, SQLException {
         Connection conn = null;
         try {
-            Context ctx = new InitialContext();
-            if (ctx == null) {
-                throw new Exception("Boom - No Context");
-            }
-            Context initContext = new InitialContext();
-            Context envContext = (Context) initContext.lookup("java:/comp/env");
-            DataSource ds = (DataSource) envContext.lookup("jdbc/" + databaseName);
+            DataSource ds = getDataSource();
             if (ds != null) {
                 conn = ds.getConnection();
             }
