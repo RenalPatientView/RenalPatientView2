@@ -148,18 +148,29 @@
 
   <td class="tablecell">
 
-    <logic:empty name="uktstatus">
-      <bean:message key="ukt.status.none"/>
-    </logic:empty>
-    <logic:notEmpty name="uktstatus">
-      Kidney :
-      <bean:write name="uktstatus" property="uktkidney"/>
-      <logic:notEqual value="Not on list" name="uktstatus" property="uktpancreas">
-        <br/>
-        Pancreas :
-        <bean:write name="uktstatus" property="uktpancreas"/>
-      </logic:notEqual>
-    </logic:notEmpty>
+
+
+
+      <logic:equal value="" name="uktstatus" property="uktkidney">
+        <bean:message key="ukt.status.none"/>
+      </logic:equal>
+
+
+        <logic:notEqual value="" name="uktstatus" property="uktkidney">
+          Kidney :
+          <bean:write name="uktstatus" property="uktkidney"/>
+        </logic:notEqual>
+
+        <logic:notEqual value="" name="uktstatus" property="uktpancreas">
+          <logic:notEqual value="Not on list" name="uktstatus" property="uktpancreas">
+            <br/>
+             Pancreas :
+             <bean:write name="uktstatus" property="uktpancreas"/>
+          </logic:notEqual>
+        </logic:notEqual>
+
+
+
     <br/>(<a href="http://www.renal.org/rixg/transplant.html" target="_blank">Explain this</a>)
   </td>
 </tr>
