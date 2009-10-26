@@ -4,11 +4,9 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
 <hibernate-mapping>
   <class name="com.worthsoln.patientview.uktransplant.UktStatus" table="uktstatus">
-    <id name="id"
-        unsaved-value="0">
-      <generator class="increment"/>
+    <id name="nhsno">
+      <generator class="assigned"/>
     </id>
-    <property name="nhsno"/>
     <property name="kidney"/>
     <property name="pancreas"/>
   </class>

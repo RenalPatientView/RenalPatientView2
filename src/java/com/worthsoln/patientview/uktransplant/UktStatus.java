@@ -2,7 +2,6 @@ package com.worthsoln.patientview.uktransplant;
 
 public class UktStatus {
 
-    private int id;
     private String nhsno;
     private String kidney;
     private String pancreas;
@@ -10,18 +9,14 @@ public class UktStatus {
     public UktStatus() {
     }
 
+    public UktStatus(String nhsno) {
+        this.nhsno = nhsno;
+    }
+
     public UktStatus(String nhsno, String kidney, String pancreas) {
         this.nhsno = nhsno;
         this.kidney = kidney;
         this.pancreas = pancreas;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNhsno() {

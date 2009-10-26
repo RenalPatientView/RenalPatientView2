@@ -36,7 +36,7 @@ public class UktUpdater {
             for (int i = 2; i < uktValues.length; i++) {
                 UktStatus status = new UktStatus(uktValues[i][0].trim(),
                         uktValues[i][1].trim(), uktValues[i][2].trim());
-                HibernateUtil.saveOrUpdateWithTransaction(status);
+                HibernateUtil.saveWithTransaction(status);
             }
 
         } catch (Exception e) {

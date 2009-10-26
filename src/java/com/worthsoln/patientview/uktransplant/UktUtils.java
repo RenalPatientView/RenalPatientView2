@@ -1,18 +1,37 @@
 package com.worthsoln.patientview.uktransplant;
 
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import net.sf.hibernate.HibernateException;
+import com.worthsoln.HibernateUtil;
 import com.worthsoln.database.DatabaseDAO;
 
 public class UktUtils {
 
-    public static void addUktStatusToRequest(String nhsno, DatabaseDAO dao, HttpServletRequest request) {
-        UktStatusForPatientDao uktStatusDao = new UktStatusForPatientDao(nhsno);
-        List statusList = (List) dao.retrieveItem(uktStatusDao);
-        UktStatusForPatient status = null;
-        if (statusList.size() != 0) {
-            status = (UktStatusForPatient) statusList.get(0);
+    public static void addUktStatusToRequest(String nhsno, DatabaseDAO dao, HttpServletRequest request)
+            throws HibernateException {
+        UktStatusForPatient readableStatus = null;
+        UktStatus status = (UktStatus) HibernateUtil.getPersistentObject(UktStatus.class, nhsno);
+        if (status != null) {
+            readableStatus = new UktStatusForPatient(status.getNhsno(), makeRawStatusReadable(status.getKidney()),
+                    makeRawStatusReadable(status.getPancreas()));
+        } else {
+            readableStatus = new UktStatusForPatient("", "", "");
         }
-        request.setAttribute("uktstatus", status);
+        request.setAttribute("uktstatus", readableStatus);
+
     }
+
+    static String makeRawStatusReadable(String rawStaus) {
+        if ("A".equalsIgnoreCase(rawStaus)) {
+            return "Active";
+        }
+        if ("S".equalsIgnoreCase(rawStaus)) {
+            return "Suspended";
+        }
+        if ("T".equalsIgnoreCase(rawStaus)) {
+            return "Transplanted";
+        }
+        return "Not on list";
+    }
+
 }

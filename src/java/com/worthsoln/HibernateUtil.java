@@ -152,6 +152,14 @@ public class HibernateUtil {
         HibernateUtil.closeSession();
     }
 
+    public static void saveWithTransaction(Object objectToBuild) throws HibernateException {
+        Session session = HibernateUtil.currentSession();
+        Transaction tx = session.beginTransaction();
+        session.save(objectToBuild);
+        tx.commit();
+        HibernateUtil.closeSession();
+    }
+
     private static void buildObject(Object objectToBuild, ActionForm form)
             throws HibernateException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         String identifierPropertyName = HibernateUtil.getIdentifierPropertyName(objectToBuild.getClass());
