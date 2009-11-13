@@ -4,7 +4,7 @@
 
 <html:xhtml/>
 
-<table width="400" border="0" cellspacing="1" cellpadding="3">
+<table width="470" border="0" cellspacing="1" cellpadding="3">
       <tr valign="top">
         <td><img src="images/space.gif" width="15"  height="1"/></td>
         <td align="left" colspan="2">
@@ -35,7 +35,7 @@
 
   <tr>
     <td><img src="images/space.gif" width="15" height="1"/></td>
-    <td colspan="2" class="tablecell"><bean:write name="letter" property="content"/></td>
+    <td colspan="2" class="tablecell" style="white-space: pre-wrap;"><bean:write name="letter" property="content"/></td>
   </tr>
 
 </table>
