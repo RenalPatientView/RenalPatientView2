@@ -33,11 +33,11 @@ public class ResultsUpdater {
                     "Died".equalsIgnoreCase(parser.getFlag())) {
                 removePatientFromSystem(parser);
                 AddLog.addLog(AddLog.ACTOR_SYSTEM, AddLog.PATIENT_DATA_REMOVE, "", parser.getPatient().getNhsno(),
-                        xmlFile.getName());
+                        parser.getPatient().getCentreCode(), xmlFile.getName());
             } else {
                 updatePatientData(parser);
                 AddLog.addLog(AddLog.ACTOR_SYSTEM, AddLog.PATIENT_DATA_FOLLOWUP, "", parser.getPatient().getNhsno(),
-                        xmlFile.getName());
+                        parser.getPatient().getCentreCode(), xmlFile.getName());
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -18,24 +18,23 @@ import net.sf.hibernate.expression.Expression;
 import net.sf.hibernate.expression.Order;
 import com.worthsoln.HibernateUtil;
 import com.worthsoln.patientview.logon.LogonUtils;
+import com.worthsoln.patientview.unit.UnitUtils;
 
 public class LogViewForPatientAction extends Action {
 
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response)
-            throws Exception {
+                                 HttpServletResponse response) throws Exception {
         Calendar startdate = LoggingUtils.getDefaultStartDateForLogQuery();
         Calendar enddate = LoggingUtils.getDefaultEndDateForLogQuery();
         String nhsno = BeanUtils.getProperty(form, "nhsno");
         List log = getLogEntries(nhsno, startdate, enddate);
         request.setAttribute("log", log);
+        UnitUtils.putRelevantUnitsInRequest(request);
         LoggingUtils.defaultDatesInForm(form, startdate, enddate);
         return LogonUtils.logonChecks(mapping, request);
     }
 
-    private List getLogEntries(String nhsno, Calendar startdate,
-                               Calendar enddate)
-            throws HibernateException {
+    private List getLogEntries(String nhsno, Calendar startdate, Calendar enddate) throws HibernateException {
         List logEntries = new ArrayList();
         if (nhsno != null && !nhsno.equals("")) {
             Session session = HibernateUtil.currentSession();

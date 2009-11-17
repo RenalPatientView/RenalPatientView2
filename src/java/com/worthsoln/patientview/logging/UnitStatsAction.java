@@ -1,36 +1,37 @@
 package com.worthsoln.patientview.logging;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.ArrayList;
-import java.lang.reflect.InvocationTargetException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionForm;
-import org.apache.commons.beanutils.BeanUtils;
+import net.sf.hibernate.Criteria;
 import net.sf.hibernate.HibernateException;
 import net.sf.hibernate.Session;
 import net.sf.hibernate.Transaction;
-import net.sf.hibernate.Criteria;
 import net.sf.hibernate.expression.Expression;
 import net.sf.hibernate.expression.Order;
-import com.worthsoln.patientview.logon.LogonUtils;
-import com.worthsoln.patientview.TestResultDao;
 import com.worthsoln.HibernateUtil;
+import com.worthsoln.patientview.TestResultDao;
+import com.worthsoln.patientview.logon.LogonUtils;
+import com.worthsoln.patientview.unit.UnitUtils;
 
 public class UnitStatsAction extends Action {
 
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response)
-            throws Exception {
+                                 HttpServletResponse response) throws Exception {
         Calendar startdate = determineStartDate(form);
         Calendar enddate = determineEndDate(form);
         String unitcode = BeanUtils.getProperty(form, "unitcode");
         List log = getUnitStats(unitcode, startdate, enddate);
         request.setAttribute("log", log);
+        UnitUtils.putRelevantUnitsInRequest(request);
         LoggingUtils.defaultDatesInForm(form, startdate, enddate);
         return LogonUtils.logonChecks(mapping, request);
     }
@@ -59,8 +60,7 @@ public class UnitStatsAction extends Action {
         return startdate;
     }
 
-    private static List getUnitStats(String unitcode, Calendar startdate, Calendar enddate)
-            throws HibernateException {
+    private static List getUnitStats(String unitcode, Calendar startdate, Calendar enddate) throws HibernateException {
         List logEntries = new ArrayList();
         if (!unitcode.equals("")) {
             Session session = HibernateUtil.currentSession();

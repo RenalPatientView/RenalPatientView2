@@ -9,14 +9,14 @@ import com.Ostermiller.util.RandPass;
 import com.worthsoln.HibernateUtil;
 import com.worthsoln.patientview.User;
 import com.worthsoln.patientview.logging.AddLog;
+import com.worthsoln.patientview.user.UserUtils;
 
 public class LogonUtils {
 
     public static final String USER_ALREADY_EXISTS = "userAlreadyExists";
     public static final String NHSNO_ALREADY_EXISTS = "nhsnoAlreadyExists";
 
-    public static ActionForward logonChecks(ActionMapping mapping, HttpServletRequest request,
-                                            String defaultForward) {
+    public static ActionForward logonChecks(ActionMapping mapping, HttpServletRequest request, String defaultForward) {
         String resultForward = defaultForward;
         Principal userPrincipal = request.getUserPrincipal();
         if (userPrincipal != null) {
@@ -39,8 +39,9 @@ public class LogonUtils {
         HttpSession session = request.getSession();
         String logonRecorded = (String) session.getAttribute("logonRecorded");
         if (logonRecorded == null && request.getUserPrincipal() != null) {
-            AddLog.addLog(request.getUserPrincipal().getName(), AddLog.LOGGED_ON, request.getUserPrincipal().getName(),
-                    "", "");
+            String userName = request.getUserPrincipal().getName();
+            String unitCode = UserUtils.retrieveUnitcode(userName);
+            AddLog.addLog(userName, AddLog.LOGGED_ON, userName, "", unitCode, "");
             session.setAttribute("logonRecorded", "true");
         }
     }

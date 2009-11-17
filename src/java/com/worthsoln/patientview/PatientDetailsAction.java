@@ -29,7 +29,8 @@ public class PatientDetailsAction extends DatabaseAction {
             request.setAttribute("otherDiagnoses",
                     DiagnosisUtils.getOtherDiagnoses(patient.getNhsno(), patient.getCentreCode()));
             request.setAttribute("patient", patient);
-            AddLog.addLog(request.getUserPrincipal().getName(), AddLog.PATIENT_VIEW, "", patient.getNhsno());
+            AddLog.addLog(request.getUserPrincipal().getName(), AddLog.PATIENT_VIEW, "", patient.getNhsno(),
+                    patient.getCentreCode(), "");
         } else if (!request.isUserInRole("patient")) {
             return LogonUtils.logonChecks(mapping, request, "control");
         }

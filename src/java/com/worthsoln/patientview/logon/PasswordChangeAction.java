@@ -13,24 +13,20 @@ import com.worthsoln.patientview.logging.AddLog;
 
 public class PasswordChangeAction extends Action {
 
-    public ActionForward execute(
-        ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+                                 HttpServletResponse response) throws Exception {
         String username = request.getUserPrincipal().getName();
         User user = (User) HibernateUtil.getPersistentObject(User.class, username);
         String suppliedOldPassword = BeanUtils.getProperty(form, "oldpassword");
         String actualOldPassword = user.getPassword();
-
         if (suppliedOldPassword.equals(actualOldPassword)) {
             user.setPassword(BeanUtils.getProperty(form, "newpassword"));
             user.setFirstlogon(false);
             HibernateUtil.saveOrUpdateWithTransaction(user);
-
-            AddLog.addLog(user.getUsername(), AddLog.PASSWORD_CHANGE, user.getUsername(), "");
+            AddLog.addLog(user.getUsername(), AddLog.PASSWORD_CHANGE, user.getUsername(), "", user.getUnitcode(), "");
             return mapping.findForward("success");
         } else {
             request.setAttribute("error", "incorrect current password");
-
             return mapping.findForward("input");
         }
     }

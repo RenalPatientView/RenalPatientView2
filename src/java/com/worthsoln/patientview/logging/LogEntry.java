@@ -12,16 +12,18 @@ public class LogEntry {
     private String user;
     private String action;
     private String actor;
+    private String unitcode;
     private String extrainfo;
 
     public LogEntry() {
     }
 
-    public LogEntry(String nhsno, String user, String action, String actor, String extrainfo) {
+    public LogEntry(String nhsno, String user, String action, String actor, String unitcode, String extrainfo) {
         this.action = action;
         this.nhsno = nhsno;
         this.user = user;
         this.actor = actor;
+        this.unitcode = unitcode;
         this.extrainfo = extrainfo;
         this.date = Calendar.getInstance();
     }
@@ -86,6 +88,14 @@ public class LogEntry {
 
     public void setActor(String actor) {
         this.actor = actor;
+    }
+
+    public String getUnitcode() {
+        return unitcode;
+    }
+
+    public void setUnitcode(String unitcode) {
+        this.unitcode = unitcode;
     }
 
     public String getExtrainfo() {

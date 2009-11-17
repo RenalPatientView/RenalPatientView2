@@ -16,7 +16,7 @@ class LoggingUtils {
     }
 
     static Calendar getDefaultStartDateForLogQuery() {
-        return getStartDateForLogQuery(Calendar.YEAR, -1);
+        return getStartDateForLogQuery(Calendar.MONTH, -1);
     }
 
     static Calendar getDefaultEndDateForLogQuery() {

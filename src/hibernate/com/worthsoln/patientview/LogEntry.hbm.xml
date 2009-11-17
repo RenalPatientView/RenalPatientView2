@@ -13,6 +13,7 @@
     <property name="user"/>
     <property name="action"/>
     <property name="actor"/>
+    <property name="unitcode"/>
     <property name="extrainfo"/>
   </class>
 </hibernate-mapping>

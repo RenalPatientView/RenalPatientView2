@@ -9,8 +9,8 @@ import org.apache.struts.action.ActionMapping;
 import com.worthsoln.HibernateUtil;
 import com.worthsoln.database.DatabaseDAO;
 import com.worthsoln.database.action.DatabaseAction;
-import com.worthsoln.patientview.unit.Unit;
 import com.worthsoln.patientview.logging.AddLog;
+import com.worthsoln.patientview.unit.Unit;
 
 public class PatientAddAction extends DatabaseAction {
 
@@ -46,7 +46,7 @@ public class PatientAddAction extends DatabaseAction {
             dao.insertItem(new LogonDao(patient));
             dao.insertItem(new LogonDao(gp));
             AddLog.addLog(request.getUserPrincipal().getName(), AddLog.PATIENT_ADD, patient.getUsername(),
-                    patient.getNhsno(), patient.getUnitcode());
+                    patient.getNhsno(), patient.getUnitcode(), "");
             mappingToFind = "success";
         }
         HibernateUtil.putListInRequest(Unit.class, "units", request);

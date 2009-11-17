@@ -4,7 +4,7 @@
 
 <html:xhtml/>
 
-<table width="600" border="0" cellspacing="1" cellpadding="1">
+<table width="600" border="0" cellspacing="1" cellpadding="3">
 
   <tr height="20">
     <td colspan="10">You must enter a start and an end date and at least one other search criteria. Dates in format dd/mm/yyyy</td>
@@ -40,10 +40,20 @@
            <html:option value="logon" />
            <html:option value="patient add" />
            <html:option value="patient view" />
-66           <html:option value="admin add" />
+           <html:option value="admin add" />
            <html:option value="ukt data" />
          </html:select>
       </td>
+    </tr>
+
+    <tr>
+      <td><b>Unit</b></td>
+      <td colspan="3"><html:select property="unitcode">
+             <logic:present role="superadmin">
+               <html:option value="">-- All units --</html:option>
+             </logic:present>
+             <html:options collection="units" property="unitcode" labelProperty="name"/>
+          </html:select></td>
     </tr>
 
     <tr align="left">
@@ -74,6 +84,7 @@
         <td class="tablecellbold">User</td>
         <td class="tablecellbold">Action</td>
         <td class="tablecellbold">Actor</td>
+        <td class="tablecellbold">Unit</td>
         <td class="tablecellbold">Extra Info</td>
       </tr>
 
@@ -84,6 +95,7 @@
           <td class="tablecell"><bean:write name="logentry" property="user"/></td>
           <td class="tablecell"><bean:write name="logentry" property="action"/></td>
           <td class="tablecell"><bean:write name="logentry" property="actor"/></td>
+          <td class="tablecell"><bean:write name="logentry" property="unitcode"/></td>
           <td class="tablecell"><bean:write name="logentry" property="extrainfo"/></td>
         </tr>
       </logic:iterate>

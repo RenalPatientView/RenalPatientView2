@@ -129,6 +129,7 @@
       <form-property name="username" type="java.lang.String"/>
       <form-property name="actor" type="java.lang.String"/>
       <form-property name="action" type="java.lang.String"/>
+      <form-property name="unitcode" type="java.lang.String"/>
       <form-property name="startdate" type="java.lang.String"/>
       <form-property name="enddate" type="java.lang.String"/>
     </form-bean>

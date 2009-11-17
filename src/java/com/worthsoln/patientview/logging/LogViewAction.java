@@ -20,20 +20,22 @@ import net.sf.hibernate.expression.Order;
 import com.worthsoln.HibernateUtil;
 import com.worthsoln.patientview.TestResultDao;
 import com.worthsoln.patientview.logon.LogonUtils;
+import com.worthsoln.patientview.unit.UnitUtils;
 
 public class LogViewAction extends Action {
 
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response)
-            throws Exception {
+                                 HttpServletResponse response) throws Exception {
         Calendar startdate = determineStartDate(form);
         Calendar enddate = determineEndDate(form);
         String nhsno = BeanUtils.getProperty(form, "nhsno");
         String user = BeanUtils.getProperty(form, "user");
         String actor = BeanUtils.getProperty(form, "actor");
         String action = BeanUtils.getProperty(form, "action");
-        List log = getLogEntries(nhsno, user, actor, action, startdate, enddate);
+        String unitcode = BeanUtils.getProperty(form, "unitcode");
+        List log = getLogEntries(nhsno, user, actor, action, unitcode, startdate, enddate);
         request.setAttribute("log", log);
+        UnitUtils.putRelevantUnitsInRequest(request);
         LoggingUtils.defaultDatesInForm(form, startdate, enddate);
         return LogonUtils.logonChecks(mapping, request);
     }
@@ -62,9 +64,8 @@ public class LogViewAction extends Action {
         return startdate;
     }
 
-    private static List getLogEntries(String nhsno, String user, String actor, String action, Calendar startdate,
-                                      Calendar enddate)
-            throws HibernateException {
+    private static List getLogEntries(String nhsno, String user, String actor, String action, String unitcode,
+                                      Calendar startdate, Calendar enddate) throws HibernateException {
         List logEntries = new ArrayList();
         if (!((nhsno.equals("")) && (user.equals("")) && (actor.equals("")) && (action.equals("")))) {
             Session session = HibernateUtil.currentSession();
@@ -75,6 +76,7 @@ public class LogViewAction extends Action {
             criteria.add(Expression.like("user", "%" + user + "%"));
             criteria.add(Expression.like("actor", "%" + actor + "%"));
             criteria.add(Expression.like("action", "%" + action + "%"));
+            criteria.add(Expression.like("unitcode", "%" + unitcode + "%"));
             criteria.addOrder(Order.asc("id"));
             logEntries = criteria.list();
             tx.commit();

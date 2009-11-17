@@ -21,7 +21,7 @@ public class UktUpdater {
         try {
             deleteUktRecords();
             updateUktData(uktFile);
-            AddLog.addLog(AddLog.ACTOR_SYSTEM, AddLog.UKT_DATA_REPLACE, "", "", uktFile.getName());
+            AddLog.addLog(AddLog.ACTOR_SYSTEM, AddLog.UKT_DATA_REPLACE, "", "", "", uktFile.getName());
         } catch (Exception e) {
             e.printStackTrace();
         }

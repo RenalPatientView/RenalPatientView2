@@ -16,20 +16,13 @@ public class AddLog {
     public static final String ADMIN_ADD = "admin add";
     public static final String UKT_DATA_REPLACE = "ukt data";
 
-    public static void addLog(String actor, String action, String user, String nhsno, String extrainfo) {
-        LogEntry entry = new LogEntry(nhsno, user, action, actor, extrainfo);
+    public static void addLog(String actor, String action, String user, String nhsno, String unitcode,
+                              String extrainfo) {
+        LogEntry entry = new LogEntry(nhsno, user, action, actor, unitcode, extrainfo);
         try {
             HibernateUtil.saveOrUpdateWithTransaction(entry);
         } catch (HibernateException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void addLog(String actor, String action, String user, String nhsno) {
-        addLog(actor, action, user, nhsno, "");
-    }
-
-    public static void addLog(String actor, String action) {
-        addLog(actor, action, "", "", "");
     }
 }

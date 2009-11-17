@@ -11,13 +11,12 @@ import com.worthsoln.database.DatabaseDAO;
 import com.worthsoln.database.action.DatabaseAction;
 import com.worthsoln.patientview.User;
 import com.worthsoln.patientview.logging.AddLog;
-import com.worthsoln.patientview.unit.Unit;
+import com.worthsoln.patientview.unit.UnitUtils;
 
 public class UnitAdminAddAction extends DatabaseAction {
 
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-                                 HttpServletResponse response)
-            throws Exception {
+                                 HttpServletResponse response) throws Exception {
         String username = BeanUtils.getProperty(form, "username");
         String password = LogonUtils.generateNewPassword();
         String name = BeanUtils.getProperty(form, "name");
@@ -31,12 +30,12 @@ public class UnitAdminAddAction extends DatabaseAction {
         if (existingAdminWithSameUsername != null) {
             request.setAttribute(LogonUtils.USER_ALREADY_EXISTS, username);
             unitAdmin.setUsername("");
-            HibernateUtil.putListInRequest(Unit.class, "units", request);
+            UnitUtils.putRelevantUnitsInRequest(request);
             mappingToFind = "input";
         } else {
             dao.insertItem(new LogonDao(unitAdmin));
-            AddLog.addLog(request.getUserPrincipal().getName(), AddLog.ADMIN_ADD, unitAdmin.getUsername(),
-                    "", unitAdmin.getUnitcode());
+            AddLog.addLog(request.getUserPrincipal().getName(), AddLog.ADMIN_ADD, unitAdmin.getUsername(), "",
+                    unitAdmin.getUnitcode(), "");
             mappingToFind = "success";
         }
         request.setAttribute("adminuser", unitAdmin);
