@@ -3,6 +3,7 @@ package com.worthsoln.patientview.logon;
 import java.security.Principal;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import com.Ostermiller.util.RandPass;
@@ -68,5 +69,9 @@ public class LogonUtils {
             displayRole = "Role Unknown";
         }
         return displayRole;
+    }
+
+    public static String hashPassword(String password) {
+        return DigestUtils.sha256Hex(password);
     }
 }

@@ -33,7 +33,9 @@ public class UnitAdminAddAction extends DatabaseAction {
             UnitUtils.putRelevantUnitsInRequest(request);
             mappingToFind = "input";
         } else {
-            dao.insertItem(new LogonDao(unitAdmin));
+            UnitAdmin hashedUnitAdmin = (UnitAdmin) unitAdmin.clone();
+            hashedUnitAdmin.setPassword(LogonUtils.hashPassword(hashedUnitAdmin.getPassword()));
+            dao.insertItem(new LogonDao(hashedUnitAdmin));
             AddLog.addLog(request.getUserPrincipal().getName(), AddLog.ADMIN_ADD, unitAdmin.getUsername(), "",
                     unitAdmin.getUnitcode(), "");
             mappingToFind = "success";

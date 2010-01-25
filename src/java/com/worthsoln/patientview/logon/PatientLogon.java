@@ -1,6 +1,6 @@
 package com.worthsoln.patientview.logon;
 
-public class PatientLogon extends Logon {
+public class PatientLogon extends Logon implements Cloneable {
 
     public PatientLogon() {
     }
@@ -20,5 +20,9 @@ public class PatientLogon extends Logon {
         setRole("patient");
         setFirstlogon(firstlogon);
         setDummypatient(dummypatient);
+    }
+
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

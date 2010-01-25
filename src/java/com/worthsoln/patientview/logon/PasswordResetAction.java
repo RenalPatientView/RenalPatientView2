@@ -26,7 +26,10 @@ public class PasswordResetAction extends DatabaseAction {
             patient.setPassword(password);
             AddLog.addLog(request.getUserPrincipal().getName(), AddLog.PASSWORD_RESET, patient.getUsername(), "",
                     patient.getUnitcode(), "");
-            dao.updateItem(new LogonDao(patient));
+            PatientLogon hashedPatient = (PatientLogon) patient.clone();
+            hashedPatient.setPassword(LogonUtils.hashPassword(hashedPatient.getPassword()));
+            hashedPatient.setFirstlogon(true);
+            dao.updateItem(new LogonDao(hashedPatient));
             mappingToFind = "success";
         } else {
             request.setAttribute(LogonUtils.USER_ALREADY_EXISTS, username);

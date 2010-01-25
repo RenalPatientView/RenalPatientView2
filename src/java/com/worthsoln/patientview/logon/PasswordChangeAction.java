@@ -19,8 +19,9 @@ public class PasswordChangeAction extends Action {
         User user = (User) HibernateUtil.getPersistentObject(User.class, username);
         String suppliedOldPassword = BeanUtils.getProperty(form, "oldpassword");
         String actualOldPassword = user.getPassword();
-        if (suppliedOldPassword.equals(actualOldPassword)) {
-            user.setPassword(BeanUtils.getProperty(form, "newpassword"));
+        String hashedSuppliedOldPassword = LogonUtils.hashPassword(suppliedOldPassword);
+        if (hashedSuppliedOldPassword.equals(actualOldPassword)) {
+            user.setPassword(LogonUtils.hashPassword(BeanUtils.getProperty(form, "newpassword")));
             user.setFirstlogon(false);
             HibernateUtil.saveOrUpdateWithTransaction(user);
             AddLog.addLog(user.getUsername(), AddLog.PASSWORD_CHANGE, user.getUsername(), "", user.getUnitcode(), "");
