@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 
- <!DOCTYPE tiles-definitions PUBLIC
-       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
-       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+<!DOCTYPE tiles-definitions PUBLIC
+    "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+    "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
 <tiles-definitions>
   <definition name="default.layout" path="/layout/default_layout.jsp">
     <put name="header" value="/common/header.jsp?cdToStyles="/>
@@ -23,6 +23,18 @@
   </definition>
   <definition name="control.layout" path="/layout/default_layout.jsp" extends="default.layout">
     <put name="header" value="/common/header.jsp?cdToStyles=../"/>
+    <put name="title" value="/common/control/title.jsp"/>
+    <put name="top_nav" value="/common/control/top_nav.jsp"/>
+    <put name="info_strip" value="/common/control/info_strip.jsp"/>
+    <put name="left_nav" value="/common/control/left_nav.jsp"/>
+    <put name="body" value="/common/control/index.jsp"/>
+  </definition>
+  <definition name="firstlogonpatient.layout" path="/layout/default_layout.jsp" extends="default.layout">
+    <put name="header" value="/common/header.jsp?cdToStyles="/>
+    <put name="info_strip" value="/common/patient/info_strip.jsp"/>
+  </definition>
+  <definition name="firstlogoncontrol.layout" path="/layout/default_layout.jsp" extends="default.layout">
+    <put name="header" value="/common/header.jsp?cdToStyles="/>
     <put name="title" value="/common/control/title.jsp"/>
     <put name="top_nav" value="/common/control/top_nav.jsp"/>
     <put name="info_strip" value="/common/control/info_strip.jsp"/>
