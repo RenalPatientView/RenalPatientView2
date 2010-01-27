@@ -1,5 +1,7 @@
 package com.worthsoln.patientview.logon;
 
+import java.util.Date;
+
 public abstract class Logon {
 
     private String username;
@@ -11,6 +13,9 @@ public abstract class Logon {
     private String unitcode;
     private boolean firstlogon;
     private boolean dummypatient;
+    private Date lastlogon;
+    private int failedlogons;
+    private boolean accountlocked;
 
     public Logon() {
     }
@@ -89,5 +94,29 @@ public abstract class Logon {
 
     public void setDummypatient(boolean dummypatient) {
         this.dummypatient = dummypatient;
+    }
+
+    public Date getLastlogon() {
+        return lastlogon;
+    }
+
+    public void setLastlogon(Date lastlogon) {
+        this.lastlogon = lastlogon;
+    }
+
+    public int getFailedlogons() {
+        return failedlogons;
+    }
+
+    public void setFailedlogons(int failedlogons) {
+        this.failedlogons = failedlogons;
+    }
+
+    public boolean isAccountlocked() {
+        return accountlocked;
+    }
+
+    public void setAccountlocked(boolean accountlocked) {
+        this.accountlocked = accountlocked;
     }
 }

@@ -55,6 +55,9 @@
       <form-property name="firstlogon" type="java.lang.String"/>
       <form-property name="overrideDuplicateNhsno" type="java.lang.String"/>
       <form-property name="dummypatient" type="java.lang.String"/>
+      <form-property name="lastlogon" type="java.lang.String"/>
+      <form-property name="failedlogons" type="java.lang.String"/>
+      <form-property name="accountlocked" type="java.lang.String"/>
       <form-property name="showgps" type="java.lang.String"/>
     </form-bean>
     <form-bean name="unitForm" type="org.apache.struts.validator.DynaValidatorActionForm">
