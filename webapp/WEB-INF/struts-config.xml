@@ -162,8 +162,16 @@
             type="com.worthsoln.patientview.IndexAction" parameter="index">
       <forward name="success" path="/login.jsp" redirect="true"/>
     </action>
+    <action path="/login-error"
+            type="com.worthsoln.patientview.logon.LogonErrorAction">
+      <forward name="success" path="/login-error.jsp"/>
+    </action>
+    <action path="/logged_in"
+            type="com.worthsoln.patientview.logon.LoggedInAction" parameter="index">
+      <forward name="success" path="/login-success.jsp"/>
+    </action>
     <action path="/logout"
-            type="com.worthsoln.patientview.LogoutAction" parameter="index">
+            type="com.worthsoln.patientview.logon.LogoutAction" parameter="index">
       <forward name="success" path="/index.jsp"/>
     </action>
     <action path="/patient/patient_details"

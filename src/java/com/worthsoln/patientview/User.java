@@ -1,5 +1,7 @@
 package com.worthsoln.patientview;
 
+import java.util.Date;
+
 public class User {
 
     private String username;
@@ -11,6 +13,9 @@ public class User {
     private String unitcode;
     private boolean firstlogon;
     private boolean dummypatient;
+    private Date lastlogon;
+    private int failedlogons;
+    private boolean accountlocked;
 
     public User() {
     }
@@ -19,8 +24,8 @@ public class User {
         this.username = username;
     }
 
-    public User(String username, String password, String role, String email, String name, String nhsno,
-                String unitcode, boolean dummypatient) {
+    public User(String username, String password, String role, String email, String name, String nhsno, String unitcode,
+                boolean dummypatient) {
         this.name = name;
         this.email = email;
         this.unitcode = unitcode;
@@ -102,5 +107,29 @@ public class User {
 
     public void setDummypatient(boolean dummypatient) {
         this.dummypatient = dummypatient;
+    }
+
+    public Date getLastlogon() {
+        return lastlogon;
+    }
+
+    public void setLastlogon(Date lastlogon) {
+        this.lastlogon = lastlogon;
+    }
+
+    public int getFailedlogons() {
+        return failedlogons;
+    }
+
+    public void setFailedlogons(int failedlogons) {
+        this.failedlogons = failedlogons;
+    }
+
+    public boolean isAccountlocked() {
+        return accountlocked;
+    }
+
+    public void setAccountlocked(boolean accountlocked) {
+        this.accountlocked = accountlocked;
     }
 }

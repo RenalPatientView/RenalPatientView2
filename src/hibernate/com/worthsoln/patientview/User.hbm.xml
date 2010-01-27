@@ -14,5 +14,8 @@
     <property name="nhsno"/>
     <property name="unitcode"/>
     <property name="firstlogon"/>
+    <property name="lastlogon"/>
+    <property name="failedlogons"/>
+    <property name="accountlocked"/>
   </class>
 </hibernate-mapping>

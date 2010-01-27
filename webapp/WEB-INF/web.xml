@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
 <web-app>
   <servlet>
     <servlet-name>action</servlet-name>
@@ -29,58 +30,58 @@
   </error-page>
   <taglib>
     <taglib-uri>
-          /tags/struts-bean
+      /tags/struts-bean
     </taglib-uri>
     <taglib-location>
-          /WEB-INF/struts/struts-bean.tld
+      /WEB-INF/struts/struts-bean.tld
     </taglib-location>
   </taglib>
   <taglib>
     <taglib-uri>
-          /tags/struts-html
+      /tags/struts-html
     </taglib-uri>
     <taglib-location>
-          /WEB-INF/struts/struts-html.tld
+      /WEB-INF/struts/struts-html.tld
     </taglib-location>
   </taglib>
   <taglib>
     <taglib-uri>
-          /tags/struts-logic
+      /tags/struts-logic
     </taglib-uri>
     <taglib-location>
-          /WEB-INF/struts/struts-logic.tld
+      /WEB-INF/struts/struts-logic.tld
     </taglib-location>
   </taglib>
   <taglib>
     <taglib-uri>
-          /tags/struts-nested
+      /tags/struts-nested
     </taglib-uri>
     <taglib-location>
-          /WEB-INF/struts/struts-nested.tld
+      /WEB-INF/struts/struts-nested.tld
     </taglib-location>
   </taglib>
   <taglib>
     <taglib-uri>
-          /tags/struts-tiles
+      /tags/struts-tiles
     </taglib-uri>
     <taglib-location>
-          /WEB-INF/struts/struts-tiles.tld
+      /WEB-INF/struts/struts-tiles.tld
     </taglib-location>
   </taglib>
   <taglib>
     <taglib-uri>
-          /tags/struts-tiles
+      /tags/struts-tiles
     </taglib-uri>
     <taglib-location>
-          /WEB-INF/struts/struts-tiles.tld
+      /WEB-INF/struts/struts-tiles.tld
     </taglib-location>
   </taglib>
   <taglib>
     <taglib-uri>
-        /tags/datetime
+      /tags/datetime
     </taglib-uri>
     <taglib-location>
-        /WEB-INF/struts/datetime.tld
+      /WEB-INF/struts/datetime.tld
     </taglib-location>
   </taglib>
   <security-constraint>
@@ -99,6 +100,7 @@
     <display-name>Patient</display-name>
     <web-resource-collection>
       <web-resource-name>Protected Area</web-resource-name>
+      <url-pattern>/logged_in.do</url-pattern>
       <url-pattern>/patient/index.do</url-pattern>
       <url-pattern>/patient/patient_details.do</url-pattern>
       <url-pattern>/patient/patient_details.jsp</url-pattern>
@@ -129,7 +131,7 @@
     <auth-method>FORM</auth-method>
     <form-login-config>
       <form-login-page>/login.do</form-login-page>
-      <form-error-page>/login-error.jsp</form-error-page>
+      <form-error-page>/login-error.do</form-error-page>
     </form-login-config>
   </login-config>
   <security-role>
