@@ -3,9 +3,9 @@
 <%
   if (request.getAttribute("lockedOut") != null && (Boolean) request.getAttribute("lockedOut")) {
 %>
+<p>You have tried using an incorrect password too many times. Your password has been locked.</p>
 
-
-<p>You are currently locked out. Please contact an administrator to be unlocked.</p>
+<p>Please contact an administrator in your unit to have it unlocked.</p>
 <%
 } else {
 %>

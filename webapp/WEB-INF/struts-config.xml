@@ -415,6 +415,12 @@
       <forward name="input" path="/control/patient_add_input.jsp"/>
       <forward name="success" path="/control/password_reset_confirm.jsp"/>
     </action>
+    <action path="/control/passwordUnlock"
+            type="com.worthsoln.patientview.logon.PasswordUnlockAction"
+            name="patientForm"
+            scope="request">
+      <forward name="success" path="/control/password_unlock_confirm.jsp"/>
+    </action>
     <action path="/control/unitAddInput"
             type="com.worthsoln.patientview.IndexAction"
             name="unitForm"
