@@ -26,7 +26,7 @@ public class UnitAdminAddAction extends DatabaseAction {
         UnitAdmin unitAdmin = new UnitAdmin(username, password, name, email, unitcode, role, true);
         DatabaseDAO dao = getDao(request);
         User existingAdminWithSameUsername = (User) HibernateUtil.getPersistentObject(User.class, username);
-        String mappingToFind = "";
+        String mappingToFind;
         if (existingAdminWithSameUsername != null) {
             request.setAttribute(LogonUtils.USER_ALREADY_EXISTS, username);
             unitAdmin.setUsername("");
