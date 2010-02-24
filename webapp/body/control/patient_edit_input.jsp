@@ -72,6 +72,23 @@
     </tr>
   </html:form>
 
+  <logic:match value="true" name="patient" property="accountlocked">
+    <tr align="right">
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr align="right">
+      <td>&nbsp;</td>
+    </tr>
+
+    <html:form action="/control/passwordUnlock">
+      <html:hidden name="patient" property="username"/>
+      <tr align="left">
+        <td><html:submit value="Unlock Password" styleClass="formbutton"/></td>
+      </tr>
+    </html:form>
+  </logic:match>
+
   <tr align="right">
     <td>&nbsp;</td>
   </tr>
