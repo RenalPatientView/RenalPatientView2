@@ -1,6 +1,6 @@
 package com.worthsoln.patientview.logon;
 
-public class UnitAdmin extends Logon {
+public class UnitAdmin extends Logon implements Cloneable {
 
     public UnitAdmin() {
     }
@@ -18,5 +18,9 @@ public class UnitAdmin extends Logon {
         setUnitcode(unitcode);
         setRole(role);
         setFirstlogon(firstlogon);
+    }
+
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }
