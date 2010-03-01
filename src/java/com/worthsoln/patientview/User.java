@@ -28,7 +28,7 @@ public class User {
                 boolean dummypatient) {
         this.name = name;
         this.email = email;
-        this.unitcode = unitcode;
+        setUnitcode(unitcode);
         this.password = password;
         this.role = role;
         this.username = username;
@@ -90,7 +90,7 @@ public class User {
     }
 
     public void setUnitcode(String unitcode) {
-        this.unitcode = unitcode;
+        this.unitcode = (unitcode != null) ? unitcode.toUpperCase() : unitcode;
     }
 
     public boolean isFirstlogon() {

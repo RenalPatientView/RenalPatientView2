@@ -26,7 +26,7 @@ public class Centre {
         this.centreAddress2 = centreAddress2;
         this.centreAddress3 = centreAddress3;
         this.centreAddress4 = centreAddress4;
-        this.centreCode = centreCode;
+        setCentreCode(centreCode);
         this.centreEmail = centreEmail;
         this.centreName = centreName;
         this.centrePostCode = centrePostCode;
@@ -70,7 +70,7 @@ public class Centre {
     }
 
     public void setCentreCode(String centreCode) {
-        this.centreCode = centreCode;
+        this.centreCode = (centreCode != null) ? centreCode.toUpperCase() : centreCode;
     }
 
     public String getCentreEmail() {

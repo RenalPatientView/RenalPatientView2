@@ -22,10 +22,9 @@ public class News {
         this.id = id;
     }
 
-    public News(String unitcode, boolean admin, boolean patient, boolean everyone, String headline,
-                String body) {
+    public News(String unitcode, boolean admin, boolean patient, boolean everyone, String headline, String body) {
         this.datestamped = Calendar.getInstance();
-        this.unitcode = unitcode;
+        setUnitcode(unitcode);
         this.admin = admin;
         this.patient = patient;
         this.everyone = everyone;
@@ -58,7 +57,7 @@ public class News {
     }
 
     public void setUnitcode(String unitcode) {
-        this.unitcode = unitcode;
+        this.unitcode = (unitcode != null) ? unitcode.toUpperCase() : unitcode;
     }
 
     public boolean isAdmin() {

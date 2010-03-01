@@ -23,7 +23,7 @@ public class LogEntry {
         this.nhsno = nhsno;
         this.user = user;
         this.actor = actor;
-        this.unitcode = unitcode;
+        setUnitcode(unitcode);
         this.extrainfo = extrainfo;
         this.date = Calendar.getInstance();
     }
@@ -95,7 +95,7 @@ public class LogEntry {
     }
 
     public void setUnitcode(String unitcode) {
-        this.unitcode = unitcode;
+        this.unitcode = (unitcode != null) ? unitcode.toUpperCase() : unitcode;
     }
 
     public String getExtrainfo() {

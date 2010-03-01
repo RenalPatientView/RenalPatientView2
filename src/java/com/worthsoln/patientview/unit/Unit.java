@@ -56,7 +56,7 @@ public class Unit {
     }
 
     public Unit(String unitcode) {
-        this.unitcode = unitcode;
+        setUnitcode(unitcode);
     }
 
     public Unit(String unitcode, String name, String address1, String address2, String address3, String postcode,
@@ -74,7 +74,7 @@ public class Unit {
                 String haemodialysisunitphone7, String haemodialysisunitlocation7, String haemodialysisuniturl7,
                 String haemodialysisunitname8, String haemodialysisunitphone8, String haemodialysisunitlocation8,
                 String haemodialysisuniturl8) {
-        this.unitcode = unitcode;
+        setUnitcode(unitcode);
         this.name = name;
         this.address1 = address1;
         this.address2 = address2;
@@ -130,7 +130,7 @@ public class Unit {
     }
 
     public void setUnitcode(String unitcode) {
-        this.unitcode = unitcode;
+        this.unitcode = (unitcode != null) ? unitcode.toUpperCase() : unitcode;
     }
 
     public String getName() {

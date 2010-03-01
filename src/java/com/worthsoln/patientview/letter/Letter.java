@@ -18,7 +18,7 @@ public class Letter {
 
     public Letter(String nhsno, String unitcode, Calendar date, String type, String content) {
         this.nhsno = nhsno;
-        this.unitcode = unitcode;
+        setUnitcode(unitcode);
         this.content = content;
         this.date = date;
         this.type = type;
@@ -45,7 +45,7 @@ public class Letter {
     }
 
     public void setUnitcode(String unitcode) {
-        this.unitcode = unitcode;
+        this.unitcode = (unitcode != null) ? unitcode.toUpperCase() : unitcode;
     }
 
     public String getContent() {
@@ -79,7 +79,6 @@ public class Letter {
     public String getFormattedDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
         SimpleDateFormat dateTimeFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
-
         if ((date.get(Calendar.HOUR_OF_DAY) == 0) && (date.get(Calendar.MINUTE) == 0)) {
             return dateFormat.format(date.getTime());
         } else {

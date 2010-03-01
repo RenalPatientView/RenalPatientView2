@@ -31,7 +31,7 @@ public class Patient {
 
     public Patient(String nhsno, String centreCode) {
         this.nhsno = nhsno;
-        this.centreCode = centreCode;
+        setCentreCode(centreCode);
     }
 
     public Patient(String nhsno, String surname, String forename, String dateofbirth, String sex, String address1,
@@ -42,7 +42,7 @@ public class Patient {
         this.address1 = address1;
         this.address2 = address2;
         this.address3 = address3;
-        this.centreCode = centreCode;
+        setCentreCode(centreCode);
         this.dateofbirth = dateofbirth;
         this.forename = forename;
         this.nhsno = nhsno;
@@ -93,7 +93,7 @@ public class Patient {
     }
 
     public void setCentreCode(String centreCode) {
-        this.centreCode = centreCode;
+        this.centreCode = (centreCode != null) ? centreCode.toUpperCase() : centreCode;
     }
 
     public String getDateofbirth() {

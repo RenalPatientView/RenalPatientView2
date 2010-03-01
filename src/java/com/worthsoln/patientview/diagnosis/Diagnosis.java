@@ -13,7 +13,7 @@ public class Diagnosis {
 
     public Diagnosis(String nhsno, String unitcode, String diagnosis, String displayorder) {
         this.nhsno = nhsno;
-        this.unitcode = unitcode;
+        setUnitcode(unitcode);
         this.diagnosis = diagnosis;
         this.displayorder = displayorder;
     }
@@ -39,7 +39,7 @@ public class Diagnosis {
     }
 
     public void setUnitcode(String unitcode) {
-        this.unitcode = unitcode;
+        this.unitcode = (unitcode != null) ? unitcode.toUpperCase() : unitcode;
     }
 
     public String getDiagnosis() {

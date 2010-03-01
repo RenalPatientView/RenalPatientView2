@@ -18,7 +18,7 @@ public class TestResult {
 
     public TestResult(String nhsno, String unitcode, Calendar datestamp, String testcode, String value) {
         this.nhsno = nhsno;
-        this.unitcode = unitcode;
+        setUnitcode(unitcode);
         this.testcode = testcode;
         this.datestamped = datestamp;
         this.value = value;
@@ -52,7 +52,7 @@ public class TestResult {
     }
 
     public void setUnitcode(String unitcode) {
-        this.unitcode = unitcode;
+        this.unitcode = (unitcode != null) ? unitcode.toUpperCase() : unitcode;
     }
 
     public String getPrepost() {
