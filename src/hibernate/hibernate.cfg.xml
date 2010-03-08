@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-configuration PUBLIC
-        "-//Hibernate/Hibernate Configuration DTD 2.0//EN"
-        "http://hibernate.sourceforge.net/hibernate-configuration-2.0.dtd">
+    "-//Hibernate/Hibernate Configuration DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-2.0.dtd">
 <hibernate-configuration>
   <session-factory name="java:comp/env/hibernate/SessionFactory">
     <!-- properties -->
@@ -23,6 +23,7 @@
     <mapping resource="com/worthsoln/patientview/UktCode.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/UktStatus.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/Unit.hbm.xml"/>
+    <mapping resource="com/worthsoln/patientview/UnitStat.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/User.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

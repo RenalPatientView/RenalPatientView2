@@ -6,14 +6,14 @@
 
 <p class="header">Units</p>
 
-    <table cellpadding="3" border="0">
+<table cellpadding="3" border="0">
 
-<logic:present name="units">
-  <logic:notEmpty name="units">
-        <tr>
-          <td class="tableheader">Unit Code</td>
-          <td class="tableheader">Name</td>
-        </tr>
+  <logic:present name="units">
+    <logic:notEmpty name="units">
+      <tr>
+        <td class="tableheader">Unit Code</td>
+        <td class="tableheader">Name</td>
+      </tr>
       <logic:iterate id="unit" name="units">
         <tr>
           <td class="tablecell"><bean:write name="unit" property="unitcode"/></td>
@@ -21,25 +21,32 @@
 
           <logic:present role="superadmin,unitadmin">
             <html:form action="/control/unitEdit">
-              <html:hidden name="unit" property="unitcode" />
-              <td><html:submit value="Edit" styleClass="formbutton" /></td>
+              <html:hidden name="unit" property="unitcode"/>
+              <td><html:submit value="Edit" styleClass="formbutton"/></td>
+            </html:form>
+          </logic:present>
+
+          <logic:present role="superadmin">
+            <html:form action="/control/unitStat">
+              <html:hidden name="unit" property="unitcode"/>
+              <td><html:submit value="Stats" styleClass="formbutton"/></td>
             </html:form>
           </logic:present>
 
         </tr>
       </logic:iterate>
-   </logic:notEmpty>
- </logic:present>
+    </logic:notEmpty>
+  </logic:present>
 
-        <tr>
-               <td>&nbsp;</td>
-        </tr>
-<logic:present role="superadmin">
-        <tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <logic:present role="superadmin">
+    <tr>
 
-             <html:form action="/control/unitAddInput">
-               <td><html:submit value="Add new" styleClass="formbutton" /></td>
-             </html:form>
-        </tr>
-</logic:present>
-     </table>
+      <html:form action="/control/unitAddInput">
+        <td><html:submit value="Add new" styleClass="formbutton"/></td>
+      </html:form>
+    </tr>
+  </logic:present>
+</table>
