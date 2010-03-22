@@ -5,6 +5,9 @@ import com.worthsoln.database.DatabaseUpdateQuery;
 import com.worthsoln.patientview.User;
 import com.worthsoln.patientview.UserDao;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
 public class UserUtils {
 
     public static void removePatientFromSystem(String nhsno, String unitcode) {
@@ -26,6 +29,11 @@ public class UserUtils {
         User user = (User) dao.retrieveItem(new UserDao(new User(username)));
         String unitcode = user.getUnitcode();
         return unitcode;
+    }
+
+    public static String createRandomPassword() {
+        SecureRandom random = new SecureRandom();
+        return new BigInteger(130, random).toString(32).substring(0, 8);
     }
 
 }

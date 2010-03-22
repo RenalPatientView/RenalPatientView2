@@ -1,9 +1,14 @@
 package com.worthsoln.patientview;
 
+import com.worthsoln.patientview.resultheading.ResultHeading;
+
+import java.util.List;
+
 public class Panel {
 
     private int panel;
     private boolean currentPanel;
+    List<ResultHeading> resultHeadings;
 
     public Panel() {
     }
@@ -28,6 +33,14 @@ public class Panel {
         this.currentPanel = currentPanel;
     }
 
+    public List<ResultHeading> getResultHeadings() {
+        return resultHeadings;
+    }
+
+    public void setResultHeadings(List<ResultHeading> resultHeadings) {
+        this.resultHeadings = resultHeadings;
+    }
+
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -36,10 +49,7 @@ public class Panel {
             return false;
         }
         final Panel panel1 = (Panel) o;
-        if (panel != panel1.panel) {
-            return false;
-        }
-        return true;
+        return panel == panel1.panel;
     }
 
     public int hashCode() {

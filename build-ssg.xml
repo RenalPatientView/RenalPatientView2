@@ -1,0 +1,156 @@
+<project name="patientview" default="build" basedir=".">
+
+    <property name="src" value="src"/>
+    <property name="java" value="${src}/java"/>
+    <property name="test" value="${src}/test"/>
+    <property name="unit" value="${test}/unit"/>
+    <property name="system" value="${test}/system"/>
+    <property name="mock" value="${test}/mock"/>
+
+    <property name="classes" value="classes"/>
+    <property name="lib" value="lib"/>
+    <property name="lib_jforum" value="lib/jforum"/>
+    <property name="build" value="build"/>
+
+    <property name="webapp" value="webapp"/>
+    <property name="metainf" value="${webapp}/META-INF"/>
+    <property name="webinf" value="${webapp}/WEB-INF"/>
+    <property name="webinf_struts" value="${webinf}/struts"/>
+    <property name="webinf_lib" value="${webinf}/lib"/>
+    <property name="webinf_classes" value="${webinf}/classes"/>
+
+    <property name="jarfile" value="${build}/${ant.project.name}.jar"/>
+    <property name="tomcatjarfile" value="${build}/${ant.project.name}-tomcat.jar"/>
+    <property name="warfile" value="${build}/${ant.project.name}.war"/>
+    <property name="project_zip" value="${build}/${ant.project.name}.zip"/>
+
+    <property name="doc" value="doc"/>
+    <property name="reports" value="reports"/>
+
+    <target name="prepare">
+        <delete dir="${build}" failonerror="false"/>
+        <mkdir dir="${build}"/>
+    </target>
+
+    <target name="compile">
+        <delete dir="${classes}"/>
+        <mkdir dir="${classes}"/>
+
+        <javac destdir="${classes}" debug="on">
+            <src path="${java}"/>
+            <src path="${unit}"/>
+            <src path="${system}"/>
+            <src path="${mock}"/>
+            <classpath>
+                <fileset dir="${lib}">
+                    <include name="**/*.jar"/>
+                </fileset>
+                <!--Also need the Tomcat jars to compile against-->
+                <fileset dir="/opt/tomcat/common/lib">
+                    <include name="**/*.jar"/>
+                </fileset>
+                <fileset dir="/opt/tomcat/server/lib">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="unittest">
+        <delete dir="${reports}"/>
+        <mkdir dir="${reports}"/>
+
+        <junit printsummary="yes" haltonerror="yes" haltonfailure="yes">
+            <classpath>
+                <fileset dir="${lib}">
+                    <include name="**/*.jar"/>
+                </fileset>
+                <pathelement location="${classes}"/>
+                <pathelement location="${webapp}"/>
+                <pathelement location="${webinf}"/>
+                <pathelement location="${webinf_struts}"/>
+            </classpath>
+
+            <formatter type="xml"/>
+
+            <batchtest fork="yes" todir="${reports}">
+                <fileset dir="${classes}">
+                    <include name="**/*Test.class"/>
+                    <exclude name="**/*SystemTest.class"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target name="systemtest">
+        <junit printsummary="yes" haltonerror="yes" haltonfailure="yes">
+            <classpath>
+                <fileset dir="${lib}">
+                    <include name="**/*.jar"/>
+                </fileset>
+                <pathelement location="${classes}"/>
+            </classpath>
+
+            <formatter type="xml"/>
+
+            <batchtest fork="yes" todir="${reports}">
+                <fileset dir="${classes}">
+                    <include name="**/*SystemTest.class"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target name="jar" description="jar up classes">
+        <jar destfile="${jarfile}" basedir="${classes}"/>
+    </target>
+
+    <target name="jarTomcatLib" description="jar up tomcat classes">
+        <jar destfile="${tomcatjarfile}" basedir="${classes}">
+            <include name="**/LockOutRealm.class"/>
+        </jar>
+    </target>
+
+    <target name="war">
+        <!--If we start doing production builds this will need to be a parameter-->
+        <copy file="${src}/conf/dev/context.xml" tofile="${metainf}/context.xml"/>
+        <copy file="${src}/conf/dev/log4j.xml" tofile="${webinf}/log4j.xml"/>
+        <copy file="${src}/conf/dev/mysql.properties" tofile="${webinf}/config/database/mysql/mysql.properties"/>
+        <copydir src="${src}/hibernate" dest="${webinf_classes}">
+            <include name="**/*.xml"/>
+        </copydir>
+        <war basedir="${webapp}" destfile="${warfile}"
+             webxml="${webinf}/web.xml">
+            <lib dir="${build}">
+                <include name="**/*.jar"/>
+            </lib>
+            <lib dir="${lib}">
+                <include name="*.jar"/>
+            </lib>
+            <lib dir="${lib_jforum}">
+                <include name="*.jar"/>
+            </lib>
+        </war>
+    </target>
+
+    <target name="build" depends="prepare, compile, jar, jarTomcatLib, war" description="builds app and runs tests">
+        <echo message="build of ${ant.project.name} complete"/>
+    </target>
+
+    <property name="common" value="../common"/>
+    <!-- Tomcat Deployment stuff -->
+    <target name="deploy_dev" description="Install web application">
+        <ant antfile="${common}/build/build_deploy.xml" target="deploy_dev" dir="${common}">
+            <property name="projectname" value="${ant.project.name}"/>
+            <property name="projectbasedir" value="${basedir}"/>
+        </ant>
+    </target>
+
+    <target name="undeploy_dev" description="Install web application">
+        <ant antfile="${common}/build/build_deploy.xml" target="undeploy_dev" dir="${common}">
+            <property name="projectname" value="${ant.project.name}"/>
+            <property name="projectbasedir" value="${basedir}"/>
+        </ant>
+    </target>
+
+</project>

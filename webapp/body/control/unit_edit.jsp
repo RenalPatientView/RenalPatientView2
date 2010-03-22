@@ -64,6 +64,11 @@
     </tr>
 
     <tr>
+      <td><b>PatientView Admin Email</b></td>
+      <td><html:text name="unit" property="rpvadminemail" /></td>
+    </tr>
+
+    <tr>
       <td><b>Unit Enquiries Phone</b></td>
       <td><html:text name="unit" property="unitenquiriesphone" /></td>
     </tr>

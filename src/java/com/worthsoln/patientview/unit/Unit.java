@@ -12,6 +12,7 @@ public class Unit {
     private String trusturl;
     private String rpvadminname;
     private String rpvadminphone;
+    private String rpvadminemail;
     private String unitenquiriesphone;
     private String unitenquiriesemail;
     private String appointmentphone;
@@ -227,6 +228,14 @@ public class Unit {
 
     public void setRpvadminphone(String rpvadminphone) {
         this.rpvadminphone = rpvadminphone;
+    }
+
+    public String getRpvadminemail() {
+        return rpvadminemail;
+    }
+
+    public void setRpvadminemail(String rpvadminemail) {
+        this.rpvadminemail = rpvadminemail;
     }
 
     public String getTrusturl() {

@@ -4,7 +4,33 @@
 
 <html:xhtml/>
 
-        <p class="header">Contact Details</p>
+<logic:notPresent name="emailSent">
+<p class="header">Contact Details</p>
+
+<logic:present name="patient">
+    <logic:notEmpty name="unit" property="rpvadminemail">
+        <!--Todo: Finish copy-->
+        <p>Email Renal Unit</p>
+        <p>Any queries about results not appearing or being wrong, or about diagnosis or contact details.</p>
+        <form method="post" action="contactform.do">
+            <label for="message">Message</label>
+            <textarea rows="6" cols="30" name="message" id="message"></textarea>
+            <input type="hidden" name="unit" value="<bean:write name="unit" property="rpvadminemail"/>" />
+            <input type="hidden" name="type" value="unit" />
+            <input type="submit" value="Send" />
+        </form>
+    </logic:notEmpty>
+
+    <!--Todo: Finish copy-->
+    <p>Email Renal PatientView Administrator</p>
+    <p>Any comments about the system as a whole, or the information links suggested.</p>
+    <form method="post" action="contactform.do" class="contact">
+        <label for="rpvmessage">Please enter your message bellow: </label>
+        <textarea rows="6" cols="30" name="message" id="rpvmessage"></textarea>
+        <input type="hidden" name="type" value="admin" />
+        <input type="submit" value="Send" />
+    </form>
+</logic:present>
 
         <table width="440" border="0" cellspacing="1" cellpadding="3">
 
@@ -218,6 +244,13 @@
           </logic:present>
 
         </table>
+</logic:notPresent>
+
+<logic:present name="emailSent">
+    <p class="header">Contact</p>
+
+    <p>Your contact form was successfully submitted.</p>
+</logic:present>
 
         <logic:present name="patient">
           <p>

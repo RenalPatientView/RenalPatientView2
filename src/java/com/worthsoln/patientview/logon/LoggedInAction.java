@@ -1,19 +1,5 @@
 package com.worthsoln.patientview.logon;
 
-import java.security.Principal;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-import net.sf.hibernate.Criteria;
-import net.sf.hibernate.Session;
-import net.sf.hibernate.Transaction;
-import net.sf.hibernate.expression.Expression;
-import net.sf.hibernate.expression.Order;
 import com.worthsoln.HibernateUtil;
 import com.worthsoln.actionutils.ActionUtils;
 import com.worthsoln.database.action.DatabaseAction;
@@ -22,6 +8,21 @@ import com.worthsoln.patientview.logging.AddLog;
 import com.worthsoln.patientview.logging.LogEntry;
 import com.worthsoln.patientview.news.NewsUtils;
 import com.worthsoln.patientview.unit.Unit;
+import net.sf.hibernate.Criteria;
+import net.sf.hibernate.Session;
+import net.sf.hibernate.Transaction;
+import net.sf.hibernate.expression.Expression;
+import net.sf.hibernate.expression.Order;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class LoggedInAction extends DatabaseAction {
 
@@ -41,6 +42,12 @@ public class LoggedInAction extends DatabaseAction {
         tx.commit();
         HibernateUtil.closeSession();
         if (user != null) {
+
+            // For JForum SSO need to set some variables in the session
+            request.getSession().setAttribute("sso.email.attribute", user.getEmail());
+            // Not sure if this makes a difference if its encrypted
+            request.getSession().setAttribute("sso.password.attribute", user.getPassword());
+
             // Is user patient or admin?
             if ("patient".equals(user.getRole())) {
                 request.setAttribute("isPatient", true);

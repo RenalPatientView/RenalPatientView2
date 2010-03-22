@@ -4,7 +4,7 @@ import java.util.List;
 
 public class PanelNavigation {
 
-    private List panels;
+    private List<Panel> panels;
     private Panel currentPanel;
     private Panel previousPanel;
     private Panel nextPanel;
@@ -27,14 +27,14 @@ public class PanelNavigation {
         this.firstPanel = firstPanel;
     }
 
-    public PanelNavigation(Panel currentPanel, List panels) {
+    public PanelNavigation(Panel currentPanel, List<Panel> panels) {
         if (currentPanel == null) {
             currentPanel = new Panel(1);
         }
         this.currentPanel = currentPanel;
         this.panels = panels;
         for (int i = 0; i < panels.size(); i++) {
-            Panel panel = (Panel) panels.get(i);
+            Panel panel = panels.get(i);
             if (i == 0) {
                 firstPanel = panel;
             }

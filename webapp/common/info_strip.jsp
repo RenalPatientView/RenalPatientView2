@@ -6,10 +6,13 @@
   <td colspan="10">
     <table width="100%">
       <tr>
-        <logic:present role="patient,demo,superadmin,unitadmin,unitstaff">
-          <td class="infostrip" align="left">logged in as: <b><%= request.getUserPrincipal().getName()%>
-          </b> <html:link action="logout">log out</html:link></td>
-        </logic:present>
+          <logic:present role="patient,demo,superadmin,unitadmin,unitstaff">
+              <td class="infostrip" align="left">logged in as: <b><%= request.getUserPrincipal().getName()%>
+              </b> <html:link action="logout">log out</html:link></td>
+
+              <!--Todo: Styles / Position-->
+              <td class="infostrip" align="left">&nbsp;&nbsp;<a href="forums/list.page">Forums</a></td>
+          </logic:present>
 
         <logic:notPresent role="patient,demo,superadmin,unitadmin,unitstaff">
           <td class="infostrip" align="left">&nbsp;&nbsp;<html:link action="/logged_in">log in</html:link></td>

@@ -1,22 +1,24 @@
 package com.worthsoln.patientview;
 
+import com.worthsoln.actionutils.ActionUtils;
+import com.worthsoln.database.DatabaseDAO;
+import com.worthsoln.database.action.DatabaseAction;
+import com.worthsoln.patientview.logon.LogonUtils;
+import com.worthsoln.patientview.resultheading.ResultHeading;
+import com.worthsoln.patientview.resultheading.ResultHeadingDao;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-import com.worthsoln.actionutils.ActionUtils;
-import com.worthsoln.database.DatabaseDAO;
-import com.worthsoln.database.action.DatabaseAction;
-import com.worthsoln.patientview.logon.LogonUtils;
-import com.worthsoln.patientview.resultheading.ResultHeadingDao;
 
 public class TestResultsAction extends DatabaseAction {
 
@@ -26,14 +28,16 @@ public class TestResultsAction extends DatabaseAction {
         DatabaseDAO dao = getDao(request);
         Patient patient = PatientUtils.retrievePatient(request, dao);
         if (patient != null) {
+            request.setAttribute("patient", patient);
+
             Panel currentPanel = managePanels(request, dao);
             TestResultForPatientDao resultDao = new TestResultForPatientDao(patient.getNhsno(), currentPanel);
-            List results = dao.retrieveList(resultDao);
-            Collection resultsInRecords = turnResultsListIntoRecords(results);
-            List resultsHeadingsList = dao.retrieveList(new ResultHeadingDao(currentPanel));
+            List<TestResult> results = dao.retrieveList(resultDao);
+            Collection<Result> resultsInRecords = turnResultsListIntoRecords(results);
             managePages(request, resultsInRecords);
-            request.setAttribute("patient", patient);
             request.setAttribute("results", resultsInRecords);
+
+            List<ResultHeading> resultsHeadingsList = dao.retrieveList(new ResultHeadingDao(currentPanel));
             request.setAttribute("resultsHeadings", resultsHeadingsList);
         } else if (!request.isUserInRole("patient")) {
             return LogonUtils.logonChecks(mapping, request, "control");
@@ -44,35 +48,37 @@ public class TestResultsAction extends DatabaseAction {
 
     private Panel managePanels(HttpServletRequest request, DatabaseDAO dao) {
         Panel currentPanel = currentPanel(request);
-        List panelList = dao.retrieveList(new PanelsDao());
+        List<Panel> panelList = dao.retrieveList(new PanelsDao());
+        for (Panel p : panelList) {
+            p.setResultHeadings(dao.retrieveList(new ResultHeadingDao(p)));
+        }
         PanelNavigation panelNav = new PanelNavigation(currentPanel, panelList);
         request.setAttribute("panelNav", panelNav);
         return currentPanel;
     }
 
-    private void managePages(HttpServletRequest request, Collection resultsInRecords) {
+    private void managePages(HttpServletRequest request, Collection<Result> resultsInRecords) {
         Panel currentPage = currentPage(request);
         int resultsPerPage = resultsPerPage(request);
         int numberOfResults = resultsInRecords.size();
         int numberOfPages = (int) Math.ceil((1.0 * numberOfResults) / (1.0 * resultsPerPage));
-        List pageList = createPages(numberOfPages);
+        List<Panel> pageList = createPages(numberOfPages);
         PanelNavigation pageNav = new PanelNavigation(currentPage, pageList);
         request.setAttribute("pages", pageList);
         request.setAttribute("numberOfPages", numberOfPages + "");
-        request.setAttribute("resultsPerPage", new Integer(resultsPerPage));
-        request.setAttribute("resultsOffset", new Integer((currentPage.getPanel() - 1) * resultsPerPage));
+        request.setAttribute("resultsPerPage", resultsPerPage);
+        request.setAttribute("resultsOffset", (currentPage.getPanel() - 1) * resultsPerPage);
         request.setAttribute("pageNav", pageNav);
     }
 
     private int resultsPerPage(HttpServletRequest request) {
         ServletContext servletContext = request.getSession().getServletContext();
         String resultsPerPageString = servletContext.getInitParameter("default.results.per.page");
-        int resultsPerPage = Integer.parseInt(resultsPerPageString);
-        return resultsPerPage;
+        return Integer.parseInt(resultsPerPageString);
     }
 
-    private List createPages(int numberOfPages) {
-        List pages = new ArrayList();
+    private List<Panel> createPages(int numberOfPages) {
+        List<Panel> pages = new ArrayList<Panel>();
         for (int i = 1; i <= numberOfPages; i++) {
             Panel page = new Panel(i);
             pages.add(page);
@@ -100,20 +106,18 @@ public class TestResultsAction extends DatabaseAction {
         return currentPage;
     }
 
-    private Collection turnResultsListIntoRecords(List resultsList) {
-        Map resultsRecords = new TreeMap();
-        for (int i = 0; i < resultsList.size(); i++) {
-            TestResult testResult = (TestResult) resultsList.get(i);
+    private Collection<Result> turnResultsListIntoRecords(List<TestResult> resultsList) {
+        Map<TestResultId, Result> resultsRecords = new TreeMap<TestResultId, Result>();
+        for (TestResult testResult : resultsList) {
             TestResultId testResultId = new TestResultId(testResult);
-            Result result = (Result) resultsRecords.get(testResultId);
+            Result result = resultsRecords.get(testResultId);
             if (result == null) {
                 result = new Result(testResult);
                 resultsRecords.put(testResultId, result);
             }
             result.addResult(testResult.getTestcode(), testResult.getValue());
         }
-        Collection results = resultsRecords.values();
-        return results;
+        return resultsRecords.values();
     }
 
     public String getDatabaseName() {

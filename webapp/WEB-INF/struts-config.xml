@@ -71,6 +71,7 @@
       <form-property name="trusturl" type="java.lang.String"/>
       <form-property name="rpvadminname" type="java.lang.String"/>
       <form-property name="rpvadminphone" type="java.lang.String"/>
+      <form-property name="rpvadminemail" type="java.lang.String"/>
       <form-property name="unitenquiriesphone" type="java.lang.String"/>
       <form-property name="unitenquiriesemail" type="java.lang.String"/>
       <form-property name="appointmentphone" type="java.lang.String"/>
@@ -177,6 +178,13 @@
             type="com.worthsoln.patientview.logon.LogoutAction" parameter="index">
       <forward name="success" path="/index.jsp"/>
     </action>
+    <action path="/forgotten-password"
+      type="com.worthsoln.patientview.ForgottenPasswordAction" parameter="index">
+      <forward name="input" path="/forgotten-password.jsp"/>
+      <forward name="success" path="/forgotten-password.jsp"/>
+    </action>
+
+
     <action path="/patient/patient_details"
             type="com.worthsoln.patientview.PatientDetailsAction" parameter="patient_details">
       <forward name="success" path="/patient/patient_details.jsp"/>
@@ -214,6 +222,9 @@
             type="com.worthsoln.patientview.ContactAction" parameter="contact">
       <forward name="success" path="/patient/contact.jsp"/>
     </action>
+      <action path="/patient/contactform" type="com.worthsoln.patientview.ContactFormAction" parameter="contact">
+          <forward name="success" path="/patient/contact.jsp"/>
+      </action>
     <action path="/demo"
             type="com.worthsoln.patientview.IndexAction" parameter="contact">
       <forward name="success" path="/demo.jsp"/>
