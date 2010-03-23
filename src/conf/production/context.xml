@@ -4,7 +4,7 @@
     <Realm className="com.worthsoln.tomcat.LockOutRealm"
            driverName="com.mysql.jdbc.Driver"
            connectionURL="jdbc:mysql://localhost/renalpatientview?autoReconnect=true"
-           connectionName="Ku7VFU2p" connectionPassword="N8oxSxjVWzSZ"
+           connectionName="Ku7VFU2p" connectionPassword="###"
            userTable="user" userNameCol="username" userCredCol="password"
            userRoleTable="user" roleNameCol="role"
            allowedFailedLogons="10"/>
@@ -29,7 +29,7 @@
               maxActive="100"
               maxWait="10000"
               username="Ku7VFU2pEoNr"
-              password="N8oxSxjVWzSZ"
+              password="###"
               driverClassName="com.mysql.jdbc.Driver"
               url="jdbc:mysql://localhost/renalpatientview?autoReconnect=true"
             />
