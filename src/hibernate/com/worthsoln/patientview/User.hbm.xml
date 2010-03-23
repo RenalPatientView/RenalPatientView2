@@ -17,5 +17,6 @@
     <property name="lastlogon"/>
     <property name="failedlogons"/>
     <property name="accountlocked"/>
+    <property name="screenname"/>
   </class>
 </hibernate-mapping>

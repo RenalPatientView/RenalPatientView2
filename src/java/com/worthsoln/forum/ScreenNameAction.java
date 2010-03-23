@@ -1,31 +1,32 @@
 package com.worthsoln.forum;
 
 import com.worthsoln.HibernateUtil;
+import com.worthsoln.database.action.DatabaseAction;
 import com.worthsoln.patientview.User;
-import net.jforum.util.legacy.clickstream.ClickstreamFilter;
+import com.worthsoln.patientview.logon.LogonUtils;
 import net.sf.hibernate.Criteria;
 import net.sf.hibernate.HibernateException;
 import net.sf.hibernate.Session;
 import net.sf.hibernate.Transaction;
 import net.sf.hibernate.expression.Expression;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 
-/**
- * Check for screen name of user and redirect if one isn't set
- */
-public class RpvForumFilter extends ClickstreamFilter {
+public class ScreenNameAction extends DatabaseAction {
 
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-            throws IOException, ServletException {
 
-        String screenName = null;
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+                                 HttpServletResponse response) throws Exception {
+
+        String screenName = request.getParameter("screenname");
+        if (screenName == null || screenName.trim().length() == 0) {
+            return mapping.findForward("input");
+        }
         try {
             // Check whether screen name is set
             Principal principal = ((HttpServletRequest) request).getUserPrincipal();
@@ -35,7 +36,8 @@ public class RpvForumFilter extends ClickstreamFilter {
             Criteria criteria = session.createCriteria(User.class);
             criteria.add(Expression.like("username", username));
             User user = (User) criteria.uniqueResult();
-            screenName = user.getScreenname();
+            user.setScreenname(screenName);
+            session.save(user);
             tx.commit();
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -47,10 +49,14 @@ public class RpvForumFilter extends ClickstreamFilter {
             }
         }
 
-        if (screenName != null && screenName.trim().length() > 0) {
-            super.doFilter(request, response, chain);
-        } else {
-            request.getRequestDispatcher("/setscreenname.do").forward(request, response);
-        }
+        return LogonUtils.logonChecks(mapping, request);
+    }
+
+    public String getDatabaseName() {
+        return "patientview";
+    }
+
+    public String getIdentifier() {
+        return "user";
     }
 }

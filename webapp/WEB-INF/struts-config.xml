@@ -183,6 +183,11 @@
       <forward name="input" path="/forgotten-password.jsp"/>
       <forward name="success" path="/forgotten-password.jsp"/>
     </action>
+    <action path="/setscreenname"
+      type="com.worthsoln.forum.ScreenNameAction" parameter="index">
+      <forward name="input" redirect="true" path="/set-screenname.jsp"/>
+      <forward name="success" redirect="true" path="/forums/list.page"/>
+    </action>
 
 
     <action path="/patient/patient_details"
