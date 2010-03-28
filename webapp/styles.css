@@ -236,13 +236,13 @@ font-size:12px; font-style:normal; font-weight:normal; width:500px; text-align:l
 
 .navcell-right{
 	font-family:Verdana, Arial, Helvetica;
-	font-size:12px; font-style:normal; font-weight:bold; color:#000000; background-color: #8BC3F7; border-bottom-width: 1; border-right-width: 0; border-color: #CFE6FC #ffffff #59A3E1 #ffffff; border-style: solid; border-left-width: 0; border-top-width: 6; height:25px; text-align:center;
+	font-size:12px; font-style:normal; font-weight:bold; color:#000000; background-color: #8BC3F7; border-bottom-width: 1; border-right-width: 0; border-color: #CFE6FC #ffffff #59A3E1 #ffffff; border-style: solid; border-left-width: 0; border-top-width: 6; height:25px; text-align:center; white-space:nowrap
 }
 
 
 .navcell{
 	font-family:Verdana, Arial, Helvetica;
-	font-size:12px; font-style:normal; font-weight:bold; color:#000000; background-color: #8BC3F7; border-bottom-width: 1; border-right-width: 1; border-color: #CFE6FC #ffffff #59A3E1 #ffffff; border-style: solid; border-left-width: 0; border-top-width: 6; height:25px; text-align:center
+	font-size:12px; font-style:normal; font-weight:bold; color:#000000; background-color: #8BC3F7; border-bottom-width: 1; border-right-width: 1; border-color: #CFE6FC #ffffff #59A3E1 #ffffff; border-style: solid; border-left-width: 0; border-top-width: 6; height:25px; text-align:center; white-space:nowrap
 }
 
 
