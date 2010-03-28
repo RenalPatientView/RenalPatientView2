@@ -4,6 +4,9 @@ import com.worthsoln.HibernateUtil;
 import com.worthsoln.database.action.DatabaseAction;
 import com.worthsoln.patientview.User;
 import com.worthsoln.patientview.logon.LogonUtils;
+import net.jforum.dao.DataAccessDriver;
+import net.jforum.dao.UserDAO;
+import net.jforum.sso.SSOUtils;
 import net.sf.hibernate.Criteria;
 import net.sf.hibernate.HibernateException;
 import net.sf.hibernate.Session;
@@ -27,15 +30,22 @@ public class ScreenNameAction extends DatabaseAction {
         if (screenName == null || screenName.trim().length() == 0) {
             return mapping.findForward("input");
         }
+        User user = setScreenName(request, screenName);
+        setJforumScreenname(user);
+
+        return LogonUtils.logonChecks(mapping, request);
+    }
+
+    private User setScreenName(HttpServletRequest request, String screenName) {
+        User user = null;
         try {
-            // Check whether screen name is set
-            Principal principal = ((HttpServletRequest) request).getUserPrincipal();
+            Principal principal = (request).getUserPrincipal();
             String username = principal.getName();
             Session session = HibernateUtil.currentSession();
             Transaction tx = session.beginTransaction();
             Criteria criteria = session.createCriteria(User.class);
             criteria.add(Expression.like("username", username));
-            User user = (User) criteria.uniqueResult();
+            user = (User) criteria.uniqueResult();
             user.setScreenname(screenName);
             session.save(user);
             tx.commit();
@@ -48,8 +58,38 @@ public class ScreenNameAction extends DatabaseAction {
                 e.printStackTrace();
             }
         }
+        return user;
+    }
 
-        return LogonUtils.logonChecks(mapping, request);
+    private void setJforumScreenname(com.worthsoln.patientview.User user) {
+        SSOUtils ssoutils = new SSOUtils();
+
+        if (!ssoutils.userExists(user.getUsername())) {
+            net.jforum.entities.User jforumuser = new net.jforum.entities.User();
+
+            jforumuser.setUsername(user.getUsername());
+            jforumuser.setPassword("sso");
+            String email = null == user.getEmail() ? "" : user.getEmail();
+            jforumuser.setEmail(email);
+            jforumuser.setFrom(user.getScreenname());
+            jforumuser.setActive(1);
+
+            UserDAO dao = DataAccessDriver.getInstance().newUserDAO();
+
+            dao.addNew(jforumuser);
+
+
+
+            net.jforum.entities.User addedjforumuser = dao.selectByName(user.getUsername());
+
+
+
+            addedjforumuser.setFrom(user.getScreenname());
+
+            dao.update(addedjforumuser);
+
+
+        }
     }
 
     public String getDatabaseName() {
