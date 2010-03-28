@@ -24,6 +24,8 @@
 
               <td class="navcell"><html:link action="/patient/contact" styleClass="<%= ("contact".equals(request.getAttribute("currentNav"))) ? "navlinkon" : "navlink" %>">Contact</html:link></td>
 
+              <td class="navcell"><html:link href="/forums/list.page" styleClass="<%= ("xxxxxxx".equals(request.getAttribute("currentNav"))) ? "navlinkon" : "navlink" %>">Forum</html:link></td>
+
               <td class="navcell-right"><html:link action="/help" styleClass="<%= ("help".equals(request.getAttribute("currentNav"))) ? "navlinkon" : "navlink" %>">Help</html:link></td>
 
               <td class="navcell-empty"><font class="navlink">&nbsp;</font></td>
