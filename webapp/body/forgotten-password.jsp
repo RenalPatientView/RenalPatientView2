@@ -11,7 +11,7 @@
     <p class="error">Sorry your username was not found.</p>
 </logic:equal>
 <logic:notEmpty name="nullEmail">
-    <p class="error">Your username does not have an email set. Please contact an administrator.</p>
+    <p class="error">That username does not have an email set. Please contact an administrator.</p>
 </logic:notEmpty>
 
 <form action="forgotten-password.do" class="forgotenPassword">
