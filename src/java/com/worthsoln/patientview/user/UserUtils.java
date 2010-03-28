@@ -30,10 +30,4 @@ public class UserUtils {
         String unitcode = user.getUnitcode();
         return unitcode;
     }
-
-    public static String createRandomPassword() {
-        SecureRandom random = new SecureRandom();
-        return new BigInteger(130, random).toString(32).substring(0, 8);
-    }
-
 }
