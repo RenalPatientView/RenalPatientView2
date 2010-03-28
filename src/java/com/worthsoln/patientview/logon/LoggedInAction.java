@@ -30,6 +30,7 @@ public class LoggedInAction extends DatabaseAction {
 
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
                                  HttpServletResponse response) throws Exception {
+        String forward = "";
         ActionUtils.setUpNavLink(mapping.getParameter(), request);
         NewsUtils.putAppropriateNewsForViewingInRequest(request);
         Principal principal = request.getUserPrincipal();
@@ -45,7 +46,7 @@ public class LoggedInAction extends DatabaseAction {
 
             // For JForum SSO need to set some variables in the session
             request.getSession().setAttribute("sso.email.attribute", user.getEmail());
-            // Not sure if this makes a difference if its encrypted
+            // Not sure if this makes a difference if it's encrypted
             request.getSession().setAttribute("sso.password.attribute", user.getPassword());
 
             // Is user patient or admin?
@@ -87,9 +88,12 @@ public class LoggedInAction extends DatabaseAction {
                     tx.commit();
                     HibernateUtil.closeSession();
                 }
+                forward = "patient";
+            } else {
+                forward = "admin";
             }
         }
-        return LogonUtils.logonChecks(mapping, request);
+        return LogonUtils.logonChecks(mapping, request, forward);
     }
 
     public String getDatabaseName() {
