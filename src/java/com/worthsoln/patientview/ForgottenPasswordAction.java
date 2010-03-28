@@ -2,7 +2,7 @@ package com.worthsoln.patientview;
 
 import com.worthsoln.HibernateUtil;
 import com.worthsoln.database.action.DatabaseAction;
-import com.worthsoln.patientview.user.UserUtils;
+import com.worthsoln.patientview.logon.LogonUtils;
 import net.sf.hibernate.Criteria;
 import net.sf.hibernate.Session;
 import net.sf.hibernate.Transaction;
@@ -31,9 +31,8 @@ public class ForgottenPasswordAction extends DatabaseAction {
             request.setAttribute("foundUser", user != null);
             if (user != null) {
                 if (user.getEmail() != null && user.getEmail().trim().length() > 0) {
-                    // Passwords are plain text
-                    String password = UserUtils.createRandomPassword();
-                    user.setPassword(password);
+                    String password = LogonUtils.generateNewPassword();
+                    user.setPassword(LogonUtils.hashPassword(password));
 
                     // Email password
                     String message = "Hello User,\n" +
