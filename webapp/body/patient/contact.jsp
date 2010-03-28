@@ -7,22 +7,26 @@
 <logic:notPresent name="emailSent">
 <p class="header">Contact Details</p>
 
+
 <logic:present name="patient">
-    <logic:notEmpty name="unit" property="rpvadminemail">
-        <!--Todo: Finish copy-->
-        <p>Email Renal Unit</p>
+        <p><b>Email your renal unit</b></p>
         <p>Any queries about results not appearing or being wrong, or about diagnosis or contact details.</p>
-        <form method="post" action="contactform.do">
-            <label for="message">Message</label>
+    <logic:notEmpty name="unit" property="unitenquiriesemail">
+        <form method="post" action="contactform.do" class="contact">
+            <label for="message">Please enter your message bellow: </label>
             <textarea rows="6" cols="30" name="message" id="message"></textarea>
-            <input type="hidden" name="unit" value="<bean:write name="unit" property="rpvadminemail"/>" />
+            <input type="hidden" name="unit" value="<bean:write name="unit" property="unitenquiriesemail"/>" />
             <input type="hidden" name="type" value="unit" />
             <input type="submit" value="Send" />
         </form>
     </logic:notEmpty>
+    <logic:empty name="unit" property="unitenquiriesemail">
+        <p><font color="red">It seems that your renal unit has not set up a contact email address, so you are not able to contact them from here. Let them know.</font></p>
+    </logic:empty>
 
-    <!--Todo: Finish copy-->
-    <p>Email Renal PatientView Administrator</p>
+    <br/>
+
+    <p><b>Email the RPV system administrator</b></p>
     <p>Any comments about the system as a whole, or the information links suggested.</p>
     <form method="post" action="contactform.do" class="contact">
         <label for="rpvmessage">Please enter your message bellow: </label>
