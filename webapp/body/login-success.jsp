@@ -5,14 +5,16 @@
 
 <p class="header">Login Successful</p>
 
-<p>go away if you aren't entitled to read this record</p>
+<p><b>This is a confidential record.</b></p>
+<p>If you should not be reading it please <html:link action="logout">log out</html:link> now.</p>
+
 
 <dl>
 
   <%
     if (request.getAttribute("lastLogin") != null) {
   %>
-  <dt>Last login</dt>
+  <dt>Last login recorded</dt>
   <dd><%=request.getAttribute("lastLogin")%>
   </dd>
   <%
@@ -22,7 +24,7 @@
   <%
     if (request.getAttribute("lastDataDate") != null) {
   %>
-  <dt>Last data received</dt>
+  <dt>Last data received for this record</dt>
   <dd>On <%=request.getAttribute("lastDataDate")%>
     <%
       if (request.getAttribute("lastDataFrom") != null) {
@@ -36,6 +38,20 @@
     }
   %>
 </dl>
+
+
+<%
+  if (request.getAttribute("isPatient") != null) {
+%>
+<p><b><a href="patient/patient_details.do">Continue</a></b></p>
+<%
+} else {
+%>
+<p><b><a href="control/index.jsp">Continue</a></b></p>
+<%
+  }
+%>
+
 
 <h2>Safe passwords</h2>
 
@@ -62,14 +78,4 @@
   </li>
 </ol>
 
-<%
-  if (request.getAttribute("isPatient") != null) {
-%>
-<p><a href="patient/patient_details.do">Continue</a></p>
-<%
-} else {
-%>
-<p><a href="control/index.jsp">Continue</a></p>
-<%
-  }
-%>
+
