@@ -172,7 +172,8 @@
     </action>
     <action path="/logged_in"
             type="com.worthsoln.patientview.logon.LoggedInAction" parameter="index">
-      <forward name="success" path="/login-success.jsp"/>
+      <forward name="patient" path="/login-success.jsp"/>
+      <forward name="admin" path="/control/index.jsp"/>
     </action>
     <action path="/logout"
             type="com.worthsoln.patientview.logon.LogoutAction" parameter="index">
