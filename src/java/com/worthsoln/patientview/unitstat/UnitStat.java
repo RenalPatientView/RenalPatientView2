@@ -19,6 +19,13 @@ public class UnitStat {
         this.count = count;
     }
 
+    public UnitStat(String unitcode, String yearmonth, String action, int count) {
+        setUnitcode(unitcode);
+        this.yearmonth = yearmonth;
+        this.action = action;
+        this.count = count;
+    }
+
     public int getId() {
         return id;
     }

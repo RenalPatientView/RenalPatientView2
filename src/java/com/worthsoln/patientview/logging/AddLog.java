@@ -17,6 +17,7 @@ public class AddLog {
     public static final String PATIENT_VIEW = "patient view";
     public static final String ADMIN_ADD = "admin add";
     public static final String UKT_DATA_REPLACE = "ukt data";
+    public static final String PATIENT_COUNT = "patient count";
 
     public static void addLog(String actor, String action, String user, String nhsno, String unitcode,
                               String extrainfo) {
