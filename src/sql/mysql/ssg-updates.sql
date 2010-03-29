@@ -6,4 +6,4 @@ ALTER TABLE `renalpatientview`.`user`
 ALTER TABLE `renalpatientview`.`unit` ADD COLUMN `rpvadminemail` VARCHAR(100)  DEFAULT NULL AFTER `rpvadminphone`;
 
 ALTER TABLE `renalpatientview`.`user`
- ADD COLUMN `screenname` VARCHAR(100)  NOT NULL AFTER `failedlogons`;
+ ADD COLUMN `screenname` VARCHAR(100)  NOT NULL AFTER `accountlocked`;
