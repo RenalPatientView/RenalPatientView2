@@ -1,16 +1,17 @@
 package com.worthsoln.patientview.logon;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
 import com.worthsoln.HibernateUtil;
 import com.worthsoln.database.DatabaseDAO;
 import com.worthsoln.database.action.DatabaseAction;
 import com.worthsoln.patientview.logging.AddLog;
 import com.worthsoln.patientview.unit.Unit;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class PatientAddAction extends DatabaseAction {
 
@@ -26,10 +27,10 @@ public class PatientAddAction extends DatabaseAction {
         String overrideDuplicateNhsno = BeanUtils.getProperty(form, "overrideDuplicateNhsno");
         boolean dummypatient = "true".equals(BeanUtils.getProperty(form, "dummypatient"));
         PatientLogon patient =
-                new PatientLogon(username, password, name, email, nhsno, unitcode, true, dummypatient, null, 0, false);
+                new PatientLogon(username, password, name, email, nhsno, unitcode, true, dummypatient, null, 0, false, "");
         PatientLogon gp =
                 new PatientLogon(username + "-GP", gppassword, name + "-GP", null, nhsno, unitcode, true, dummypatient,
-                        null, 0, false);
+                        null, 0, false, "");
         DatabaseDAO dao = getDao(request);
         PatientLogon existingPatientwithSameUsername = (PatientLogon) dao.retrieveItem(new PatientLogonDao(patient));
         PatientLogon existingPatientwithSameNhsno = (PatientLogon) dao.retrieveItem(new PatientNhsnoLogonDao(patient));

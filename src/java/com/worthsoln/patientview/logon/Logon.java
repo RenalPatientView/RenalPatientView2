@@ -16,6 +16,7 @@ public abstract class Logon {
     private Date lastlogon;
     private int failedlogons;
     private boolean accountlocked;
+    private String screenname;
 
     public Logon() {
     }
@@ -118,5 +119,13 @@ public abstract class Logon {
 
     public void setAccountlocked(boolean accountlocked) {
         this.accountlocked = accountlocked;
+    }
+
+    public String getScreenname() {
+        return screenname;
+    }
+
+    public void setScreenname(String screenname) {
+        this.screenname = screenname;
     }
 }

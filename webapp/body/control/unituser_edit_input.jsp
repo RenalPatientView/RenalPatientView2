@@ -34,9 +34,13 @@
       </html:select>
       </td>
     </tr>
-    <html:hidden name="unitUser" property="unitcode"/>
-    <html:hidden name="unitUser" property="firstlogon"/>
-    <html:hidden name="unitUser" property="password"/>
+      <html:hidden name="unitUser" property="unitcode"/>
+      <html:hidden name="unitUser" property="firstlogon"/>
+      <html:hidden name="unitUser" property="password"/>
+      <html:hidden name="unitUser" property="lastlogon"/>
+      <html:hidden name="unitUser" property="failedlogons"/>
+      <html:hidden name="unitUser" property="accountlocked"/>
+      <html:hidden name="unitUser" property="screenname"/>
 
     <tr align="right">
       <td><html:submit value="Edit" styleClass="formbutton"/></td>

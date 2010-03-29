@@ -37,9 +37,10 @@ public class PatientEditAction extends DatabaseAction {
         String failedlogonsstring = BeanUtils.getProperty(form, "failedlogons");
         int failedlogons = Integer.decode(failedlogonsstring);
         boolean accountlocked = "true".equals(BeanUtils.getProperty(form, "accountlocked"));
+        String screenname = BeanUtils.getProperty(form, "screenname");
         PatientLogon patient =
                 new PatientLogon(username, password, name, email, nhsno, unitcode, firstlogon, dummypatient, lastlogon,
-                        failedlogons, accountlocked);
+                        failedlogons, accountlocked, screenname);
         String mappingToFind = "";
         List duplicateUsers = findDuplicateUsers(nhsno, username);
         if (!duplicateUsers.isEmpty() && !overrideDuplicateNhsno.equals("on")) {
