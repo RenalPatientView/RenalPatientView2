@@ -24,9 +24,7 @@
               <html:hidden name="unit" property="unitcode"/>
               <td><html:submit value="Edit" styleClass="formbutton"/></td>
             </html:form>
-          </logic:present>
 
-          <logic:present role="superadmin">
             <html:form action="/control/unitStat">
               <html:hidden name="unit" property="unitcode"/>
               <td><html:submit value="Stats" styleClass="formbutton"/></td>
