@@ -80,13 +80,18 @@ td.password{
 
 
 ul{
-	font-family: Verdana, Arial, Helvetica;
+	font-family: Arial, Helvetica;
+	font-size:12px; font-style:normal; font-weight:normal; color:#006BBA;  text-decoration:none; text-align:left;
+}
+
+ol{
+	font-family: Arial, Helvetica;
 	font-size:12px; font-style:normal; font-weight:normal; color:#006BBA;  text-decoration:none; text-align:left;
 }
 
 
 li{
-	font-family: Verdana, Arial, Helvetica;
+	font-family: Arial, Helvetica;
 	font-size:12px; font-style:normal; font-weight:normal; color:#006BBA;  text-decoration:none; text-align:left;
 }
 
