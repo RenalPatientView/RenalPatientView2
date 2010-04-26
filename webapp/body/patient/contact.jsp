@@ -11,6 +11,7 @@
 <logic:present name="patient">
         <p><b>Email your renal unit</b></p>
         <p>Any queries about results not appearing or being wrong, or about diagnosis or contact details.</p>
+        <p>Note: Your name and NHS number will be sent with this message.</p>
     <logic:notEmpty name="unit" property="unitenquiriesemail">
         <form method="post" action="contactform.do" class="contact">
             <label for="message">Please enter your message bellow: </label>
