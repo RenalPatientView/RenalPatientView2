@@ -37,6 +37,24 @@ public class ContactFormAction extends DatabaseAction {
         return LogonUtils.logonChecks(mapping, request);
     }
 
+
+    private String createMessage(String message, Patient patient) {
+        String completeMessage = "";
+
+        completeMessage += "Patient name - " + patient.getForename() + " " + patient.getSurname() + "\n";
+        completeMessage += "NHS no - " + patient.getNhsno() + "\n";
+        completeMessage += "\n";
+        completeMessage += "Message:" + "\n";
+        completeMessage += "\n";
+        completeMessage += "------------" + "\n";
+        completeMessage += "\n";
+        completeMessage += message+ "\n";
+        completeMessage += "\n";
+        completeMessage += "------------" + "\n";
+
+        return completeMessage;
+    }
+
     public String getDatabaseName() {
         return "patientview";
     }
