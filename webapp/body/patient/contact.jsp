@@ -18,7 +18,7 @@
             <html:textarea rows="6" cols="30" property="message"/>
             <br /><br />Email (this will help us contact you much faster to resolve your issue): <br />
             <html:text property="email" />
-            <html:hidden property="unitenquiriesemail" name="unit" />
+            <html:hidden property="rpvadminemail" name="unit" />
             <html:hidden property="type" value="unit" />
             <br /><br /><html:submit value="Send" />
         </html:form>

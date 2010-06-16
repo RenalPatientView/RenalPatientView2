@@ -25,7 +25,7 @@ public class ContactFormAction extends DatabaseAction {
 
             if ("unit".equals(type)) {
                 // Send to unit
-                String unitEmail = request.getParameter("unit");
+                String unitEmail = request.getParameter("rpvadminemail");
                 if (unitEmail != null && unitEmail.length() > 0) {
                     EmailUtils.sendEmail(request.getSession().getServletContext(), unitEmail, subject, message);
                 }
@@ -52,9 +52,6 @@ public class ContactFormAction extends DatabaseAction {
         completeMessage += "------------" + "\n";
         completeMessage += message+ "\n";
         completeMessage += "------------" + "\n";
-
-        
-        System.out.println(completeMessage);
 
         return completeMessage;
     }
