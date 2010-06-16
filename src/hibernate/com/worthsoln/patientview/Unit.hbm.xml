@@ -16,6 +16,7 @@
     <property name="trusturl"/>
     <property name="rpvadminname"/>
     <property name="rpvadminphone"/>
+    <property name="rpvadminemail"/>
     <property name="unitenquiriesphone"/>
     <property name="unitenquiriesemail"/>
     <property name="appointmentphone"/>

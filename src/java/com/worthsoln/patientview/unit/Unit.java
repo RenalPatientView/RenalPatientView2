@@ -61,7 +61,8 @@ public class Unit {
     }
 
     public Unit(String unitcode, String name, String address1, String address2, String address3, String postcode,
-                String uniturl, String trusturl, String rpvadminname, String rpvadminphone, String unitenquiriesphone,
+                String uniturl, String trusturl, String rpvadminname, String rpvadminphone, String rpvadminemail,
+                String unitenquiriesphone,
                 String unitenquiriesemail, String appointmentphone, String appointmentemail, String outofhours,
                 String peritonealdialysisphone, String peritonealdialysisemail, String haemodialysisunitname1,
                 String haemodialysisunitphone1, String haemodialysisunitlocation1, String haemodialysisuniturl1,
@@ -85,6 +86,7 @@ public class Unit {
         this.trusturl = trusturl;
         this.rpvadminname = rpvadminname;
         this.rpvadminphone = rpvadminphone;
+        this.rpvadminemail = rpvadminemail;
         this.unitenquiriesphone = unitenquiriesphone;
         this.unitenquiriesemail = unitenquiriesemail;
         this.appointmentphone = appointmentphone;
