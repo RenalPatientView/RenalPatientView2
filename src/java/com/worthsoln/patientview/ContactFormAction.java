@@ -18,9 +18,10 @@ public class ContactFormAction extends DatabaseAction {
         if (patient != null) {
             String message = request.getParameter("message");
             String type = request.getParameter("type");
+            String email = request.getParameter("email");
             String subject = "Renal Patient View Enquiry";
 
-            message = createMessage(message, patient);
+            message = createMessage(message, patient, email);
 
             if ("unit".equals(type)) {
                 // Send to unit
@@ -40,16 +41,20 @@ public class ContactFormAction extends DatabaseAction {
     }
 
 
-    private String createMessage(String message, Patient patient) {
+    private String createMessage(String message, Patient patient, String email) {
         String completeMessage = "";
 
         completeMessage += "Patient name - " + patient.getForename() + " " + patient.getSurname() + "\n";
         completeMessage += "NHS no - " + patient.getNhsno() + "\n";
+        completeMessage += "Email - " + email + "\n";
         completeMessage += "\n";
         completeMessage += "Message:" + "\n";
         completeMessage += "------------" + "\n";
         completeMessage += message+ "\n";
         completeMessage += "------------" + "\n";
+
+        
+        System.out.println(completeMessage);
 
         return completeMessage;
     }

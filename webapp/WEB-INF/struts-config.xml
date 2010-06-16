@@ -148,6 +148,12 @@
       <form-property name="body" type="java.lang.String"/>
       <form-property name="submission" type="java.lang.String"/>
     </form-bean>
+    <form-bean name="contactForm" type="org.apache.struts.validator.DynaValidatorActionForm">
+      <form-property name="message" type="java.lang.String"/>
+      <form-property name="email" type="java.lang.String"/>
+      <form-property name="type" type="java.lang.String"/>
+      <form-property name="unitenquiriesemail" type="java.lang.String"/>
+    </form-bean>
   </form-beans>
 
   <!-- ========== Global Forward Definitions ============================== -->
@@ -226,10 +232,13 @@
       <forward name="nopermission" path="/patient/letter_denied.jsp"/>
     </action>
     <action path="/patient/contact"
-            type="com.worthsoln.patientview.ContactAction" parameter="contact">
+            type="com.worthsoln.patientview.ContactAction" parameter="contact" >
       <forward name="success" path="/patient/contact.jsp"/>
     </action>
-      <action path="/patient/contactform" type="com.worthsoln.patientview.ContactFormAction" parameter="contact">
+      <action path="/patient/contactForm" type="com.worthsoln.patientview.ContactFormAction" parameter="contact"
+              name="contactForm"
+              input="input">
+          <forward name="input" path="/patient/contact.jsp"/>
           <forward name="success" path="/patient/contact.jsp"/>
       </action>
     <action path="/demo"
