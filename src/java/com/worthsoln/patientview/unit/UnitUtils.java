@@ -20,7 +20,7 @@ public class UnitUtils {
         Transaction tx = session.beginTransaction();
         List items;
         if ("all".equals(unitcode)) {
-            items = session.find("from " + Unit.class.getName());
+            items = session.find("from " + Unit.class.getName() + " order by name");
         } else {
             items = session.find("from " + Unit.class.getName() + " as unit where unit.unitcode = ?",
                     unitcode, Hibernate.STRING);

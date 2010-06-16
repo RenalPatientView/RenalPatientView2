@@ -25,7 +25,7 @@ public class UnitsDisplayAction extends DatabaseAction {
         List items;
 
         if (user.getRole().equals("superadmin")) {
-            items = session.find("from " + Unit.class.getName());
+            items = session.find("from " + Unit.class.getName() + " order by name");
         } else {
             items = session.find("from " + Unit.class.getName() + " as unit where unit.unitcode = ?",
                                  user.getUnitcode(), Hibernate.STRING);
