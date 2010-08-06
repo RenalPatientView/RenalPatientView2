@@ -63,6 +63,7 @@
     </form-bean>
     <form-bean name="unitForm" type="org.apache.struts.validator.DynaValidatorActionForm">
       <form-property name="name" type="java.lang.String"/>
+      <form-property name="shortname" type="java.lang.String"/>
       <form-property name="unitcode" type="java.lang.String"/>
       <form-property name="address1" type="java.lang.String"/>
       <form-property name="address2" type="java.lang.String"/>
@@ -112,6 +113,22 @@
       <form-property name="haemodialysisunitphone8" type="java.lang.String"/>
       <form-property name="haemodialysisunitlocation8" type="java.lang.String"/>
       <form-property name="haemodialysisuniturl8" type="java.lang.String"/>
+      <form-property name="haemodialysisunitname9" type="java.lang.String"/>
+      <form-property name="haemodialysisunitphone9" type="java.lang.String"/>
+      <form-property name="haemodialysisunitlocation9" type="java.lang.String"/>
+      <form-property name="haemodialysisuniturl9" type="java.lang.String"/>
+      <form-property name="haemodialysisunitname10" type="java.lang.String"/>
+      <form-property name="haemodialysisunitphone10" type="java.lang.String"/>
+      <form-property name="haemodialysisunitlocation10" type="java.lang.String"/>
+      <form-property name="haemodialysisuniturl10" type="java.lang.String"/>
+      <form-property name="haemodialysisunitname11" type="java.lang.String"/>
+      <form-property name="haemodialysisunitphone11" type="java.lang.String"/>
+      <form-property name="haemodialysisunitlocation11" type="java.lang.String"/>
+      <form-property name="haemodialysisuniturl11" type="java.lang.String"/>
+      <form-property name="haemodialysisunitname12" type="java.lang.String"/>
+      <form-property name="haemodialysisunitphone12" type="java.lang.String"/>
+      <form-property name="haemodialysisunitlocation12" type="java.lang.String"/>
+      <form-property name="haemodialysisuniturl12" type="java.lang.String"/>
     </form-bean>
     <form-bean name="gpgForm" type="org.apache.struts.validator.DynaValidatorActionForm">
       <form-property name="src" type="java.lang.String"/>

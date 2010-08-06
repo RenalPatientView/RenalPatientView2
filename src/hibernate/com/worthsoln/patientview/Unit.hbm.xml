@@ -8,6 +8,7 @@
       <generator class="assigned"/>
     </id>
     <property name="name"/>
+    <property name="shortname"/>
     <property name="address1"/>
     <property name="address2"/>
     <property name="address3"/>
@@ -64,5 +65,25 @@
     <property name="haemodialysisunitphone8"/>
     <property name="haemodialysisunitlocation8"/>
     <property name="haemodialysisuniturl8"/>
+
+    <property name="haemodialysisunitname9"/>
+    <property name="haemodialysisunitphone9"/>
+    <property name="haemodialysisunitlocation9"/>
+    <property name="haemodialysisuniturl9"/>
+
+    <property name="haemodialysisunitname10"/>
+    <property name="haemodialysisunitphone10"/>
+    <property name="haemodialysisunitlocation10"/>
+    <property name="haemodialysisuniturl10"/>
+
+    <property name="haemodialysisunitname11"/>
+    <property name="haemodialysisunitphone11"/>
+    <property name="haemodialysisunitlocation11"/>
+    <property name="haemodialysisuniturl11"/>
+
+    <property name="haemodialysisunitname12"/>
+    <property name="haemodialysisunitphone12"/>
+    <property name="haemodialysisunitlocation12"/>
+    <property name="haemodialysisuniturl12"/>
   </class>
 </hibernate-mapping>

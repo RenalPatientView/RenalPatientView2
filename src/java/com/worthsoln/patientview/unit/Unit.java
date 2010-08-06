@@ -4,6 +4,7 @@ public class Unit {
 
     private String unitcode;
     private String name;
+    private String shortname;
     private String address1;
     private String address2;
     private String address3;
@@ -52,6 +53,22 @@ public class Unit {
     private String haemodialysisunitphone8;
     private String haemodialysisunitlocation8;
     private String haemodialysisuniturl8;
+    private String haemodialysisunitname9;
+    private String haemodialysisunitphone9;
+    private String haemodialysisunitlocation9;
+    private String haemodialysisuniturl9;
+    private String haemodialysisunitname10;
+    private String haemodialysisunitphone10;
+    private String haemodialysisunitlocation10;
+    private String haemodialysisuniturl10;
+    private String haemodialysisunitname11;
+    private String haemodialysisunitphone11;
+    private String haemodialysisunitlocation11;
+    private String haemodialysisuniturl11;
+    private String haemodialysisunitname12;
+    private String haemodialysisunitphone12;
+    private String haemodialysisunitlocation12;
+    private String haemodialysisuniturl12;
 
     public Unit() {
     }
@@ -60,7 +77,7 @@ public class Unit {
         setUnitcode(unitcode);
     }
 
-    public Unit(String unitcode, String name, String address1, String address2, String address3, String postcode,
+    public Unit(String unitcode, String name, String shortname, String address1, String address2, String address3, String postcode,
                 String uniturl, String trusturl, String rpvadminname, String rpvadminphone, String rpvadminemail,
                 String unitenquiriesphone,
                 String unitenquiriesemail, String appointmentphone, String appointmentemail, String outofhours,
@@ -75,9 +92,18 @@ public class Unit {
                 String haemodialysisunitlocation6, String haemodialysisuniturl6, String haemodialysisunitname7,
                 String haemodialysisunitphone7, String haemodialysisunitlocation7, String haemodialysisuniturl7,
                 String haemodialysisunitname8, String haemodialysisunitphone8, String haemodialysisunitlocation8,
-                String haemodialysisuniturl8) {
+                String haemodialysisuniturl8,
+                String haemodialysisunitname9, String haemodialysisunitphone9, String haemodialysisunitlocation9,
+                String haemodialysisuniturl9,
+                String haemodialysisunitname10, String haemodialysisunitphone10, String haemodialysisunitlocation10,
+                String haemodialysisuniturl10,
+                String haemodialysisunitname11, String haemodialysisunitphone11, String haemodialysisunitlocation11,
+                String haemodialysisuniturl11,
+                String haemodialysisunitname12, String haemodialysisunitphone12, String haemodialysisunitlocation12,
+                String haemodialysisuniturl12) {
         setUnitcode(unitcode);
         this.name = name;
+        this.shortname = shortname;
         this.address1 = address1;
         this.address2 = address2;
         this.address3 = address3;
@@ -126,6 +152,22 @@ public class Unit {
         this.haemodialysisunitphone8 = haemodialysisunitphone8;
         this.haemodialysisunitlocation8 = haemodialysisunitlocation8;
         this.haemodialysisuniturl8 = haemodialysisuniturl8;
+        this.haemodialysisunitname9 = haemodialysisunitname9;
+        this.haemodialysisunitphone9 = haemodialysisunitphone9;
+        this.haemodialysisunitlocation9 = haemodialysisunitlocation9;
+        this.haemodialysisuniturl9 = haemodialysisuniturl9;
+        this.haemodialysisunitname10 = haemodialysisunitname10;
+        this.haemodialysisunitphone10 = haemodialysisunitphone10;
+        this.haemodialysisunitlocation10 = haemodialysisunitlocation10;
+        this.haemodialysisuniturl10 = haemodialysisuniturl10;
+        this.haemodialysisunitname11 = haemodialysisunitname11;
+        this.haemodialysisunitphone11 = haemodialysisunitphone11;
+        this.haemodialysisunitlocation11 = haemodialysisunitlocation11;
+        this.haemodialysisuniturl11 = haemodialysisuniturl11;
+        this.haemodialysisunitname12 = haemodialysisunitname12;
+        this.haemodialysisunitphone12 = haemodialysisunitphone12;
+        this.haemodialysisunitlocation12 = haemodialysisunitlocation12;
+        this.haemodialysisuniturl12 = haemodialysisuniturl12;
     }
 
     public String getUnitcode() {
@@ -142,6 +184,14 @@ public class Unit {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getShortname() {
+        return shortname;
+    }
+
+    public void setShortname(String shortname) {
+        this.shortname = shortname;
     }
 
     public String getAddress1() {
@@ -526,5 +576,133 @@ public class Unit {
 
     public void setHaemodialysisuniturl8(String haemodialysisuniturl8) {
         this.haemodialysisuniturl8 = haemodialysisuniturl8;
+    }
+
+    public String getHaemodialysisunitname9() {
+        return haemodialysisunitname9;
+    }
+
+    public void setHaemodialysisunitname9(String haemodialysisunitname9) {
+        this.haemodialysisunitname9 = haemodialysisunitname9;
+    }
+
+    public String getHaemodialysisunitphone9() {
+        return haemodialysisunitphone9;
+    }
+
+    public void setHaemodialysisunitphone9(String haemodialysisunitphone9) {
+        this.haemodialysisunitphone9 = haemodialysisunitphone9;
+    }
+
+    public String getHaemodialysisunitlocation9() {
+        return haemodialysisunitlocation9;
+    }
+
+    public void setHaemodialysisunitlocation9(String haemodialysisunitlocation9) {
+        this.haemodialysisunitlocation9 = haemodialysisunitlocation9;
+    }
+
+    public String getHaemodialysisuniturl9() {
+        return haemodialysisuniturl9;
+    }
+
+    public void setHaemodialysisuniturl9(String haemodialysisuniturl9) {
+        this.haemodialysisuniturl9 = haemodialysisuniturl9;
+    }
+
+    public String getHaemodialysisunitname10() {
+        return haemodialysisunitname10;
+    }
+
+    public void setHaemodialysisunitname10(String haemodialysisunitname10) {
+        this.haemodialysisunitname10 = haemodialysisunitname10;
+    }
+
+    public String getHaemodialysisunitphone10() {
+        return haemodialysisunitphone10;
+    }
+
+    public void setHaemodialysisunitphone10(String haemodialysisunitphone10) {
+        this.haemodialysisunitphone10 = haemodialysisunitphone10;
+    }
+
+    public String getHaemodialysisunitlocation10() {
+        return haemodialysisunitlocation10;
+    }
+
+    public void setHaemodialysisunitlocation10(String haemodialysisunitlocation10) {
+        this.haemodialysisunitlocation10 = haemodialysisunitlocation10;
+    }
+
+    public String getHaemodialysisuniturl10() {
+        return haemodialysisuniturl10;
+    }
+
+    public void setHaemodialysisuniturl10(String haemodialysisuniturl10) {
+        this.haemodialysisuniturl10 = haemodialysisuniturl10;
+    }
+
+    public String getHaemodialysisunitname11() {
+        return haemodialysisunitname11;
+    }
+
+    public void setHaemodialysisunitname11(String haemodialysisunitname11) {
+        this.haemodialysisunitname11 = haemodialysisunitname11;
+    }
+
+    public String getHaemodialysisunitphone11() {
+        return haemodialysisunitphone11;
+    }
+
+    public void setHaemodialysisunitphone11(String haemodialysisunitphone11) {
+        this.haemodialysisunitphone11 = haemodialysisunitphone11;
+    }
+
+    public String getHaemodialysisunitlocation11() {
+        return haemodialysisunitlocation11;
+    }
+
+    public void setHaemodialysisunitlocation11(String haemodialysisunitlocation11) {
+        this.haemodialysisunitlocation11 = haemodialysisunitlocation11;
+    }
+
+    public String getHaemodialysisuniturl11() {
+        return haemodialysisuniturl11;
+    }
+
+    public void setHaemodialysisuniturl11(String haemodialysisuniturl11) {
+        this.haemodialysisuniturl11 = haemodialysisuniturl11;
+    }
+
+    public String getHaemodialysisunitname12() {
+        return haemodialysisunitname12;
+    }
+
+    public void setHaemodialysisunitname12(String haemodialysisunitname12) {
+        this.haemodialysisunitname12 = haemodialysisunitname12;
+    }
+
+    public String getHaemodialysisunitphone12() {
+        return haemodialysisunitphone12;
+    }
+
+    public void setHaemodialysisunitphone12(String haemodialysisunitphone12) {
+        this.haemodialysisunitphone12 = haemodialysisunitphone12;
+    }
+
+    public String getHaemodialysisunitlocation12() {
+        return haemodialysisunitlocation12;
+    }
+
+    public void setHaemodialysisunitlocation12(String haemodialysisunitlocation12) {
+        this.haemodialysisunitlocation12 = haemodialysisunitlocation12;
+    }
+
+    public String getHaemodialysisuniturl12() {
+        return haemodialysisuniturl12;
+    }
+
+    public void setHaemodialysisuniturl12(String haemodialysisuniturl12) {
+        this.haemodialysisuniturl12 = haemodialysisuniturl12;
     }
 }
