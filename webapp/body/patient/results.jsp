@@ -71,7 +71,7 @@
     <logic:present name="patient">
 
       <tr valign="top">
-        <td class="tableheader" colspan="12"><b>Test results for <bean:write name="patient" property="forename"/> <bean:write name="patient" property="surname"/></b></td>
+        <td class="tableheader" colspan="13"><b>Test results for <bean:write name="patient" property="forename"/> <bean:write name="patient" property="surname"/></b></td>
       </tr>
 
       <tr>
@@ -80,6 +80,7 @@
             <logic:iterate name="resultsHeadings" id="heading">
               <td width="7%" class="tablecell"><a href="<bean:write name="heading" property="link"/>" target="_blank" title="<bean:write name="heading" property="rollover"/>"><bean:write name="heading" property="heading"/></a></td>
             </logic:iterate>
+          <td width="7%" class="tablecellbold">Source</td>
       </tr>
 
       <logic:iterate name="results" id="result" type="com.worthsoln.patientview.Result" length="resultsPerPage" offset="resultsOffset" >
@@ -89,6 +90,7 @@
             <logic:iterate name="resultsHeadings" id="heading" type="com.worthsoln.patientview.resultheading.ResultHeading" >
               <td width="7%" class="tablecell"><%= result.getValue(heading.getHeadingcode()) %></td>
             </logic:iterate>
+            <td width="7%" class="tablecellbold"><bean:write name="result" property="shortname"/></td>
         </tr>
       </logic:iterate>
 

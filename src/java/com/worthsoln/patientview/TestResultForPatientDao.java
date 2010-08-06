@@ -32,9 +32,14 @@ public class TestResultForPatientDao extends TestResultDao {
     public DatabaseQuery getRetrieveListQuery() {
         ArrayList parameters = new ArrayList();
         parameters.addAll(getRetrieveListWhereClauseParameters());
-        String sql = "SELECT testresult.* FROM testresult, result_heading WHERE testresult.nhsno = ? "
-                + "AND testresult.testcode = result_heading.headingcode AND result_heading.panel = ?";
+        String sql = "SELECT testresult.*, unit.shortname FROM testresult, result_heading, unit WHERE testresult.nhsno = ? " +
+                "AND testresult.testcode = result_heading.headingcode AND " +
+                "testresult.unitcode = unit.unitcode AND result_heading.panel = ?";
         ResultSetHandler rsHandler = new BeanListHandler(getTableMapper());
         return new DatabaseQuery(sql, parameters.toArray(), rsHandler);
+    }
+
+    public Class getTableMapper() {
+        return TestResultWithUnitShortname.class;
     }
 }

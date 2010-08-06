@@ -10,18 +10,21 @@ public class Result {
     private String nhsno;
     private Calendar timeStamp;
     private String prepost;
+    private String shortname;
     private Map results = new HashMap();
 
-    public Result(TestResult testResult) {
+    public Result(TestResultWithUnitShortname testResult) {
         this.nhsno = testResult.getNhsno();
         this.prepost = testResult.getPrepost();
         this.timeStamp = testResult.getDatestamped();
+        this.shortname = testResult.getShortname();
     }
 
-    public Result(String nhsno, String prepost, Calendar timeStamp) {
+    public Result(String nhsno, String prepost, Calendar timeStamp, String shortname) {
         this.nhsno = nhsno;
         this.prepost = prepost;
         this.timeStamp = timeStamp;
+        this.shortname = shortname;
     }
 
     public void addResult(String testCode, String value) {
@@ -44,6 +47,10 @@ public class Result {
 
     public Calendar getTimeStamp() {
         return timeStamp;
+    }
+
+    public String getShortname() {
+        return shortname;
     }
 
     public String getFormattedTimeStamp() {
@@ -86,6 +93,12 @@ public class Result {
             return false;
         }
 
+        if ((shortname != null)
+            ? !shortname.equals(result.shortname)
+            : result.shortname != null) {
+            return false;
+        }
+
         return true;
     }
 
@@ -100,6 +113,9 @@ public class Result {
                                 : 0);
         result = 29 * result + ((prepost != null)
                                 ? prepost.hashCode()
+                                : 0);
+        result = 29 * result + ((shortname != null)
+                                ? shortname.hashCode()
                                 : 0);
 
         return result;

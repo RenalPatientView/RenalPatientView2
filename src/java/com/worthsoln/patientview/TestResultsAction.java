@@ -13,12 +13,7 @@ import org.apache.struts.action.ActionMapping;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class TestResultsAction extends DatabaseAction {
 
@@ -32,7 +27,7 @@ public class TestResultsAction extends DatabaseAction {
 
             Panel currentPanel = managePanels(request, dao);
             TestResultForPatientDao resultDao = new TestResultForPatientDao(patient.getNhsno(), currentPanel);
-            List<TestResult> results = dao.retrieveList(resultDao);
+            List<TestResultWithUnitShortname> results = dao.retrieveList(resultDao);
             Collection<Result> resultsInRecords = turnResultsListIntoRecords(results);
             managePages(request, resultsInRecords);
             request.setAttribute("results", resultsInRecords);
@@ -106,9 +101,9 @@ public class TestResultsAction extends DatabaseAction {
         return currentPage;
     }
 
-    private Collection<Result> turnResultsListIntoRecords(List<TestResult> resultsList) {
+    private Collection<Result> turnResultsListIntoRecords(List<TestResultWithUnitShortname> resultsList) {
         Map<TestResultId, Result> resultsRecords = new TreeMap<TestResultId, Result>();
-        for (TestResult testResult : resultsList) {
+        for (TestResultWithUnitShortname testResult : resultsList) {
             TestResultId testResultId = new TestResultId(testResult);
             Result result = resultsRecords.get(testResultId);
             if (result == null) {
@@ -134,18 +129,24 @@ class TestResultId implements Comparable {
     private String nhsno;
     private Calendar dateStamped;
     private String prepost;
+    private String shortname;
 
-    public TestResultId(TestResult testResult) {
+    public TestResultId(TestResultWithUnitShortname testResult) {
         this.nhsno = testResult.getNhsno();
         this.prepost = testResult.getPrepost();
         this.dateStamped = testResult.getDatestamped();
+        this.shortname = testResult.getShortname();
     }
 
     public int compareTo(Object o) {
         TestResultId resultToCompareThisTo = (TestResultId) o;
         if (nhsno.equals(resultToCompareThisTo.getNhsno())) {
             if (dateStamped.equals(resultToCompareThisTo.getDateStamped())) {
-                return prepost.compareToIgnoreCase(resultToCompareThisTo.getPrepost());
+                if (prepost.equals(resultToCompareThisTo.getPrepost())) {
+                    return shortname.compareToIgnoreCase(resultToCompareThisTo.getShortname());
+                } else {
+                    return prepost.compareToIgnoreCase(resultToCompareThisTo.getPrepost());
+                }
             } else if (dateStamped.before(resultToCompareThisTo.getDateStamped())) {
                 return 1;
             } else {
@@ -166,5 +167,9 @@ class TestResultId implements Comparable {
 
     public Calendar getDateStamped() {
         return dateStamped;
+    }
+
+    public String getShortname() {
+        return shortname;
     }
 }
