@@ -7,7 +7,7 @@ import com.worthsoln.patientview.unit.UnitUtils;
 
 public class PatientUtils {
 
-    static String retrieveNhsNo(HttpServletRequest request, DatabaseDAO dao) {
+    public static String retrieveNhsNo(HttpServletRequest request, DatabaseDAO dao) {
         String nhsno = null;
         if (request.isUserInRole("patient")) {
             Principal principal = request.getUserPrincipal();

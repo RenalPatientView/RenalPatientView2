@@ -270,6 +270,17 @@
               depends=""
                   msg="errors.url"/>
 
+       <validator name="sysgreaterthandia"
+       classname="com.worthsoln.patientview.patiententry.SysGreaterThanDiaValidator"
+       method="sysGreaterThanDia"
+       methodParams="java.lang.Object,
+                     org.apache.commons.validator.ValidatorAction,
+                     org.apache.commons.validator.Field,
+                     org.apache.struts.action.ActionMessages,
+                     javax.servlet.http.HttpServletRequest"
+
+       msg="errors.sysgreaterthandia"/>
+
      <!--
        This simply allows struts to include the validateUtilities into a page, it should
        not be used as a validation rule.

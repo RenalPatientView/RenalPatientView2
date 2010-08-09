@@ -171,6 +171,40 @@
       <form-property name="type" type="java.lang.String"/>
       <form-property name="rpvadminemail" type="java.lang.String"/>
     </form-bean>
+    <form-bean name="bloodPressureForm" type="org.apache.struts.validator.DynaValidatorActionForm">
+      <form-property name="day" type="java.lang.String"/>
+      <form-property name="month" type="java.lang.String"/>
+      <form-property name="year" type="java.lang.String"/>
+      <form-property name="hour" type="java.lang.String"/>
+      <form-property name="minute" type="java.lang.String"/>
+      <form-property name="sys" type="java.lang.String"/>
+      <form-property name="dia" type="java.lang.String"/>
+    </form-bean>
+    <form-bean name="bloodPressureDeleteForm" type="org.apache.struts.validator.DynaValidatorActionForm">
+      <form-property name="bpkey" type="java.lang.String"/>
+    </form-bean>
+    <form-bean name="glucoseForm" type="org.apache.struts.validator.DynaValidatorActionForm">
+      <form-property name="day" type="java.lang.String"/>
+      <form-property name="month" type="java.lang.String"/>
+      <form-property name="year" type="java.lang.String"/>
+      <form-property name="hour" type="java.lang.String"/>
+      <form-property name="minute" type="java.lang.String"/>
+      <form-property name="glucose" type="java.lang.String"/>
+    </form-bean>
+    <form-bean name="glucoseDeleteForm" type="org.apache.struts.validator.DynaValidatorActionForm">
+      <form-property name="glucosekey" type="java.lang.String"/>
+    </form-bean>
+    <form-bean name="weightForm" type="org.apache.struts.validator.DynaValidatorActionForm">
+      <form-property name="day" type="java.lang.String"/>
+      <form-property name="month" type="java.lang.String"/>
+      <form-property name="year" type="java.lang.String"/>
+      <form-property name="hour" type="java.lang.String"/>
+      <form-property name="minute" type="java.lang.String"/>
+      <form-property name="weight" type="java.lang.String"/>
+    </form-bean>
+    <form-bean name="weightDeleteForm" type="org.apache.struts.validator.DynaValidatorActionForm">
+      <form-property name="weightkey" type="java.lang.String"/>
+    </form-bean>
   </form-beans>
 
   <!-- ========== Global Forward Definitions ============================== -->
@@ -178,6 +212,9 @@
     <forward name="control" path="/control/index.jsp"/>
     <forward name="patientPasswordChangeInput" path="/patient/password_change.jsp"/>
     <forward name="controlPasswordChangeInput" path="/control/password_change.jsp"/>
+    <forward name="patientEntryBloodPressure"  path="/patient/patient_entry_bp.jsp"/>
+    <forward name="patientEntryGlucose"        path="/patient/patient_entry_glucose.jsp"/>
+    <forward name="patientEntryWeight"         path="/patient/patient_entry_weight.jsp"/>
   </global-forwards>
 
   <!-- ========== Action Mapping Definitions ============================== -->
@@ -231,6 +268,10 @@
             type="com.worthsoln.patientview.PatientDetailsAction" parameter="medical_view">
       <forward name="success" path="/patient/medical_view.jsp"/>
     </action>
+    <action path="/patient/patient_entry"
+            type="com.worthsoln.patientview.IndexAction" parameter="patient_entry">
+      <forward name="success" path="/patient/patient_entry.jsp"/>
+    </action>
     <action path="/patient/results"
             type="com.worthsoln.patientview.TestResultsAction" parameter="results">
       <forward name="success" path="/patient/results.jsp"/>
@@ -252,12 +293,60 @@
             type="com.worthsoln.patientview.ContactAction" parameter="contact" >
       <forward name="success" path="/patient/contact.jsp"/>
     </action>
-      <action path="/patient/contactForm" type="com.worthsoln.patientview.ContactFormAction" parameter="contact"
-              name="contactForm"
-              input="input">
-          <forward name="input" path="/patient/contact.jsp"/>
-          <forward name="success" path="/patient/contact.jsp"/>
-      </action>
+    <action path="/patient/patientAddsBloodPressure" type="com.worthsoln.patientview.patiententry.PatientAddsBloodPressureAction" parameter="patient_entry"
+            name="bloodPressureForm"
+            input="input">
+      <forward name="input" path="/patient/patient_entry_bp.jsp"/>
+      <forward name="success" path="/patient/patient_entry_bp.jsp"/>
+    </action>
+    <action path="/patient/patientSubmitsBloodPressures" type="com.worthsoln.patientview.patiententry.PatientSubmitsBloodPressuresAction" parameter="patient_entry"
+            name="bloodPressureForm"
+            input="input">
+      <forward name="input" path="/patient/patient_entry_bp.jsp"/>
+      <forward name="success" path="/patient/patient_entry_bp.jsp"/>
+    </action>
+    <action path="/patient/patientDeletesBloodPressure" type="com.worthsoln.patientview.patiententry.PatientDeletesBloodPressureAction" parameter="patient_entry"
+            name="bloodPressureDeleteForm" >
+      <forward name="success" path="/patient/patient_entry_bp.jsp"/>
+    </action>
+    <action path="/patient/patientAddsGlucose" type="com.worthsoln.patientview.patiententry.PatientAddsGlucoseAction" parameter="patient_entry"
+            name="glucoseForm"
+            input="input">
+      <forward name="input" path="/patient/patient_entry_glucose.jsp"/>
+      <forward name="success" path="/patient/patient_entry_glucose.jsp"/>
+    </action>
+    <action path="/patient/patientSubmitsGlucoses" type="com.worthsoln.patientview.patiententry.PatientSubmitsGlucosesAction" parameter="patient_entry"
+            name="glucoseForm"
+            input="input">
+      <forward name="input" path="/patient/patient_entry_glucose.jsp"/>
+      <forward name="success" path="/patient/patient_entry_glucose.jsp"/>
+    </action>
+    <action path="/patient/patientDeletesGlucose" type="com.worthsoln.patientview.patiententry.PatientDeletesGlucoseAction" parameter="patient_entry"
+            name="glucoseDeleteForm" >
+      <forward name="success" path="/patient/patient_entry_glucose.jsp"/>
+    </action>
+    <action path="/patient/patientAddsWeight" type="com.worthsoln.patientview.patiententry.PatientAddsWeightAction" parameter="patient_entry"
+            name="weightForm"
+            input="input">
+      <forward name="input" path="/patient/patient_entry_weight.jsp"/>
+      <forward name="success" path="/patient/patient_entry_weight.jsp"/>
+    </action>
+    <action path="/patient/patientSubmitsWeights" type="com.worthsoln.patientview.patiententry.PatientSubmitsWeightsAction" parameter="patient_entry"
+            name="weightForm"
+            input="input">
+      <forward name="input" path="/patient/patient_entry_weight.jsp"/>
+      <forward name="success" path="/patient/patient_entry_weight.jsp"/>
+    </action>
+    <action path="/patient/patientDeletesWeight" type="com.worthsoln.patientview.patiententry.PatientDeletesWeightAction" parameter="patient_entry"
+            name="weightDeleteForm" >
+      <forward name="success" path="/patient/patient_entry_weight.jsp"/>
+    </action>
+    <action path="/patient/contactForm" type="com.worthsoln.patientview.ContactFormAction" parameter="contact"
+            name="contactForm"
+            input="input">
+      <forward name="input" path="/patient/contact.jsp"/>
+      <forward name="success" path="/patient/contact.jsp"/>
+    </action>
     <action path="/demo"
             type="com.worthsoln.patientview.IndexAction" parameter="contact">
       <forward name="success" path="/demo.jsp"/>

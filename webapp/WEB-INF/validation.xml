@@ -3,6 +3,7 @@
 <!DOCTYPE form-validation PUBLIC
           "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
           "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
 <form-validation>
   <global>
     <constant>
@@ -177,7 +178,7 @@
         </var>
       </field>
     </form>
-    <form name="/control/newsAdd">
+    <form name="/control/newsAddInput">
       <field property="headline" depends="required">
         <msg key="news.headline.required" name="required"/>
       </field>
@@ -185,5 +186,78 @@
         <msg key="news.body.required" name="required"/>
       </field>
     </form>
+    <form name="/patient/patientAddsBloodPressure">
+      <field property="day" depends="required">
+        <msg key="dayofmonth.required" name="required"/>
+      </field>
+      <field property="month" depends="required">
+        <msg key="month.required" name="required"/>
+      </field>
+      <field property="year" depends="required">
+        <msg key="year.required" name="required"/>
+      </field>
+      <field property="hour" depends="required">
+        <msg key="hour.required" name="required"/>
+      </field>
+      <field property="minute" depends="required">
+        <msg key="minute.required" name="required"/>
+      </field>
+      <field property="sys" depends="required,integer">
+        <msg key="bpsys.required" name="required"/>
+        <msg key="bpsys.integer" name="integer"/>
+      </field>
+      <field property="dia" depends="required,integer,sysgreaterthandia">
+        <msg key="bpdia.required" name="required"/>
+        <msg key="bpdia.integer" name="integer"/>
+          <var>
+            <var-name>secondProperty</var-name>
+            <var-value>sys</var-value>
+          </var> -->
+      </field>
+    </form>
+    <form name="/patient/patientAddsGlucose">
+      <field property="day" depends="required">
+        <msg key="dayofmonth.required" name="required"/>
+      </field>
+      <field property="month" depends="required">
+        <msg key="month.required" name="required"/>
+      </field>
+      <field property="year" depends="required">
+        <msg key="year.required" name="required"/>
+      </field>
+      <field property="hour" depends="required">
+        <msg key="hour.required" name="required"/>
+      </field>
+      <field property="minute" depends="required">
+        <msg key="minute.required" name="required"/>
+      </field>
+      <field property="glucose" depends="required,integer">
+        <msg key="glucose.required" name="required"/>
+        <msg key="glucose.integer" name="integer"/>
+      </field>
+    </form>
+    <form name="/patient/patientAddsWeight">
+      <field property="day" depends="required">
+        <msg key="dayofmonth.required" name="required"/>
+      </field>
+      <field property="month" depends="required">
+        <msg key="month.required" name="required"/>
+      </field>
+      <field property="year" depends="required">
+        <msg key="year.required" name="required"/>
+      </field>
+      <field property="hour" depends="required">
+        <msg key="hour.required" name="required"/>
+      </field>
+      <field property="minute" depends="required">
+        <msg key="minute.required" name="required"/>
+      </field>
+      <field property="weight" depends="required,float">
+        <msg key="weight.required" name="required"/>
+        <msg key="weight.float" name="float"/>
+      </field>
+    </form>
+
   </formset>
+    
 </form-validation>

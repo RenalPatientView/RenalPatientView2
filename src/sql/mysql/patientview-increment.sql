@@ -21,3 +21,5 @@ ALTER table unit ADD column haemodialysisunitname12 varchar(100);
 ALTER table unit ADD column haemodialysisunitphone12 varchar(100);
 ALTER table unit ADD column haemodialysisunitlocation12 varchar(100);
 ALTER table unit ADD column haemodialysisuniturl12 varchar(100);
+
+INSERT INTO unit (unitcode, name, shortname) VALUES ("PATIENT", "Patient Entered", "Patient");

@@ -137,6 +137,11 @@
       <url-pattern>/patient/index.do</url-pattern>
       <url-pattern>/patient/patient_details.do</url-pattern>
       <url-pattern>/patient/patient_details.jsp</url-pattern>
+      <url-pattern>/patient/patient_entry.do</url-pattern>
+      <url-pattern>/patient/patient_entry.jsp</url-pattern>
+      <url-pattern>/patient/patient_entry_bp.jsp</url-pattern>
+      <url-pattern>/patient/patient_entry_glucose.jsp</url-pattern>
+      <url-pattern>/patient/patient_entry_weight.jsp</url-pattern>
       <url-pattern>/patient/patient_view.do</url-pattern>
       <url-pattern>/patient/patient_view.jsp</url-pattern>
       <url-pattern>/patient/medical_view.do</url-pattern>
