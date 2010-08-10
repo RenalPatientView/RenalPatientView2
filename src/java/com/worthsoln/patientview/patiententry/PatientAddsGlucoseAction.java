@@ -32,14 +32,9 @@ public class PatientAddsGlucoseAction extends Action {
         String minute = BeanUtils.getProperty(form, "minute");
         String gluc = BeanUtils.getProperty(form, "glucose");
 
-        BeanUtils.setProperty(form, "year", "");
-        BeanUtils.setProperty(form, "month", "");
-        BeanUtils.setProperty(form, "day", "");
-        BeanUtils.setProperty(form, "hour", "");
-        BeanUtils.setProperty(form, "minute", "");
-        BeanUtils.setProperty(form, "glucose", "");
-
-        Glucose glucose = new Glucose(year, month, day, hour, minute, gluc);
+        int intMonth = Integer.decode(month).intValue() - 1;
+ 
+        Glucose glucose = new Glucose(year, intMonth + "", day, hour, minute, gluc);
 
         glucoses.put((new Date()).getTime(), glucose);
 

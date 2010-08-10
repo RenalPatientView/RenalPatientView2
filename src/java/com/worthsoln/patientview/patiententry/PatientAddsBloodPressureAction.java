@@ -33,15 +33,9 @@ public class PatientAddsBloodPressureAction extends Action {
         String sys = BeanUtils.getProperty(form, "sys");
         String dia = BeanUtils.getProperty(form, "dia");
 
-        BeanUtils.setProperty(form, "year", "");
-        BeanUtils.setProperty(form, "month", "");
-        BeanUtils.setProperty(form, "day", "");
-        BeanUtils.setProperty(form, "hour", "");
-        BeanUtils.setProperty(form, "minute", "");
-        BeanUtils.setProperty(form, "sys", "");
-        BeanUtils.setProperty(form, "dia", "");
-
-        BloodPressure bloodPressure = new BloodPressure(year, month, day, hour, minute, sys, dia);
+        int intMonth = Integer.decode(month).intValue() - 1;
+        
+        BloodPressure bloodPressure = new BloodPressure(year, intMonth + "", day, hour, minute, sys, dia);
 
         bloodPressures.put((new Date()).getTime(),bloodPressure);
 

@@ -32,14 +32,9 @@ public class PatientAddsWeightAction extends Action {
         String minute = BeanUtils.getProperty(form, "minute");
         String heavyiness = BeanUtils.getProperty(form, "weight");
 
-        BeanUtils.setProperty(form, "year", "");
-        BeanUtils.setProperty(form, "month", "");
-        BeanUtils.setProperty(form, "day", "");
-        BeanUtils.setProperty(form, "hour", "");
-        BeanUtils.setProperty(form, "minute", "");
-        BeanUtils.setProperty(form, "weight", "");
+        int intMonth = Integer.decode(month).intValue() - 1;
 
-        Weight weight = new Weight(year, month, day, hour, minute, heavyiness);
+        Weight weight = new Weight(year, intMonth + "", day, hour, minute, heavyiness);
 
         weights.put((new Date()).getTime(), weight);
 
