@@ -178,7 +178,7 @@
         </var>
       </field>
     </form>
-    <form name="/control/newsAddInput">
+    <form name="/control/newsAdd">
       <field property="headline" depends="required">
         <msg key="news.headline.required" name="required"/>
       </field>
@@ -202,17 +202,17 @@
       <field property="minute" depends="required">
         <msg key="minute.required" name="required"/>
       </field>
-      <field property="sys" depends="required,integer">
+      <field property="patientResultValue1" depends="required,integer">
         <msg key="bpsys.required" name="required"/>
         <msg key="bpsys.integer" name="integer"/>
       </field>
-      <field property="dia" depends="required,integer,sysgreaterthandia">
+      <field property="patientResultValue2" depends="required,integer,sysgreaterthandia">
         <msg key="bpdia.required" name="required"/>
         <msg key="bpdia.integer" name="integer"/>
           <var>
             <var-name>secondProperty</var-name>
-            <var-value>sys</var-value>
-          </var> -->
+            <var-value>patientResultValue1</var-value>
+          </var>
       </field>
     </form>
     <form name="/patient/patientAddsGlucose">
@@ -231,9 +231,9 @@
       <field property="minute" depends="required">
         <msg key="minute.required" name="required"/>
       </field>
-      <field property="glucose" depends="required,integer">
+      <field property="patientResultValue1" depends="required,float">
         <msg key="glucose.required" name="required"/>
-        <msg key="glucose.integer" name="integer"/>
+        <msg key="glucose.float" name="float"/>
       </field>
     </form>
     <form name="/patient/patientAddsWeight">
@@ -252,9 +252,31 @@
       <field property="minute" depends="required">
         <msg key="minute.required" name="required"/>
       </field>
-      <field property="weight" depends="required,float">
+      <field property="patientResultValue1" depends="required,float">
         <msg key="weight.required" name="required"/>
         <msg key="weight.float" name="float"/>
+      </field>
+    </form>
+    <form name="/patient/patientAddsResultComment">
+      <field property="day" depends="required">
+        <msg key="dayofmonth.required" name="required"/>
+      </field>
+      <field property="month" depends="required">
+        <msg key="month.required" name="required"/>
+      </field>
+      <field property="year" depends="required">
+        <msg key="year.required" name="required"/>
+      </field>
+      <field property="hour" depends="required">
+        <msg key="hour.required" name="required"/>
+      </field>
+      <field property="minute" depends="required">
+        <msg key="minute.required" name="required"/>
+      </field>
+      <field property="patientResultValue1" depends="required,maxlength">
+        <msg key="result.comment.required" name="required"/>
+        <arg position="0" name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>100</var-value></var>
       </field>
     </form>
 

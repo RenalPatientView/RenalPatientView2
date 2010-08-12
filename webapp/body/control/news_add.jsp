@@ -35,7 +35,7 @@
                <logic:present role="superadmin">
                  <html:option value="all">-- All Units --</html:option>
                </logic:present>
-               <html:options collection="units" property="unitcode" labelProperty="name"/>
+               <html:options collection="units" property="unitcode" labelProperty="name"/>       
             </html:select></td>
       </tr>
     <tr>

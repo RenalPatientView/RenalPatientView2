@@ -11,19 +11,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
-public class PatientDeletesGlucoseAction extends Action {
+public class PatientResultDeleteAction extends Action {
 
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
                                  HttpServletResponse response) throws Exception {
 
+
+        String patientResultKeyString = BeanUtils.getProperty(form, "patientResultKey");
+        String patientResultName = BeanUtils.getProperty(form, "patientResultName");
+
         HttpSession session = request.getSession();
-        Map<Long, Glucose> glucoses = (Map<Long, Glucose>) session.getAttribute("glucoses");
+        Map<Long, PatientEnteredResult> patientResults = (Map<Long, PatientEnteredResult>) session.getAttribute(patientResultName);
 
-        Long glucoseKey = Long.decode(BeanUtils.getProperty(form, "glucosekey"));
+        Long patientResultKey = Long.decode(patientResultKeyString);
 
-        glucoses.remove(glucoseKey);
-
-        session.setAttribute("glucoses", glucoses);
+        patientResults.remove(patientResultKey);
 
         return mapping.findForward("success");
     }

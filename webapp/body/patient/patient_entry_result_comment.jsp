@@ -5,10 +5,11 @@
 
 <html:xhtml/>
 
-<p class="header">Enter My Glucose</p>
+<p class="header">Enter My Comments</p>
 
 
-<p>Use this page to enter values from home or from your GP surgery, for example. Important: these results will not be automatically sent to anyone at your renal unit. If you need advice, you must contact them in the usual way.</p>
+<p>Use this page to enter comments. They will appear alongside your results. These comments will not be automatically sent to anyone at your renal unit. If you need advice, you must contact them in the usual way.</p>
+<p>Currently comments are limited to 100 characters.</p>
 
 
 <html:errors/>
@@ -20,25 +21,25 @@
     <tr>
       <td class="tableheader" align="center">Date</td>
       <td class="tableheader" align="center">Time</td>
-      <td class="tableheader" align="center">Glucose</td>
+      <td class="tableheader" align="center">Comment</td>
     </tr>
 
-    <logic:present name="glucose" scope="session">
-        <logic:iterate name="glucose" id="gluc">
+    <logic:present name="resultcomment" scope="session">
+        <logic:iterate name="resultcomment" id="comment">
              <tr>
-                 <td class="tablecell" align="center"><bean:write name="gluc" property="value.stringDate" /></td>
-                 <td class="tablecell" align="center"><bean:write name="gluc" property="value.stringTime" /></td>
-                 <td class="tablecell" align="center"><bean:write name="gluc" property="value.value1" /></td>
-                 <html:form action="/patient/patientDeletesGlucose">
-                     <input type="hidden" name="patientResultKey" value='<bean:write name="gluc" property="key" />' />
-                     <input type="hidden" name="patientResultName" value="glucose" />
-                   <td align="center" valign="center"><html:submit value="Delete" styleClass="formButton" /></td>
+                 <td class="tablecell" align="center"><bean:write name="comment" property="value.stringDate" /></td>
+                 <td class="tablecell" align="center"><bean:write name="comment" property="value.stringTime" /></td>
+                 <td class="tablecell" align="center"><bean:write name="comment" property="value.value1" /></td>
+                 <html:form action="/patient/patientDeletesResultComment">
+                     <input type="hidden" name="patientResultKey" value='<bean:write name="comment" property="key" />' />
+                     <input type="hidden" name="patientResultName" value="resultcomment" />
+                  <td align="center" valign="center"><html:submit value="Delete" styleClass="formButton" /></td>
                  </html:form>
              </tr>
         </logic:iterate>
     </logic:present>
 
-<html:form action="/patient/patientAddsGlucose">
+<html:form action="/patient/patientAddsResultComment">
 
     <tr>
         <td class="tablecell" align="center" >
@@ -138,29 +139,28 @@
                 <html:option value="50">50</html:option>
             </html:select>
         </td>
-
         <td class="tablecell" align="center">
-            <html:hidden property="patientResultName" value="glucose"/>
-            <html:hidden property="patientResultCode1" value="glucose"/>
-            <html:text property="patientResultValue1" size="3"/>
+            <html:hidden property="patientResultName" value="resultcomment"/>
+            <html:hidden property="patientResultCode1" value="resultcomment"/>
+            <html:textarea property="patientResultValue1" />
         </td>
-      <td align="center"><html:submit value="Add" styleClass="formButton"/></td>
+      <td align="center" colspan="4"><html:submit value="Add" styleClass="formButton"/></td>
     </tr>
 </html:form>
 
-    <logic:present name="glucose" scope="session">
-      <logic:notEmpty name="glucose" scope="session">
+    <logic:present name="resultcomment" scope="session">
+      <logic:notEmpty name="resultcomment" scope="session">
         <tr>
           <td>&nbsp;</td>  
         </tr>
         <tr>
-          <td colspan="4">By pressing the Submit All button you will add these glucose values to your record. After clicking, you will not be able to make any more changes. Use the Delete and Add buttons above to ensure that you are happy before clicking the Submit All button.</td>
+          <td colspan="4">By pressing the Submit All button you will add these comments to your record. After clicking, you will not be able to make any more changes. Use the Delete and Add buttons above to ensure that you are happy before clicking the Submit All button.</td>
         </tr>
         <tr>
-          <html:form action="/patient/patientSubmitsGlucoses">
+          <html:form action="/patient/patientSubmitsResultComments">
             <td>
               <html:submit value="Submit All" styleClass="formButton"/>
-              <input type="hidden" name="patientResultName" value="glucose" />
+              <input type="hidden" name="patientResultName" value="resultcomment" />
             </td>
           </html:form>
         </tr>

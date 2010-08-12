@@ -81,7 +81,7 @@
   
   <tr>
     <td>
-      <html:form action="/control/newsAddInput">
+      <html:form action="/control/newsAdd">
         <html:submit value="Add New" styleClass="formbutton" />
       </html:form>
     </td>

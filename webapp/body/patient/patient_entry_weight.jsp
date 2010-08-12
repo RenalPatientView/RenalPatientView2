@@ -23,15 +23,16 @@
       <td class="tableheader" align="center">Weight (kg)</td>
     </tr>
 
-    <logic:present name="weights" scope="session">
-        <logic:iterate name="weights" id="weight">
+    <logic:present name="weight" scope="session">
+        <logic:iterate name="weight" id="weit">
              <tr>
-                 <td class="tablecell" align="center"><bean:write name="weight" property="value.stringDate" /></td>
-                 <td class="tablecell" align="center"><bean:write name="weight" property="value.stringTime" /></td>
-                 <td class="tablecell" align="center"><bean:write name="weight" property="value.weight" /></td>
+                 <td class="tablecell" align="center"><bean:write name="weit" property="value.stringDate" /></td>
+                 <td class="tablecell" align="center"><bean:write name="weit" property="value.stringTime" /></td>
+                 <td class="tablecell" align="center"><bean:write name="weit" property="value.value1" /></td>
                  <html:form action="/patient/patientDeletesWeight">
-                      <input type="hidden" name="weightkey" value='<bean:write name="weight" property="key" />' />
-                  <td align="center" valign="center"><html:submit value="Delete" styleClass="formButton" /></td>
+                     <input type="hidden" name="patientResultKey" value='<bean:write name="weit" property="key" />' />
+                     <input type="hidden" name="patientResultName" value="weight" />
+                   <td align="center" valign="center"><html:submit value="Delete" styleClass="formButton" /></td>
                  </html:form>
              </tr>
         </logic:iterate>
@@ -138,14 +139,16 @@
             </html:select>
         </td>
         <td class="tablecell" align="center">
-            <html:text property="weight" size="3"/>
+          <html:hidden property="patientResultName" value="weight"/>
+          <html:hidden property="patientResultCode1" value="weight"/>
+          <html:text property="patientResultValue1" size="3"/>
         </td>
-      <td align="right" colspan="4"><html:submit value="Add" styleClass="formButton"/></td>
+      <td align="center" colspan="4"><html:submit value="Add" styleClass="formButton"/></td>
     </tr>
 </html:form>
 
-    <logic:present name="weights" scope="session">
-      <logic:notEmpty name="weights" scope="session">
+    <logic:present name="weight" scope="session">
+      <logic:notEmpty name="weight" scope="session">
         <tr>
           <td>&nbsp;</td>  
         </tr>
@@ -154,7 +157,10 @@
         </tr>
         <tr>
           <html:form action="/patient/patientSubmitsWeights">
-            <td><html:submit value="Submit All" styleClass="formButton"/></td>
+            <td>
+              <html:submit value="Submit All" styleClass="formButton"/>
+              <input type="hidden" name="patientResultName" value="weight" />
+            </td>
           </html:form>
         </tr>
       </logic:notEmpty>

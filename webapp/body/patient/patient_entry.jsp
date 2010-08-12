@@ -19,6 +19,9 @@
        <br />
        <br />
        <html:link forward="patientEntryWeight">Enter weight for patient with NHS No: <bean:write name="patientBeingViewedNhsNo" scope="session"/></html:link>
+       <br />
+       <br />
+       <html:link forward="patientEntryResultComment">Enter comment for patient with NHS No: <bean:write name="patientBeingViewedNhsNo" scope="session"/></html:link>
      </logic:present>
 </logic:notPresent>
 
@@ -30,4 +33,7 @@
   <br />
   <br />
   <html:link forward="patientEntryWeight">Enter my weight</html:link>
+  <br />
+  <br />
+  <html:link forward="patientEntryResultComment">Enter a comment on my results</html:link>
 </logic:present>
