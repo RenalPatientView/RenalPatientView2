@@ -2,10 +2,10 @@ package com.worthsoln.patientview;
 
 import com.worthsoln.HibernateUtil;
 import com.worthsoln.database.action.DatabaseAction;
+import com.worthsoln.patientview.logging.AddLog;
 import com.worthsoln.patientview.logon.LogonUtils;
 import net.sf.hibernate.Criteria;
 import net.sf.hibernate.Session;
-import net.sf.hibernate.Transaction;
 import net.sf.hibernate.expression.Expression;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -19,9 +19,12 @@ public class ForgottenPasswordAction extends DatabaseAction {
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
                                  HttpServletResponse response) throws Exception {
         String username = request.getParameter("username");
-        if (username != null && username.trim().length() > 0) {
+        String email = request.getParameter("email");
+        String forwardMapping = "success";
+
+        if (username != null && username.trim().length() > 0 && email != null && email.trim().length() > 0) {
             Session session = HibernateUtil.currentSession();
-            Transaction tx = session.beginTransaction();
+            //Transaction tx = session.beginTransaction();
 
             // From the username get the number of failed logins and display the locked out message if that's the case
             Criteria criteria = session.createCriteria(User.class);
@@ -29,31 +32,46 @@ public class ForgottenPasswordAction extends DatabaseAction {
             User user = (User) criteria.uniqueResult();
 
             request.setAttribute("foundUser", user != null);
-            if (user != null) {
-                if (user.getEmail() != null && user.getEmail().trim().length() > 0) {
-                    String password = LogonUtils.generateNewPassword();
-                    user.setPassword(LogonUtils.hashPassword(password));
 
-                    // Email password
-                    String message = "Hello User,\n" +
-                            "\n" +
-                            "Your password has been reset, your new password is\n" +
-                            password + "\n" +
-                            "\n" +
-                            "Renal Patient View";
-                    EmailUtils.sendEmail(request.getSession().getServletContext(), user.getEmail(),
-                            "Renal Patient View - Your password has been reset", message);
-                    session.save(user);
+            if (user != null) {
+                String storedEmail = user.getEmail();
+                if (storedEmail != null && user.getEmail().trim().length() > 0) {
+                    if (email.equalsIgnoreCase(storedEmail)) {
+                        String password = LogonUtils.generateNewPassword();
+                        user.setPassword(LogonUtils.hashPassword(password));
+                        user.setFirstlogon(true);
+
+                        // Email password
+                        String message = "Hello User,\n" +
+                                "\n" +
+                                "Your password has been reset, your new password is\n" +
+                                password + "\n" +
+                                "\n" +
+                                "Renal Patient View";
+                        EmailUtils.sendEmail(request.getSession().getServletContext(), user.getEmail(),
+                                "Renal Patient View - Your password has been reset", message);
+                        session.save(user);
+
+                        AddLog.addLog("system", AddLog.PASSWORD_RESET_FORGOTTEN, username, "", user.getUnitcode(), user.getEmail());
+                    } else {
+                        request.setAttribute("noMatch", true);
+                        forwardMapping = "input";
+                    }
                 } else {
                     request.setAttribute("nullEmail", true);
+                    forwardMapping = "input";
                 }
+            } else {
+                request.setAttribute("nullUser", true);
+                forwardMapping = "input";
             }
-            tx.commit();
+            //tx.commit();
             HibernateUtil.closeSession();
         } else {
             request.setAttribute("nullUser", true);
+            forwardMapping = "input";
         }
-        return mapping.findForward("success");
+        return mapping.findForward(forwardMapping);
     }
 
     public String getDatabaseName() {
@@ -63,5 +81,4 @@ public class ForgottenPasswordAction extends DatabaseAction {
     public String getIdentifier() {
         return "user";
     }
-
 }

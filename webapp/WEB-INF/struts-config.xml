@@ -226,7 +226,7 @@
     <action path="/forgotten-password"
       type="com.worthsoln.patientview.ForgottenPasswordAction" parameter="index">
       <forward name="input" path="/forgotten-password.jsp"/>
-      <forward name="success" path="/forgotten-password.jsp"/>
+      <forward name="success" path="/forgotten-password-confirmation.jsp"/>
     </action>
     <action path="/setscreenname"
       type="com.worthsoln.forum.ScreenNameAction" parameter="index">
