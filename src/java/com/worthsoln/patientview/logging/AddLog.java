@@ -5,6 +5,7 @@ import com.worthsoln.HibernateUtil;
 
 public class AddLog {
 
+    public static final String PASSWORD_RESET_FORGOTTEN = "password reset forgotten";
     public static final String PASSWORD_RESET = "password reset";
     public static final String PASSWORD_CHANGE = "password change";
     public static final String PASSWORD_LOCKED = "password locked";
@@ -14,6 +15,7 @@ public class AddLog {
     public static final String PATIENT_DATA_REMOVE = "patient data remove";
     public static final String LOGGED_ON = "logon";
     public static final String PATIENT_ADD = "patient add";
+    public static final String PATIENT_DELETE = "patient delete";
     public static final String PATIENT_VIEW = "patient view";
     public static final String ADMIN_ADD = "admin add";
     public static final String UKT_DATA_REPLACE = "ukt data";
