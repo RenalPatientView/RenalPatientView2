@@ -12,6 +12,7 @@ import com.worthsoln.database.action.DatabaseAction;
 import com.worthsoln.patientview.logon.PatientLogon;
 import com.worthsoln.patientview.logon.PatientLogonDao;
 import com.worthsoln.patientview.unit.Unit;
+import com.worthsoln.patientview.logging.AddLog;
 
 public class UserDeleteAction extends DatabaseAction {
 
@@ -24,10 +25,13 @@ public class UserDeleteAction extends DatabaseAction {
         patient = (PatientLogon) dao.retrieveItem(new PatientLogonDao(patient));
         String mappingToFind = "";
         if (patient != null) {
-            if ("patient".equals(patient.getRole())) {
-                UserUtils.removePatientFromSystem(patient.getNhsno(), patient.getUnitcode());
-            }
+            // TODO check whether remove patient should only remove user or remove data too
+            //if ("patient".equals(patient.getRole())) {
+            //   UserUtils.removePatientFromSystem(patient.getNhsno(), patient.getUnitcode());
+            //}
             dao.deleteItem(new PatientLogonDao(patient));
+            AddLog.addLog(request.getUserPrincipal().getName(), AddLog.PATIENT_DELETE, patient.getUsername(),
+                    patient.getNhsno(), patient.getUnitcode(), "");
             mappingToFind = "success";
         } else {
             mappingToFind = "input";
