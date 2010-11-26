@@ -36,11 +36,13 @@
         <html:select property="action">
           <html:option value=""/>
           <html:option value="password reset"/>
+          <html:option value="password reset forgotten"/>
           <html:option value="password change"/>
           <html:option value="patient data load"/>
           <html:option value="patient data remove"/>
           <html:option value="logon"/>
           <html:option value="patient add"/>
+          <html:option value="patient delete"/>
           <html:option value="patient view"/>
           <html:option value="admin add"/>
           <html:option value="ukt data"/>
