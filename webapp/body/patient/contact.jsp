@@ -12,7 +12,7 @@
         <p><b>Email your renal unit</b></p>
         <p>Any queries about results not appearing or being wrong, or about diagnosis or contact details.</p>
         <p>Note: Your name and NHS number will be sent with this message.</p>
-    <logic:notEmpty name="unit" property="unitenquiriesemail">
+    <logic:notEmpty name="unit" property="rpvadminemail">
         <html:form action="/patient/contactForm">
             Please enter your message bellow: <br />
             <html:textarea rows="6" cols="30" property="message"/>
@@ -23,7 +23,7 @@
             <br /><br /><html:submit value="Send" />
         </html:form>
     </logic:notEmpty>
-    <logic:empty name="unit" property="unitenquiriesemail">
+    <logic:empty name="unit" property="rpvadminemail">
         <p><font color="red">It seems that your renal unit has not set up a contact email address, so you are not able to contact them from here. Let them know.</font></p>
     </logic:empty>
 
