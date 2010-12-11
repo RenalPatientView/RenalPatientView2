@@ -4,6 +4,8 @@ import com.worthsoln.database.DatabaseDAO;
 import com.worthsoln.patientview.PatientUtils;
 import com.worthsoln.patientview.TestResult;
 import com.worthsoln.patientview.TestResultDao;
+import com.worthsoln.patientview.comment.Comment;
+import com.worthsoln.HibernateUtil;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -15,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Calendar;
 import java.util.Map;
+
+import net.sf.hibernate.HibernateException;
 
 public class PatientResultSubmitAllAction extends Action {
 
@@ -46,8 +50,17 @@ public class PatientResultSubmitAllAction extends Action {
 
     private void addPatientEnteredResultToDatabase(DatabaseDAO dao, String nhsno,
                                                    String testCode, String testValue, Calendar dateTime) {
-        TestResult testResult = new TestResult(nhsno, "PATIENT", dateTime, testCode, testValue);
-        TestResultDao testResultDao = new TestResultDao(testResult);
-        dao.insertItem(testResultDao);
+        if ("resultcomment".equalsIgnoreCase(testCode)) {
+            Comment comment = new Comment(dateTime, nhsno, testValue);
+            try {
+                HibernateUtil.saveWithTransaction(comment);
+            } catch (HibernateException e) {
+                e.printStackTrace();  
+            }
+        } else {
+            TestResult testResult = new TestResult(nhsno, "PATIENT", dateTime, testCode, testValue);
+            TestResultDao testResultDao = new TestResultDao(testResult);
+            dao.insertItem(testResultDao);
+        }
     }
 }

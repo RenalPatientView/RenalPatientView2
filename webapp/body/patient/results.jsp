@@ -88,9 +88,24 @@
           <td width="" class="tablecellbold"><b><bean:write name="result" property="formattedTimeStamp"/></b></td>
           <td width="" class="tablecellbold"><bean:write name="result" property="prepost"/></td>
             <logic:iterate name="resultsHeadings" id="heading" type="com.worthsoln.patientview.resultheading.ResultHeading" >
-              <td width="" class="tablecell"><%= result.getValue(heading.getHeadingcode()) %></td>
+              <bean:define id="content" value="<%= result.getValue(heading.getHeadingcode()) %>" />
+
+              <logic:empty name="content">
+                <td width="" class="tablecell"></td>
+              </logic:empty>
+
+              <logic:notEmpty name="content">
+                <logic:equal value="resultcomment" name="heading" property="headingcode">
+                  <td width="" class="tablecell"> <html:link action="/patient/patientEnteredCommentDisplay" paramId="commentId" paramName="content" >read...</html:link> </td>
+                </logic:equal>
+
+                <logic:notEqual value="resultcomment" name="heading" property="headingcode">
+                  <td width="" class="tablecell"><bean:write name="content"/></td>
+                </logic:notEqual>
+              </logic:notEmpty>
+
             </logic:iterate>
-            <td width="" class="tablecellbold"><bean:write name="result" property="shortname"/></td>
+          <td width="" class="tablecellbold"><bean:write name="result" property="shortname"/></td>
         </tr>
       </logic:iterate>
 

@@ -357,6 +357,16 @@
       <forward name="success" path="/patient/patient_entry_result_comment.jsp"/>
     </action>
 
+    <action path="/patient/patientEnteredCommentDisplay" type="com.worthsoln.patientview.comment.CommentViewAction" parameter="patient_entry">
+      <forward name="success" path="/patient/patient_comment_display.jsp"/>
+      <forward name="nopermission" path="/patient/patient_comment_denied.jsp"/>
+    </action>
+
+    <action path="/patient/patientEnteredCommentDisplayAll" type="com.worthsoln.patientview.comment.CommentViewAllAction" parameter="patient_entry">
+      <forward name="success" path="/patient/patient_comment_display.jsp"/>
+      <forward name="nopermission" path="/patient/patient_comment_denied.jsp"/>
+    </action>
+
     <action path="/patient/patientDeletesResultComment" type="com.worthsoln.patientview.patiententry.PatientResultDeleteAction" parameter="patient_entry"
             name="patientResultDeleteForm" >
       <forward name="success" path="/patient/patient_entry_result_comment.jsp"/>
