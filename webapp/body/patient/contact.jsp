@@ -14,7 +14,7 @@
         <p>Note: Your name and NHS number will be sent with this message.</p>
     <logic:notEmpty name="unit" property="rpvadminemail">
         <html:form action="/patient/contactForm">
-            Please enter your message bellow: <br />
+            Please enter your message below: <br />
             <html:textarea rows="6" cols="30" property="message"/>
             <br /><br />Email (this will help us contact you much faster to resolve your issue): <br />
             <html:text property="email" />
@@ -32,7 +32,7 @@
     <p><b>Email the RPV system administrator</b></p>
     <p>Any comments about the system as a whole, or the information links suggested.</p>
     <html:form action="/patient/contactForm">
-        Please enter your message bellow: <br />
+        Please enter your message below: <br />
         <html:textarea rows="6" cols="30" property="message"/>
         <br /><br />Email (this will help us contact you much faster to resolve your issue): <br />
         <html:text property="email" />
