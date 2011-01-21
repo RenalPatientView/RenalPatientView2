@@ -50,6 +50,11 @@ public class PatientResultAddAction extends Action {
 
         session.setAttribute(resultName, results);
 
+        BeanUtils.setProperty(form, "patientResultCode1", null);
+        BeanUtils.setProperty(form, "patientResultCode2", null);
+        BeanUtils.setProperty(form, "patientResultValue1", null);
+        BeanUtils.setProperty(form, "patientResultValue2", null);
+
         return mapping.findForward("success");
     }
 }
