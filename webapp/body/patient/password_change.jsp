@@ -28,7 +28,7 @@
     </tr>
 
     <tr>
-      <td><b>Old Password</b></td>
+      <td><b>Current Password</b></td>
       <td><html:password property="oldpassword" /></td>
     </tr>
 
