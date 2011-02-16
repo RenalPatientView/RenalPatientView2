@@ -12,6 +12,7 @@
         <p><b>Email your renal unit</b></p>
         <p>Any queries about results not appearing or being wrong, or about diagnosis or contact details.</p>
         <p>Note: Your name and NHS number will be sent with this message.</p>
+        <p>Email is not regarded as a secure way to send sensitive data.</p>
     <logic:notEmpty name="unit" property="rpvadminemail">
         <html:form action="/patient/contactForm">
             Please enter your message below: <br />
