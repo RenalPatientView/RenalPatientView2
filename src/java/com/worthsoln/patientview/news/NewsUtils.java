@@ -44,6 +44,9 @@ public class NewsUtils {
                 types = new Type[]{Hibernate.STRING, Hibernate.STRING, Hibernate.INTEGER, Hibernate.INTEGER};
             }
         }
+
+        hsql = hsql + " order by news.datestamp desc ";
+
         List items = getNewsList(hsql, params, types);
         request.setAttribute("newses", items);
     }
