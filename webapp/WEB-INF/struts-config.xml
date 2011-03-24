@@ -187,6 +187,12 @@
       <form-property name="patientResultKey" type="java.lang.String"/>
       <form-property name="patientResultName" type="java.lang.String"/>
     </form-bean>
+      <form-bean name="aboutmeForm" type="org.apache.struts.validator.DynaValidatorActionForm">
+        <form-property name="id" type="java.lang.String"/>
+        <form-property name="nhsno" type="java.lang.String"/>
+        <form-property name="aboutme" type="java.lang.String"/>
+        <form-property name="talkabout" type="java.lang.String"/>
+      </form-bean>
    </form-beans>
 
   <!-- ========== Global Forward Definitions ============================== -->
@@ -197,7 +203,7 @@
     <forward name="patientEntryBloodPressure"  path="/patient/patient_entry_bp.jsp"/>
     <forward name="patientEntryGlucose"        path="/patient/patient_entry_glucose.jsp"/>
     <forward name="patientEntryWeight"         path="/patient/patient_entry_weight.jsp"/>
-    <forward name="patientEntryResultComment" path="/patient/patient_entry_result_comment.jsp"/>
+    <forward name="patientEntryResultComment"  path="/patient/patient_entry_result_comment.jsp"/>
   </global-forwards>
 
   <!-- ========== Action Mapping Definitions ============================== -->
@@ -253,6 +259,12 @@
     <action path="/patient/medical_view"
             type="com.worthsoln.patientview.PatientDetailsAction" parameter="medical_view">
       <forward name="success" path="/patient/medical_view.jsp"/>
+    </action>
+
+    <action path="/patient/aboutme"
+            type="com.worthsoln.patientview.aboutme.AboutmeDisplay" parameter="aboutme">
+      <forward name="success" path="/patient/aboutme_display.jsp"/>
+      <forward name="editaboutme" path="/patient/aboutme_edit.jsp"/>
     </action>
 
     <action path="/patient/patient_entry"
@@ -377,6 +389,22 @@
             input="input">
       <forward name="input" path="/patient/contact.jsp"/>
       <forward name="success" path="/patient/contact.jsp"/>
+    </action>
+
+    <action path="/patient/aboutmeEdit"
+            name="aboutmeForm"
+            type="com.worthsoln.patientview.aboutme.AboutmeEdit"
+            scope="request">
+      <forward name="success" path="/patient/aboutme_edit.jsp"/>
+    </action>
+
+    <action path="/patient/aboutmeUpdate"
+            name="aboutmeForm"
+            input="input"
+            type="com.worthsoln.patientview.aboutme.AboutmeUpdate"
+            scope="request">
+      <forward name="input" path="/patient/aboutme_edit.jsp"/>
+      <forward name="success" path="/patient/aboutme_display.jsp"/>
     </action>
 
     <action path="/demo"

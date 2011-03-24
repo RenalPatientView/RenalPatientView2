@@ -13,6 +13,7 @@
     <property name="jta.UserTransaction">java:comp/UserTransaction</property>
 
     <!-- mapping files -->
+    <mapping resource="com/worthsoln/patientview/Aboutme.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/Comment.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/Diagnosis.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/EdtaCode.hbm.xml"/>

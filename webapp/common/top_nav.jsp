@@ -13,9 +13,9 @@
               <td class="navcell"><html:link action="/patient/patient_details" styleClass="<%= ("patient_details".equals(request.getAttribute("currentNav"))) ? "navlinkon" : "navlink" %>">Patient Details</html:link></td>
 
               <td class="navcell"><html:link action="/patient/patient_view" styleClass="<%= ("patient_view".equals(request.getAttribute("currentNav"))) ? "navlinkon" : "navlink" %>">Patient Info</html:link></td>
-<%--
-              <td class="navcell"><html:link action="/patient/medical_view" styleClass="<%= ("medical_view".equals(request.getAttribute("currentNav"))) ? "navlinkon" : "navlink" %>">Medical Info</html:link></td>
---%>
+
+              <td class="navcell"><html:link action="/patient/aboutme" styleClass="<%= ("aboutme".equals(request.getAttribute("currentNav"))) ? "navlinkon" : "navlink" %>">About Me</html:link></td>
+
               <td class="navcell"><html:link action="/patient/patient_entry" styleClass="<%= ("patient_entry".equals(request.getAttribute("currentNav"))) ? "navlinkon" : "navlink" %>">Enter My...</html:link></td>
 
               <td class="navcell"><html:link action="/patient/results" styleClass="<%= ("results".equals(request.getAttribute("currentNav"))) ? "navlinkon" : "navlink" %>">Results</html:link></td>
