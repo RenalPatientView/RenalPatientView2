@@ -82,7 +82,11 @@ public class LoggedInAction extends DatabaseAction {
                             criteria.add(Expression.eq("unitcode", unitcode));
                             criteria.setMaxResults(1);
                             Unit unit = (Unit) criteria.uniqueResult();
-                            request.setAttribute("lastDataFrom", unit.getName());
+                            if (null == unit) {
+                                request.setAttribute("lastDataFrom", "Unit with code: " + unitcode);
+                            } else {
+                                request.setAttribute("lastDataFrom", unit.getName());
+                            }
                         }
                     }
                     tx.commit();
