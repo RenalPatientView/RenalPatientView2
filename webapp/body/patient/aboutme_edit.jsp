@@ -7,8 +7,6 @@
 
 <p class="header">About Me</p>
 
-<html:errors/>
-
 
 <table cellpadding="3" >
 
@@ -67,6 +65,30 @@
         </td>
     </tr>
 
+</html:form>
+    <tr>
+        <td >&nbsp;</td>
+    </tr>
+
+    <tr>
+        <td >
+            <p><b>Upload an Image</b><br />
+                (jpeg, gif or tiff and no larger than 1Mb)</p>
+        </td>
+    </tr>
+
+    <html:form action="/patient/aboutmeImageUpload" method="post" enctype="multipart/form-data">
+    <tr>
+        <html:hidden name="patient" property="nhsno"  />
+        <td align="left">
+             <html:file property="aboutmeImageFile"/>
+</td>
+        </tr>
+        <tr>
+        <td>
+             <html:submit styleClass="formButton">Upload Image</html:submit>
+        </td>
+    </tr>
 </html:form>
 
 </table>

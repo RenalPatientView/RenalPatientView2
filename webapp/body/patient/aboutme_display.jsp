@@ -10,7 +10,12 @@
 
 <logic:present name="aboutme">
 <logic:notEmpty name="aboutme">
-
+        <jsp:useBean id="aboutme" class="com.worthsoln.patientview.aboutme.Aboutme" scope="request"/>
+    
+    <img src="aboutmeimage/<%= aboutme.getNhsno() %>" alt="" width="200">
+       <br /><br />
+    
+    
 <table cellpadding="3" >
 
 

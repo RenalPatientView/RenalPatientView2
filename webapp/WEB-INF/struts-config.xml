@@ -187,14 +187,15 @@
       <form-property name="patientResultKey" type="java.lang.String"/>
       <form-property name="patientResultName" type="java.lang.String"/>
     </form-bean>
-      <form-bean name="aboutmeForm" type="org.apache.struts.validator.DynaValidatorActionForm">
-        <form-property name="id" type="java.lang.String"/>
-        <form-property name="nhsno" type="java.lang.String"/>
-        <form-property name="aboutme" type="java.lang.String"/>
-        <form-property name="talkabout" type="java.lang.String"/>
-      </form-bean>
-   </form-beans>
-
+    <form-bean name="aboutmeForm" type="org.apache.struts.validator.DynaValidatorActionForm">
+      <form-property name="id" type="java.lang.String"/>
+      <form-property name="nhsno" type="java.lang.String"/>
+      <form-property name="aboutme" type="java.lang.String"/>
+      <form-property name="talkabout" type="java.lang.String"/>
+    </form-bean>
+    <form-bean name="aboutmeImageUploadForm" type="com.worthsoln.patientview.aboutme.AboutmeImageUploadForm"/>
+  </form-beans>
+    
   <!-- ========== Global Forward Definitions ============================== -->
   <global-forwards>
     <forward name="control" path="/control/index.jsp"/>
@@ -407,6 +408,16 @@
       <forward name="success" path="/patient/aboutme_display.jsp"/>
     </action>
 
+    <action path="/patient/aboutmeImageUpload"
+            type="com.worthsoln.patientview.aboutme.AboutmeImageUploadAction"
+            name="aboutmeImageUploadForm"
+            scope="request"
+            validate="true"
+            input="input">
+      <forward name="input" path="/patient/aboutme_image_upload_error.jsp"/>
+      <forward name="success" path="/patient/aboutme_display.jsp"/>
+    </action>
+      
     <action path="/demo"
             type="com.worthsoln.patientview.IndexAction" parameter="contact">
       <forward name="success" path="/demo.jsp"/>
