@@ -19,15 +19,15 @@
     </tr>
     <tr>
       <td><b>Heading</b></td>
-      <td><html:text name="resultHeading" property="heading" /></td>
+      <td><html:text name="resultHeading" property="heading" maxlength="30"/></td>
     </tr>
     <tr>
       <td><b>Rollover</b></td>
-      <td><html:text name="resultHeading" property="rollover" /></td>
+      <td><html:text name="resultHeading" property="rollover" maxlength="50"/></td>
     </tr>
     <tr>
       <td><b>Link</b></td>
-      <td><html:text name="resultHeading" property="link" /></td>
+      <td><html:text name="resultHeading" property="link" maxlength="100"/></td>
     </tr>
     <tr>
       <td><b>Panel</b></td>
