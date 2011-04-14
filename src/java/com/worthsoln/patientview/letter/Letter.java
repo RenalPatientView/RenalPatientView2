@@ -2,7 +2,8 @@ package com.worthsoln.patientview.letter;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import com.worthsoln.patientview.TestResultDao;
+
+import com.worthsoln.patientview.utils.TimestampUtils;
 
 public class Letter {
 
@@ -65,7 +66,7 @@ public class Letter {
     }
 
     public void setDate(String dateString) {
-        this.date = TestResultDao.createTimestamp(dateString);
+        this.date = TimestampUtils.createTimestamp(dateString);
     }
 
     public String getType() {

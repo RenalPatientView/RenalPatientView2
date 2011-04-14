@@ -2,7 +2,8 @@ package com.worthsoln.patientview.comment;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import com.worthsoln.patientview.TestResultDao;
+
+import com.worthsoln.patientview.utils.TimestampUtils;
 
 public class Comment {
 
@@ -47,7 +48,7 @@ public class Comment {
     }
 
     public void setDatestamp(String dateString) {
-        this.datestamped = TestResultDao.createTimestamp(dateString);
+        this.datestamped = TimestampUtils.createTimestamp(dateString);
     }
 
     public String getNhsno() {

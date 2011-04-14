@@ -1,5 +1,7 @@
 package com.worthsoln.patientview;
 
+import com.worthsoln.patientview.utils.TimestampUtils;
+
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -35,8 +37,16 @@ public class TestResult {
         this.datestamped = cal;
     }
 
+    public void setTimestamp(Calendar timestamp) {
+        this.datestamped = timestamp;    
+    }
+
+    public Calendar getTimestamp() {
+        return datestamped;
+    }
+
     public void setDatestampString(String dateStampString) {
-        this.datestamped = TestResultDao.createTimestamp(dateStampString);
+        this.datestamped = TimestampUtils.createTimestamp(dateStampString);
     }
 
     public String getNhsno() {
@@ -91,6 +101,11 @@ public class TestResult {
 
     public String getSortingDatestamp() {
         SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-ddHH:mm");
+        return dateTimeFormat.format(datestamped.getTime());
+    }
+
+    public String getIsoDatestamp() {
+        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         return dateTimeFormat.format(datestamped.getTime());
     }
 

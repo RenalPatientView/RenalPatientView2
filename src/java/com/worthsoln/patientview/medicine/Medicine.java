@@ -2,7 +2,8 @@ package com.worthsoln.patientview.medicine;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import com.worthsoln.patientview.TestResultDao;
+
+import com.worthsoln.patientview.utils.TimestampUtils;
 
 public class Medicine {
 
@@ -65,7 +66,7 @@ public class Medicine {
     }
 
     public void setStartdate(String dateString) {
-        this.startdate = TestResultDao.createTimestamp(dateString);
+        this.startdate = TimestampUtils.createTimestamp(dateString);
     }
 
     public String getName() {

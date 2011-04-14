@@ -18,7 +18,7 @@ import net.sf.hibernate.Transaction;
 import net.sf.hibernate.expression.Expression;
 import net.sf.hibernate.expression.Order;
 import com.worthsoln.HibernateUtil;
-import com.worthsoln.patientview.TestResultDao;
+import com.worthsoln.patientview.utils.TimestampUtils;
 import com.worthsoln.patientview.logon.LogonUtils;
 import com.worthsoln.patientview.unit.UnitUtils;
 
@@ -89,7 +89,7 @@ public class LogViewAction extends Action {
         Calendar cal = Calendar.getInstance();
         if (dateString.length() >= 10) {
             try {
-                cal = TestResultDao.createTimestamp(dateString + " " + timeString);
+                cal = TimestampUtils.createTimestamp(dateString + " " + timeString);
             } catch (Exception e) {
                 e.printStackTrace();
             }

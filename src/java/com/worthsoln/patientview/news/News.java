@@ -2,7 +2,8 @@ package com.worthsoln.patientview.news;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import com.worthsoln.patientview.TestResultDao;
+
+import com.worthsoln.patientview.utils.TimestampUtils;
 
 public class News {
 
@@ -49,7 +50,7 @@ public class News {
     }
 
     public void setDatestamp(String dateString) {
-        this.datestamped = TestResultDao.createTimestamp(dateString);
+        this.datestamped = TimestampUtils.createTimestamp(dateString);
     }
 
     public String getUnitcode() {

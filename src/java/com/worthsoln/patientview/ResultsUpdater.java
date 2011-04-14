@@ -16,6 +16,7 @@ import com.worthsoln.patientview.logging.AddLog;
 import com.worthsoln.patientview.medicine.Medicine;
 import com.worthsoln.patientview.parser.ResultParser;
 import com.worthsoln.patientview.user.UserUtils;
+import com.worthsoln.patientview.utils.TimestampUtils;
 
 public class ResultsUpdater {
 
@@ -80,9 +81,9 @@ public class ResultsUpdater {
                 " AND testcode = ? AND datestamp > ? AND datestamp < ?";
         for (Iterator iterator = dateRanges.iterator(); iterator.hasNext();) {
             TestResultDateRange testResultDateRange = (TestResultDateRange) iterator.next();
-            Calendar startDate = TestResultDao.createTimestamp(testResultDateRange.getStartDate() + "T00:00");
+            Calendar startDate = TimestampUtils.createTimestamp(testResultDateRange.getStartDate() + "T00:00");
             startDate.set(Calendar.SECOND, 0);
-            Calendar stopDate = TestResultDao.createTimestamp(testResultDateRange.getStopDate() + "T23:59");
+            Calendar stopDate = TimestampUtils.createTimestamp(testResultDateRange.getStopDate() + "T23:59");
             stopDate.set(Calendar.SECOND, 59);
             Object[] params = new Object[5];
             params[0] = testResultDateRange.getNhsNo();
