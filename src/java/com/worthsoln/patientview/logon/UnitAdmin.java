@@ -19,6 +19,7 @@ public class UnitAdmin extends Logon implements Cloneable {
         setRole(role);
         setFirstlogon(firstlogon);
         setScreenname("");
+        setSplashpage("");
     }
 
     protected Object clone() throws CloneNotSupportedException {

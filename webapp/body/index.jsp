@@ -11,3 +11,5 @@
 <p>You can view our <html:link action="/infoLinks">information links</html:link> without logging in.</p>
 
 <p>You can view a <html:link action="/demo">demo</html:link> as if you were a patient.</p>
+
+<p>RPV is funded by contributions from renal units in England and Wales and by the Scottish Government in Scotland. Development funding has come from the Department of Health in England, Scotland and Wales, and from NHS Kidney Care.</p>

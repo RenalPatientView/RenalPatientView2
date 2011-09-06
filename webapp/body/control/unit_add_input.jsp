@@ -1,4 +1,5 @@
 <%@ taglib uri="/tags/struts-html" prefix="html" %>
+<%@ taglib uri="/tags/struts-logic" prefix="logic" %>
 
 <html:xhtml/>
 
@@ -27,6 +28,17 @@
       <td><b>Short Name</b></td>
       <td><html:text property="shortname" maxlength="15"/></td>
     </tr>
+
+    <logic:present role="superadmin">
+    <tr>
+      <td><b>Unit sFTP User</b></td>
+      <td><html:text property="unituser" maxlength="20"/></td>
+    </tr>
+    </logic:present>
+
+    <logic:notPresent role="superadmin">
+        <html:hidden property="unituser" value=""/>
+    </logic:notPresent>
 
     <tr>
       <td><b>Address 1</b></td>
@@ -74,7 +86,7 @@
     </tr>
 
     <tr>
-      <td><b>Unit Enquiries Email</b></td>
+      <td><b>Unit Enquiries Email</b><br/>(This is where messages to the unit<br/>from patients will be sent)</td>
       <td><html:text property="unitenquiriesemail" /></td>
     </tr>
 

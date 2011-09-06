@@ -1,16 +1,22 @@
 package com.worthsoln.patientview.logon;
 
-import java.security.Principal;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
 import com.Ostermiller.util.RandPass;
 import com.worthsoln.HibernateUtil;
 import com.worthsoln.patientview.User;
 import com.worthsoln.patientview.logging.AddLog;
+import com.worthsoln.patientview.splashpage.SplashPage;
 import com.worthsoln.patientview.user.UserUtils;
+import net.sf.hibernate.HibernateException;
+import net.sf.hibernate.Session;
+import net.sf.hibernate.Transaction;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.security.Principal;
+import java.util.List;
 
 public class LogonUtils {
 
@@ -30,10 +36,58 @@ public class LogonUtils {
                     resultForward = "controlPasswordChangeInput";
                 }
                 request.setAttribute("firstLogon", "true");
+            } else {
+
+                SplashPage splashPage = activeSplashPage(user);
+
+                if (null != splashPage) {
+                    resultForward = "splashPage";
+                    request.setAttribute("splashPage", splashPage);
+                }
             }
         }
         recordLogon(request);
         return mapping.findForward(resultForward);
+    }
+
+    private static SplashPage activeSplashPage(User user) {
+        SplashPage returnSplashPage = null;
+
+        if (user.getRole().equalsIgnoreCase("patient")) {
+            List splashpages = null;
+            try {
+                Session session = HibernateUtil.currentSession();
+                Transaction tx = session.beginTransaction();
+                splashpages = session.find("from " + SplashPage.class.getName());
+                tx.commit();
+                HibernateUtil.closeSession();
+            } catch (HibernateException e) {
+                e.printStackTrace();
+            }
+
+            if (!splashpages.isEmpty()) {
+
+                SplashPage splashPage = (SplashPage) splashpages.get(0);
+
+
+                if (null != splashPage &&
+                        !splashPage.getName().equals(user.getSplashpage()) &&
+                        splashPage.isLive()) {
+                    userHasSeenThisSplashPage(splashPage, user);
+                    return returnSplashPage = splashPage;
+                }
+            }
+        }
+        return returnSplashPage;
+    }
+
+    private static void userHasSeenThisSplashPage(SplashPage splashPage, User user) {
+        user.setSplashpage(splashPage.getName());
+        try {
+            HibernateUtil.saveOrUpdateWithTransaction(user);
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void recordLogon(HttpServletRequest request) {

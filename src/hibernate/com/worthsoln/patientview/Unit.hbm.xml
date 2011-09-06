@@ -9,6 +9,7 @@
     </id>
     <property name="name"/>
     <property name="shortname"/>
+    <property name="unituser"/>
     <property name="address1"/>
     <property name="address2"/>
     <property name="address3"/>

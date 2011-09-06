@@ -62,6 +62,14 @@
                 <td><hr class="thinblue"/></td>
               </tr>
               <tr>
+                <td><html:link action="/control/splashPageEdit">Splash Page</html:link></td>
+              </tr>
+            </logic:present>
+            <logic:present role="superadmin">
+              <tr>
+                <td><hr class="thinblue"/></td>
+              </tr>
+              <tr>
                 <td><html:link action="/control/version">RPV Version</html:link></td>
               </tr>
             </logic:present>

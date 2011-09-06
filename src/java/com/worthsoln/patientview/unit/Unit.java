@@ -5,6 +5,7 @@ public class Unit {
     private String unitcode;
     private String name;
     private String shortname;
+    private String unituser;
     private String address1;
     private String address2;
     private String address3;
@@ -192,6 +193,14 @@ public class Unit {
 
     public void setShortname(String shortname) {
         this.shortname = shortname;
+    }
+
+    public String getUnituser() {
+        return unituser;
+    }
+
+    public void setUnituser(String unituser) {
+        this.unituser = unituser;
     }
 
     public String getAddress1() {

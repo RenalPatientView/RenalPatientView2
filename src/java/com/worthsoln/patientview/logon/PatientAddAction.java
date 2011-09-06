@@ -27,10 +27,10 @@ public class PatientAddAction extends DatabaseAction {
         String overrideDuplicateNhsno = BeanUtils.getProperty(form, "overrideDuplicateNhsno");
         boolean dummypatient = "true".equals(BeanUtils.getProperty(form, "dummypatient"));
         PatientLogon patient =
-                new PatientLogon(username, password, name, email, nhsno, unitcode, true, dummypatient, null, 0, false, "");
+                new PatientLogon(username, password, name, email, nhsno, unitcode, true, dummypatient, null, 0, false, "", "");
         PatientLogon gp =
                 new PatientLogon(username + "-GP", gppassword, name + "-GP", null, nhsno, unitcode, true, dummypatient,
-                        null, 0, false, "");
+                        null, 0, false, "", "");
         DatabaseDAO dao = getDao(request);
         PatientLogon existingPatientwithSameUsername = (PatientLogon) dao.retrieveItem(new PatientLogonDao(patient));
         PatientLogon existingPatientwithSameNhsno = (PatientLogon) dao.retrieveItem(new PatientNhsnoLogonDao(patient));

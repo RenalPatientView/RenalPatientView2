@@ -13,7 +13,7 @@ public class PatientLogon extends Logon implements Cloneable {
 
     public PatientLogon(String username, String password, String name, String email, String nhsno, String unitcode,
                         boolean firstlogon, boolean dummypatient, Date lastlogon, int failedlogons,
-                        boolean accountlocked, String screenname) {
+                        boolean accountlocked, String screenname, String splashpage) {
         setUsername(username);
         setPassword(password);
         setName(name);
@@ -27,6 +27,7 @@ public class PatientLogon extends Logon implements Cloneable {
         setFailedlogons(failedlogons);
         setAccountlocked(accountlocked);
         setScreenname(screenname);
+        setSplashpage(splashpage);
     }
 
     protected Object clone() throws CloneNotSupportedException {

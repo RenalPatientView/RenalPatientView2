@@ -60,11 +60,13 @@
       <form-property name="accountlocked" type="java.lang.String"/>
       <form-property name="showgps" type="java.lang.String"/>
       <form-property name="screenname" type="java.lang.String"/>
+      <form-property name="splashpage" type="java.lang.String"/>
     </form-bean>
     <form-bean name="unitForm" type="org.apache.struts.validator.DynaValidatorActionForm">
+      <form-property name="unitcode" type="java.lang.String"/>
       <form-property name="name" type="java.lang.String"/>
       <form-property name="shortname" type="java.lang.String"/>
-      <form-property name="unitcode" type="java.lang.String"/>
+      <form-property name="unituser" type="java.lang.String"/>
       <form-property name="address1" type="java.lang.String"/>
       <form-property name="address2" type="java.lang.String"/>
       <form-property name="address3" type="java.lang.String"/>
@@ -137,6 +139,15 @@
       <form-property name="gpgHome" type="java.lang.String"/>
       <form-property name="gpgRuntime" type="java.lang.String"/>
     </form-bean>
+    <form-bean name="splashPageForm" type="org.apache.struts.validator.DynaValidatorActionForm">
+      <form-property name="id" type="java.lang.String"/>
+      <form-property name="name" type="java.lang.String"/>
+      <form-property name="headline" type="java.lang.String"/>
+      <form-property name="bodytext" type="java.lang.String"/>
+      <form-property name="datestart" type="java.lang.String"/>
+      <form-property name="datestop" type="java.lang.String"/>
+      <form-property name="live" type="java.lang.String"/>
+    </form-bean>
     <form-bean name="xmlForm" type="org.apache.struts.validator.DynaValidatorActionForm">
       <form-property name="src" type="java.lang.String"/>
     </form-bean>
@@ -198,7 +209,8 @@
     
   <!-- ========== Global Forward Definitions ============================== -->
   <global-forwards>
-    <forward name="control" path="/control/index.jsp"/>
+    <forward name="control"                    path="/control/index.jsp"/>
+    <forward name="splashPage"                 path="/patient/splash_page.jsp"/>
     <forward name="patientPasswordChangeInput" path="/patient/password_change.jsp"/>
     <forward name="controlPasswordChangeInput" path="/control/password_change.jsp"/>
     <forward name="patientEntryBloodPressure"  path="/patient/patient_entry_bp.jsp"/>
@@ -235,6 +247,7 @@
       <forward name="input" path="/forgotten-password.jsp"/>
       <forward name="success" path="/forgotten-password-confirmation.jsp"/>
     </action>
+
     <action path="/setscreenname"
       type="com.worthsoln.forum.ScreenNameAction" parameter="index">
       <forward name="input" redirect="true" path="/set-screenname.jsp"/>
@@ -859,6 +872,20 @@
             name="newsForm"
             scope="request">
       <forward name="success" path="/news_view.jsp"/>
+    </action>
+
+    <action path="/control/splashPageEdit"
+            type="com.worthsoln.patientview.splashpage.SplashPageEditAction"
+            name="splashPageForm"
+            scope="request">
+      <forward name="success" path="/control/splash_page_edit.jsp"/>
+    </action>
+
+     <action path="/control/splashPageUpdate"
+            type="com.worthsoln.patientview.splashpage.SplashPageUpdateAction"
+            name="splashPageForm"
+            scope="request">
+      <forward name="success" path="/control/splash_page_edit.jsp"/>
     </action>
 
     <action path="/control/version"

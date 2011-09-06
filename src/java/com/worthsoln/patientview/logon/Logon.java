@@ -17,6 +17,7 @@ public abstract class Logon {
     private int failedlogons;
     private boolean accountlocked;
     private String screenname;
+    private String splashpage;
 
     public Logon() {
     }
@@ -127,5 +128,13 @@ public abstract class Logon {
 
     public void setScreenname(String screenname) {
         this.screenname = screenname;
+    }
+
+    public String getSplashpage() {
+        return splashpage;
+    }
+
+    public void setSplashpage(String splashpage) {
+        this.splashpage = splashpage;
     }
 }
