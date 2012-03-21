@@ -4,7 +4,7 @@
 
 <html:xhtml/>
 
-<table width="450" border="0" cellspacing="1" cellpadding="3">
+<table width="650" border="0" cellspacing="1" cellpadding="3">
 
   <tr valign="top">
     <td colspan="5"><img src="images/space.gif" height="5"/></td>
@@ -32,21 +32,27 @@
 
     <logic:present name="patient">
 
-      <tr valign="top">
-        <td class="tableheader" colspan="3"><b>Medicines for <bean:write name="patient" property="forename"/> <bean:write name="patient" property="surname"/></b></td>
-      </tr>
+        <bean:define id="previousunit" value=""/>
+
+        <tr valign="top">
+          <td class="tableheader" colspan="4"><b>Medicines for <bean:write name="patient" property="forename"/> <bean:write name="patient" property="surname"/></b></td>
+        </tr>
+
+
 
       <tr>
         <td class="tablecellbold" width="75"><b>Start Date</b></td>
         <td class="tablecellbold">Medicine Name</td>
         <td class="tablecellbold">Dose</td>
+        <td class="tablecellbold">Source</td>
       </tr>
 
-      <logic:iterate name="medicines" id="medicinecine">
+        <logic:iterate name="medicines" id="medicine">
         <tr>
-          <td class="tablecell"><bean:write name="medicinecine" property="formattedStartDate"/></td>
-          <td class="tablecell"><bean:write name="medicinecine" property="name"/></td>
-          <td class="tablecell"><bean:write name="medicinecine" property="dose"/></td>
+          <td class="tablecell"><bean:write name="medicine" property="formattedStartDate"/></td>
+          <td class="tablecell"><bean:write name="medicine" property="name"/></td>
+          <td class="tablecell"><bean:write name="medicine" property="dose"/></td>
+          <td class="tablecell"><bean:write name="medicine" property="shortname"/></td>
         </tr>
       </logic:iterate>
 

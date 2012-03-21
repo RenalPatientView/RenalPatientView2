@@ -39,6 +39,7 @@
           <html:option value="password reset forgotten"/>
           <html:option value="password change"/>
           <html:option value="patient data load"/>
+          <html:option value="patient data fail"/>
           <html:option value="patient data remove"/>
           <html:option value="logon"/>
           <html:option value="patient add"/>
