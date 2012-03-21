@@ -9,6 +9,7 @@ public abstract class Logon {
     private String role;
     private String name;
     private String email;
+    private boolean emailverfied;
     private String nhsno;
     private String unitcode;
     private boolean firstlogon;
@@ -76,6 +77,14 @@ public abstract class Logon {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isEmailverfied() {
+        return emailverfied;
+    }
+
+    public void setEmailverfied(boolean emailverfied) {
+        this.emailverfied = emailverfied;
     }
 
     public boolean isFirstlogon() {

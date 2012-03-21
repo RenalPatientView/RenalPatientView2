@@ -109,6 +109,11 @@ public class TestResult {
         return dateTimeFormat.format(datestamped.getTime());
     }
 
+    public String getIsoDayDatestamp() {
+        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateTimeFormat.format(datestamped.getTime());
+    }
+
     public boolean equals(Object o) {
         if (this == o) {
             return true;

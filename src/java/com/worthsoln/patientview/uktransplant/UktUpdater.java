@@ -33,7 +33,7 @@ public class UktUpdater {
 
             uktParser.changeDelimiter('|');
             String[][] uktValues = uktParser.getAllValues();
-            for (int i = 2; i < uktValues.length; i++) {
+            for (int i = 0; i < uktValues.length; i++) {
                 UktStatus status = new UktStatus(uktValues[i][0].trim(),
                         uktValues[i][1].trim(), uktValues[i][2].trim());
                 HibernateUtil.saveWithTransaction(status);

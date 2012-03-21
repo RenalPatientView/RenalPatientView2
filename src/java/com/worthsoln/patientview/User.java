@@ -9,6 +9,7 @@ public class User {
     private String role;
     private String name;
     private String email;
+    private boolean emailverified;
     private String nhsno;
     private String unitcode;
     private boolean firstlogon;
@@ -26,10 +27,12 @@ public class User {
         this.username = username;
     }
 
-    public User(String username, String password, String role, String email, String name, String nhsno, String unitcode,
+/*
+    public User(String username, String password, String role, String email, boolean emailverified, String name, String nhsno, String unitcode,
                 boolean dummypatient) {
         this.name = name;
         this.email = email;
+        this.emailverified = emailverified;
         setUnitcode(unitcode);
         this.password = password;
         this.role = role;
@@ -39,6 +42,7 @@ public class User {
         this.dummypatient = dummypatient;
     }
 
+*/
     public String getName() {
         return name;
     }
@@ -85,6 +89,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isEmailverified() {
+        return emailverified;
+    }
+
+    public void setEmailverified(boolean emailverified) {
+        this.emailverified = emailverified;
     }
 
     public String getUnitcode() {

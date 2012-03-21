@@ -20,6 +20,7 @@ public class AddLog {
     public static final String ADMIN_ADD = "admin add";
     public static final String UKT_DATA_REPLACE = "ukt data";
     public static final String PATIENT_COUNT = "patient count";
+    public static final String EMAIL_VERIFY = "email verified";
 
     public static void addLog(String actor, String action, String user, String nhsno, String unitcode,
                               String extrainfo) {

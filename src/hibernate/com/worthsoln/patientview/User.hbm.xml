@@ -11,6 +11,7 @@
     <property name="role"/>
     <property name="name"/>
     <property name="email"/>
+    <property name="emailverified"/>
     <property name="nhsno"/>
     <property name="unitcode"/>
     <property name="firstlogon"/>

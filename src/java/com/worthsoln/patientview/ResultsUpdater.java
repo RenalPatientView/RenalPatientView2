@@ -1,12 +1,5 @@
 package com.worthsoln.patientview;
 
-import java.io.File;
-import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Iterator;
-import javax.servlet.ServletContext;
-import net.sf.hibernate.HibernateException;
 import com.worthsoln.HibernateUtil;
 import com.worthsoln.database.DatabaseDAO;
 import com.worthsoln.database.DatabaseUpdateQuery;
@@ -17,6 +10,14 @@ import com.worthsoln.patientview.medicine.Medicine;
 import com.worthsoln.patientview.parser.ResultParser;
 import com.worthsoln.patientview.user.UserUtils;
 import com.worthsoln.patientview.utils.TimestampUtils;
+import net.sf.hibernate.HibernateException;
+
+import javax.servlet.ServletContext;
+import java.io.File;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Iterator;
 
 public class ResultsUpdater {
 
@@ -27,9 +28,11 @@ public class ResultsUpdater {
     }
 
     public void update(ServletContext context, File xmlFile) {
+
         try {
             ResultParser parser = new ResultParser();
             parser.parseResults(context, xmlFile);
+
             if ("Remove".equalsIgnoreCase(parser.getFlag()) || "Dead".equalsIgnoreCase(parser.getFlag()) ||
                     "Died".equalsIgnoreCase(parser.getFlag())) {
                 removePatientFromSystem(parser);
@@ -42,6 +45,7 @@ public class ResultsUpdater {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            XmlImportUtils.sendEmailOfExpectionStackTraceToUnitAdmin(e, xmlFile, context);
         }
     }
 

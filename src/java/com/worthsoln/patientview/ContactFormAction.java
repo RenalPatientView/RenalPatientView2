@@ -8,6 +8,7 @@ import org.apache.struts.action.ActionMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletContext;
 
 public class ContactFormAction extends DatabaseAction {
 
@@ -23,15 +24,27 @@ public class ContactFormAction extends DatabaseAction {
 
             message = createMessage(message, patient, email);
 
+            ServletContext context = request.getSession().getServletContext();
+
             if ("unit".equals(type)) {
                 // Send to unit
                 String unitEmail = request.getParameter("rpvadminemail");
                 if (unitEmail != null && unitEmail.length() > 0) {
-                    EmailUtils.sendEmail(request.getSession().getServletContext(), unitEmail, subject, message);
+                    if (email != null && email.length() > 0) {
+                        EmailUtils.sendEmail(context, email, unitEmail, subject, message);
+                    } else {
+                        EmailUtils.sendEmail(context, unitEmail, subject, message);
+                    }
                 }
             } else if ("admin".equals(type)) {
                 // Send  to admin
-                EmailUtils.sendEmail(request.getSession().getServletContext(), subject, message);
+                String superadminEmail = context.getInitParameter("admin.email.to");
+
+                if (email != null && email.length() > 0) {
+                    EmailUtils.sendEmail(context, email, superadminEmail, subject, message);
+                } else {
+                    EmailUtils.sendEmail(context, superadminEmail, subject, message);
+                }
             }
         } else if (!request.isUserInRole("patient")) {
             return LogonUtils.logonChecks(mapping, request, "control");

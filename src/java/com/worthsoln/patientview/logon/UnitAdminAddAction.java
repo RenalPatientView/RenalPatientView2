@@ -10,6 +10,7 @@ import com.worthsoln.HibernateUtil;
 import com.worthsoln.database.DatabaseDAO;
 import com.worthsoln.database.action.DatabaseAction;
 import com.worthsoln.patientview.User;
+import com.worthsoln.patientview.user.EmailVerificationUtils;
 import com.worthsoln.patientview.logging.AddLog;
 import com.worthsoln.patientview.unit.UnitUtils;
 
@@ -23,7 +24,7 @@ public class UnitAdminAddAction extends DatabaseAction {
         String email = BeanUtils.getProperty(form, "email");
         String unitcode = BeanUtils.getProperty(form, "unitcode");
         String role = BeanUtils.getProperty(form, "role");
-        UnitAdmin unitAdmin = new UnitAdmin(username, password, name, email, unitcode, role, true);
+        UnitAdmin unitAdmin = new UnitAdmin(username, password, name, email, false, unitcode, role, true);
         DatabaseDAO dao = getDao(request);
         User existingAdminWithSameUsername = (User) HibernateUtil.getPersistentObject(User.class, username);
         String mappingToFind;
@@ -38,6 +39,7 @@ public class UnitAdminAddAction extends DatabaseAction {
             dao.insertItem(new LogonDao(hashedUnitAdmin));
             AddLog.addLog(request.getUserPrincipal().getName(), AddLog.ADMIN_ADD, unitAdmin.getUsername(), "",
                     unitAdmin.getUnitcode(), "");
+            EmailVerificationUtils.createEmailVerification(hashedUnitAdmin.getUsername(), hashedUnitAdmin.getEmail(), request);
             mappingToFind = "success";
         }
         request.setAttribute("adminuser", unitAdmin);

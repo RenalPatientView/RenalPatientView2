@@ -14,6 +14,7 @@ import com.worthsoln.patientview.Patient;
 
 public class UktExportThread implements Runnable, ParserThread {
 
+    private String prebit;
     private String directory;
     private String archiveDirectory;
     private int minutesBetweenWait;
@@ -67,6 +68,14 @@ public class UktExportThread implements Runnable, ParserThread {
             patientArray[i][4] = patient.getPostcode();
         }
         return patientArray;
+    }
+
+    public String getPrebit() {
+        return prebit;
+    }
+
+    public void setPrebit(String prebit) {
+        this.prebit = prebit;
     }
 
     public String getDirectory() {

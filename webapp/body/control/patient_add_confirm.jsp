@@ -40,3 +40,10 @@ On <dt:format pattern="d MMM yyyy"><dt:currentTime/></dt:format> you successfull
     </tr>
  </table>
 
+<br />
+
+<logic:notEmpty name="patient" property="email">
+    <p>A verification email has been sent to <bean:write name="patient" property="email"/>. The new user needs to click
+        the link in that email to verify their email address. The verification link will expire in two weeks.</p>
+</logic:notEmpty>
+

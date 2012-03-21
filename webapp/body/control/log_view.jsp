@@ -48,6 +48,7 @@
           <html:option value="ukt data"/>
           <html:option value="password locked"/>
           <html:option value="password unlocked"/>
+          <html:option value="email verified"/>
         </html:select>
       </td>
     </tr>

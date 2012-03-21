@@ -27,6 +27,7 @@ public class PatientEditAction extends DatabaseAction {
         String password = BeanUtils.getProperty(form, "password");
         String name = BeanUtils.getProperty(form, "name");
         String email = BeanUtils.getProperty(form, "email");
+        boolean emailverified = "true".equals(BeanUtils.getProperty(form, "emailverified"));
         String nhsno = BeanUtils.getProperty(form, "nhsno");
         String unitcode = BeanUtils.getProperty(form, "unitcode");
         String overrideDuplicateNhsno = BeanUtils.getProperty(form, "overrideDuplicateNhsno");
@@ -40,7 +41,7 @@ public class PatientEditAction extends DatabaseAction {
         String screenname = BeanUtils.getProperty(form, "screenname");
         String splashpage = BeanUtils.getProperty(form, "splashpage");
         PatientLogon patient =
-                new PatientLogon(username, password, name, email, nhsno, unitcode, firstlogon, dummypatient, lastlogon,
+                new PatientLogon(username, password, name, email, emailverified, nhsno, unitcode, firstlogon, dummypatient, lastlogon,
                         failedlogons, accountlocked, screenname, splashpage);
         String mappingToFind = "";
         List duplicateUsers = findDuplicateUsers(nhsno, username);

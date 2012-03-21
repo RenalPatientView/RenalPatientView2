@@ -19,7 +19,7 @@ public class LogonDao extends StorableItem {
     }
 
     public String[] getColumnNames() {
-        return new String[]{"password", "role", "name", "email", "nhsno", "unitcode", "firstlogon", "dummypatient",
+        return new String[]{"password", "role", "name", "email", "emailverified", "nhsno", "unitcode", "firstlogon", "dummypatient",
                 "lastlogon", "failedlogons", "accountlocked", "screenname", "splashpage"};
     }
 
@@ -29,6 +29,7 @@ public class LogonDao extends StorableItem {
         params.add(logon.getRole());
         params.add(logon.getName());
         params.add(logon.getEmail());
+        params.add(logon.isEmailverfied());
         params.add(logon.getNhsno());
         params.add(logon.getUnitcode());
         params.add(logon.isFirstlogon());

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServlet;
 import com.worthsoln.patientview.parser.XmlParserThread;
 import com.worthsoln.patientview.uktransplant.UktExportThread;
 import com.worthsoln.patientview.uktransplant.UktParserThread;
+import com.worthsoln.patientview.dataout.DataOutThread;
 
 public class ParserMonitorServlet extends HttpServlet {
 
@@ -15,6 +16,7 @@ public class ParserMonitorServlet extends HttpServlet {
             startParseThread("xml", new XmlParserThread(new String[]{".xml",}));
             startParseThread("ukt", new UktParserThread());
             startParseThread("uktexport", new UktExportThread());
+            // startParseThread("dataout", new DataOutThread());
         }
     }
 
@@ -23,6 +25,7 @@ public class ParserMonitorServlet extends HttpServlet {
         String archiveDirectory = getServletContext().getInitParameter(prebit + ".archive.directory");
         String minutesBetweenWaitString = getServletContext().getInitParameter(prebit + ".minutes.to.wait");
         int minutesBetweenWait = Integer.parseInt(minutesBetweenWaitString);
+        parserThread.setPrebit(prebit);
         parserThread.setArchiveDirectory(archiveDirectory);
         parserThread.setDirectory(directory);
         parserThread.setMinutesBetweenWait(minutesBetweenWait);

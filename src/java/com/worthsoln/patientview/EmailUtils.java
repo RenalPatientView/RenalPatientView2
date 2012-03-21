@@ -21,15 +21,26 @@ public class EmailUtils {
     }
 
     public static void sendEmail(ServletContext context, String toAddress, String subject, String emailText) {
+        String from = context.getInitParameter("admin.email.from");
+        sendEmail(context, from, toAddress, subject, emailText);
+    }
+
+    public static void sendEmail(ServletContext context, String fromAddress, String toAddress, String subject, String emailText) {
+        sendEmail(context, fromAddress, toAddress, "", subject, emailText);
+    }
+
+    public static void sendEmail(ServletContext context, String fromAddress, String toAddress, String ccAddress, String subject, String emailText) {
         try {
             String host = context.getInitParameter("smtp.host");
-            String from = context.getInitParameter("admin.email.from");
             Properties props = System.getProperties();
             props.put("mail.smtp.host", host);
             Session session = Session.getInstance(props, null);
             MimeMessage email = new MimeMessage(session);
-            email.setFrom(new InternetAddress(from));
+            email.setFrom(new InternetAddress(fromAddress));
             email.addRecipient(Message.RecipientType.TO, new InternetAddress(toAddress));
+            if (null != ccAddress && !"".equals(ccAddress)) {
+                email.addRecipient(Message.RecipientType.CC, new InternetAddress(ccAddress));
+            }
             email.setSubject(subject);
             email.setText(emailText);
             Transport.send(email);

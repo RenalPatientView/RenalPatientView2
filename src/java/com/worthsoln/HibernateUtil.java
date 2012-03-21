@@ -106,6 +106,20 @@ public class HibernateUtil {
         return persistentItem;
     }
 
+    public static Object getPersistentObject(Class classs, Integer parameterValue) {
+        Object persistentItem = null;
+        try {
+            Session session = HibernateUtil.currentSession();
+            Transaction tx = session.beginTransaction();
+            persistentItem = session.get(classs, parameterValue);
+            tx.commit();
+            HibernateUtil.closeSession();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        }
+        return persistentItem;
+    }
+
     public static void extractDataFromFormMakeObjectAndAdd(Object objectToBuild, ActionForm form,
                                                            HttpServletRequest request, String attributeName) {
         try {

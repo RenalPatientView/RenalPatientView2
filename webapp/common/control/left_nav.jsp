@@ -51,6 +51,12 @@
                 <td><hr class="thinblue"/></td>
               </tr>
               <tr>
+                <td><html:link action="/control/feedbackUnitSelect">Feedback</html:link></td>
+              </tr>
+              <tr>
+                <td><hr class="thinblue"/></td>
+              </tr>
+              <tr>
                 <td><html:link action="/patient/patient_details">News</html:link></td>
               </tr>
               <tr>

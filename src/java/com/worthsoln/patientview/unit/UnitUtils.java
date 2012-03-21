@@ -30,6 +30,17 @@ public class UnitUtils {
         request.getSession().setAttribute("units", items);
     }
 
+    public static Unit retrieveUnit(String unitcode) {
+        unitcode = unitcode.toUpperCase();
+        Unit unit = null;
+        try {
+            unit = (Unit) HibernateUtil.getPersistentObject(Unit.class, unitcode);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return unit;
+    }
+
     public static String usersUnitCode(HttpServletRequest request) {
         String unitcode = "all";
         User user = (User) HibernateUtil.getPersistentObject(User.class, request.getUserPrincipal().getName());

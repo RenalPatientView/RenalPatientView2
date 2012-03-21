@@ -17,12 +17,16 @@
     <mapping resource="com/worthsoln/patientview/Comment.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/Diagnosis.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/EdtaCode.hbm.xml"/>
+    <mapping resource="com/worthsoln/patientview/EmailVerification.hbm.xml"/>
+    <mapping resource="com/worthsoln/patientview/Feedback.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/Letter.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/LogEntry.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/Medicine.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/News.hbm.xml"/>
+    <mapping resource="com/worthsoln/patientview/Patient.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/PatientCount.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/ResultHeading.hbm.xml"/>
+    <mapping resource="com/worthsoln/patientview/Splashpage.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/UktCode.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/UktStatus.hbm.xml"/>
     <mapping resource="com/worthsoln/patientview/Unit.hbm.xml"/>

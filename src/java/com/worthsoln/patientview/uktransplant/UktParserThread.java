@@ -10,6 +10,7 @@ import com.worthsoln.patientview.ParserThread;
 
 public class UktParserThread implements Runnable, ParserThread {
 
+    private String prebit;
     private String directory;
     private String archiveDirectory;
     private int minutesBetweenWait;
@@ -32,11 +33,7 @@ public class UktParserThread implements Runnable, ParserThread {
             while (true) {
                 File uktDir = new File(directory);
                 File[] uktFiles = uktDir.listFiles(new UktFileFilter());
-                DatabaseDAO dao = new DatabaseDAO("patientview");
-                for (int i = 0; i < uktFiles.length; i++) {
-                    UktParserUtils.updateData(servletContext, uktFiles[i], dao);
-                    uktFiles[i].delete();
-                }
+                updateUktFiles(uktFiles);
                 Thread.sleep(1000 * 60 * minutesBetweenWait);
                 Date now = new Date(System.currentTimeMillis());
                 System.out.println("UktParserThread " + dateFormat.format(now));
@@ -44,6 +41,22 @@ public class UktParserThread implements Runnable, ParserThread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    private void updateUktFiles(File[] uktFiles) {
+        DatabaseDAO dao = new DatabaseDAO("patientview");
+        for (int i = 0; i < uktFiles.length; i++) {
+            UktParserUtils.updateData(servletContext, uktFiles[i], dao);
+            uktFiles[i].delete();
+        }
+    }
+
+    public String getPrebit() {
+        return prebit;
+    }
+
+    public void setPrebit(String prebit) {
+        this.prebit = prebit;
     }
 
     public String getDirectory() {

@@ -35,6 +35,7 @@
       </td>
     </tr>
       <html:hidden name="unitUser" property="unitcode"/>
+      <html:hidden name="unitUser" property="emailverified"/>
       <html:hidden name="unitUser" property="firstlogon"/>
       <html:hidden name="unitUser" property="password"/>
       <html:hidden name="unitUser" property="lastlogon"/>

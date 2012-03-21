@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.DynaActionForm;
 import com.worthsoln.HibernateUtil;
 import com.worthsoln.database.action.DatabaseAction;
 import com.worthsoln.patientview.logon.LogonUtils;
@@ -24,6 +25,9 @@ public class ContactAction extends DatabaseAction {
         } else if (!request.isUserInRole("patient")) {
             return LogonUtils.logonChecks(mapping, request, "control");
         }
+
+        DynaActionForm feedbackForm = (DynaActionForm) form;
+        feedbackForm.set("annonymous","true");
 
         return LogonUtils.logonChecks(mapping, request);
     }

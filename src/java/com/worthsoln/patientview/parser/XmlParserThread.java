@@ -10,6 +10,7 @@ import com.worthsoln.patientview.ParserThread;
 
 public class XmlParserThread implements Runnable, ParserThread {
 
+    private String prebit;
     private String directory;
     private String archiveDirectory;
     private int minutesBetweenWait;
@@ -33,11 +34,7 @@ public class XmlParserThread implements Runnable, ParserThread {
         try {
             while (true) {
                 File[] xmlFiles = FindXmlFiles.findXmlFiles(directory, fileEndings);
-                DatabaseDAO dao = new DatabaseDAO("patientview");
-                for (int i = 0; i < xmlFiles.length; i++) {
-                    XmlParserUtils.updateXmlData(servletContext, xmlFiles[i], dao);
-                    xmlFiles[i].delete();
-                }
+                updateXmlFiles(xmlFiles);
                 Thread.sleep(1000 * 60 * minutesBetweenWait);
                 Date now = new Date(System.currentTimeMillis());
                 System.out.println("XmlParserThread " + dateFormat.format(now));
@@ -45,6 +42,22 @@ public class XmlParserThread implements Runnable, ParserThread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    private void updateXmlFiles(File[] xmlFiles) {
+        DatabaseDAO dao = new DatabaseDAO("patientview");
+        for (int i = 0; i < xmlFiles.length; i++) {
+            XmlParserUtils.updateXmlData(servletContext, xmlFiles[i], dao);
+            xmlFiles[i].delete();
+        }
+    }
+
+    public String getPrebit() {
+        return prebit;
+    }
+
+    public void setPrebit(String prebit) {
+        this.prebit = prebit;
     }
 
     public String getDirectory() {

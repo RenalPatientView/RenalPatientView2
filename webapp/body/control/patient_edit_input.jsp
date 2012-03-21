@@ -46,6 +46,7 @@
       <td><html:checkbox name="patient" property="dummypatient" value="true"/></td>
     </tr>
     <html:hidden name="patient" property="unitcode"/>
+    <html:hidden name="patient" property="emailverified"/>
     <html:hidden name="patient" property="firstlogon"/>
     <html:hidden name="patient" property="password"/>
     <html:hidden name="patient" property="lastlogon"/>

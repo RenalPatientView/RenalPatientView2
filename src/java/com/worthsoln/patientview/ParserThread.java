@@ -4,6 +4,10 @@ import javax.servlet.ServletContext;
 
 public interface ParserThread {
 
+    String getPrebit();
+
+    void setPrebit(String prebit);
+
     String getDirectory();
 
     void setDirectory(String directory);

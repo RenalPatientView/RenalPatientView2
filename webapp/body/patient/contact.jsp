@@ -5,6 +5,7 @@
 <html:xhtml/>
 
 <logic:notPresent name="emailSent">
+<logic:notPresent name="commentSent">
 <p class="header">Contact Details</p>
 
 
@@ -21,7 +22,7 @@
             <html:text property="email" />
             <html:hidden property="rpvadminemail" name="unit" />
             <html:hidden property="type" value="unit" />
-            <br /><br /><html:submit value="Send" />
+            <br /><br /><html:submit value="Send"  styleClass="formbutton" />
         </html:form>
     </logic:notEmpty>
     <logic:empty name="unit" property="rpvadminemail">
@@ -29,6 +30,77 @@
     </logic:empty>
 
     <br/>
+
+<logic:present role="patient">
+
+<logic:equal value="RSC02" name="unit" property="unitcode">
+        <p><b>Send feedback to your renal unit</b></p>
+        <p>Any comments you wish to make about the unit.</p>
+        <p>Note: By default this message will be anonymous, but you may untick the box below if you wish your name to be attached to the comment.</p>
+
+        <html:form action="/patient/feedbackForm">
+            Please enter your message below: <br />
+            <html:textarea rows="6" cols="30" property="comment"/>
+            <br /> <br />
+            Annonymous&nbsp;&nbsp;<html:checkbox property="annonymous" value="on"/>
+            <html:hidden name="unit" property="unitcode"/>
+            <br /><br /><html:submit value="Send"  styleClass="formbutton" />
+        </html:form>
+
+    <br/>
+    <html:form action="/patient/feedbackViewForUnit">
+        <html:hidden property="unitcode" name="unit"/>
+        <html:submit value="View feedback for your unit" styleClass="formbutton" />
+    </html:form>
+    <br /><br />
+</logic:equal>
+
+<logic:equal value="A" name="unit" property="unitcode">
+        <p><b>Send feedback to your renal unit</b></p>
+        <p>Any comments you wish to make about the unit.</p>
+        <p>Note: By default this message will be anonymous, but you may untick the box below if you wish your name to be attached to the comment.</p>
+
+        <html:form action="/patient/feedbackForm">
+            Please enter your message below: <br />
+            <html:textarea rows="6" cols="30" property="comment"/>
+            <br /> <br />
+            Annonymous&nbsp;&nbsp;<html:checkbox property="annonymous" value="on"/>
+            <html:hidden name="unit" property="unitcode"/>
+            <br /><br /><html:submit value="Send"  styleClass="formbutton" />
+        </html:form>
+
+    <br/>
+    <html:form action="/patient/feedbackViewForUnit">
+        <html:hidden property="unitcode" name="unit"/>
+        <html:submit value="View feedback for your unit" styleClass="formbutton" />
+    </html:form>
+    <br /><br />
+</logic:equal>
+
+    <logic:equal value="SGC04" name="unit" property="unitcode">
+        <p><b>Send feedback to your renal unit</b></p>
+        <p>Any comments you wish to make about the unit.</p>
+        <p>Note: By default this message will be anonymous, but you may untick the box below if you wish your name to be attached to the comment.</p>
+
+        <html:form action="/patient/feedbackForm">
+            Please enter your message below: <br />
+            <html:textarea rows="6" cols="30" property="comment"/>
+            <br /> <br />
+            Annonymous&nbsp;&nbsp;<html:checkbox property="annonymous" value="on"/>
+            <html:hidden name="unit" property="unitcode"/>
+            <br /><br /><html:submit value="Send"  styleClass="formbutton" />
+        </html:form>
+
+    <br/>
+    <html:form action="/patient/feedbackViewForUnit">
+        <html:hidden property="unitcode" name="unit"/>
+        <html:submit value="View feedback for your unit" styleClass="formbutton" />
+    </html:form>
+    <br /><br />
+
+</logic:equal>
+
+</logic:present>    
 
     <p><b>Email the RPV system administrator</b></p>
     <p>Any comments about the system as a whole, or the information links suggested.</p>
@@ -255,12 +327,19 @@
           </logic:present>
 
         </table>
+  </logic:notPresent>
 </logic:notPresent>
 
 <logic:present name="emailSent">
     <p class="header">Contact</p>
 
     <p>Your contact form was successfully submitted.</p>
+</logic:present>
+
+<logic:present name="commentSent">
+    <p class="header">Comment</p>
+
+    <p>Your comment was successfully submitted.</p>
 </logic:present>
 
         <logic:present name="patient">

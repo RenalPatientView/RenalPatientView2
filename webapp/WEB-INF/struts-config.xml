@@ -49,6 +49,7 @@
       <form-property name="password" type="java.lang.String"/>
       <form-property name="name" type="java.lang.String"/>
       <form-property name="email" type="java.lang.String"/>
+      <form-property name="emailverified" type="java.lang.String"/>
       <form-property name="nhsno" type="java.lang.String"/>
       <form-property name="unitcode" type="java.lang.String"/>
       <form-property name="role" type="java.lang.String"/>
@@ -204,6 +205,16 @@
       <form-property name="aboutme" type="java.lang.String"/>
       <form-property name="talkabout" type="java.lang.String"/>
     </form-bean>
+    <form-bean name="feedbackForm" type="org.apache.struts.validator.DynaValidatorActionForm">
+      <form-property name="id" type="java.lang.String"/>
+      <form-property name="username" type="java.lang.String"/>
+      <form-property name="nhsno" type="java.lang.String"/>
+      <form-property name="unitcode" type="java.lang.String"/>
+      <form-property name="comment" type="java.lang.String"/>
+      <form-property name="commentedited" type="java.lang.String"/>
+      <form-property name="annonymous" type="java.lang.String"/>
+      <form-property name="makepublic" type="java.lang.String"/>
+    </form-bean>
     <form-bean name="aboutmeImageUploadForm" type="com.worthsoln.patientview.aboutme.AboutmeImageUploadForm"/>
   </form-beans>
     
@@ -254,6 +265,12 @@
       <forward name="success" redirect="true" path="/forums/list.page"/>
     </action>
 
+
+    <action path="/emailverification"
+            type="com.worthsoln.patientview.user.EmailVerificationAction" parameter="index">
+      <forward name="failure" path="/email_verification_failure.jsp"/>
+      <forward name="success" path="/email_verification_success.jsp"/>
+    </action>
 
     <action path="/patient/patient_details"
             type="com.worthsoln.patientview.PatientDetailsAction" parameter="patient_details">
@@ -308,7 +325,7 @@
     </action>
 
     <action path="/patient/contact"
-            type="com.worthsoln.patientview.ContactAction" parameter="contact" >
+            type="com.worthsoln.patientview.ContactAction" parameter="contact" name="feedbackForm">
       <forward name="success" path="/patient/contact.jsp"/>
     </action>
 
@@ -431,6 +448,19 @@
       <forward name="success" path="/patient/aboutme_display.jsp"/>
     </action>
       
+    <action path="/patient/feedbackForm" type="com.worthsoln.patientview.feedback.FeedbackFormAction" parameter="contact"
+            name="feedbackForm"
+            input="input">
+      <forward name="input" path="/patient/contact.jsp"/>
+      <forward name="success" path="/patient/contact.jsp"/>
+    </action>
+
+    <action path="/patient/feedbackViewForUnit" type="com.worthsoln.patientview.feedback.FeedbackViewAction" parameter="contact"
+            name="feedbackForm"
+            >
+      <forward name="success" path="/patient/feedback_for_unit.jsp"/>
+    </action>
+
     <action path="/demo"
             type="com.worthsoln.patientview.IndexAction" parameter="contact">
       <forward name="success" path="/demo.jsp"/>
@@ -741,6 +771,34 @@
             name="unitForm"
             scope="request">
       <forward name="success" path="/control/stats.jsp"/>
+    </action>
+
+    <action path="/control/feedbackUnitSelect"
+            type="com.worthsoln.patientview.logon.LogonAddInputAction"
+            name="unitForm"
+            scope="request">
+      <forward name="success" path="/control/feedback_unit_select.jsp"/>
+    </action>
+
+    <action path="/control/feedbackView"
+            type="com.worthsoln.patientview.feedback.FeedbackViewAction"
+            name="unitForm"
+            scope="request">
+      <forward name="success" path="/control/feedback_view.jsp"/>
+    </action>
+
+    <action path="/control/feedbackEditDisplay"
+            type="com.worthsoln.patientview.feedback.FeedbackEditDisplayAction"
+            name="feedbackForm"
+            scope="request">
+      <forward name="success" path="/control/feedback_edit.jsp"/>
+    </action>
+
+    <action path="/control/feedbackEditUpdate"
+            type="com.worthsoln.patientview.feedback.FeedbackEditUpdateAction"
+            name="feedbackForm"
+            scope="request">
+      <forward name="success" path="/control/feedback_view.jsp"/>
     </action>
 
     <action path="/control/decrypt"

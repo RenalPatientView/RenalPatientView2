@@ -5,6 +5,7 @@ import com.worthsoln.database.DatabaseDAO;
 import com.worthsoln.database.action.DatabaseAction;
 import com.worthsoln.patientview.logging.AddLog;
 import com.worthsoln.patientview.unit.Unit;
+import com.worthsoln.patientview.user.EmailVerificationUtils;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -27,9 +28,9 @@ public class PatientAddAction extends DatabaseAction {
         String overrideDuplicateNhsno = BeanUtils.getProperty(form, "overrideDuplicateNhsno");
         boolean dummypatient = "true".equals(BeanUtils.getProperty(form, "dummypatient"));
         PatientLogon patient =
-                new PatientLogon(username, password, name, email, nhsno, unitcode, true, dummypatient, null, 0, false, "", "");
+                new PatientLogon(username, password, name, email, false, nhsno, unitcode, true, dummypatient, null, 0, false, "", "");
         PatientLogon gp =
-                new PatientLogon(username + "-GP", gppassword, name + "-GP", null, nhsno, unitcode, true, dummypatient,
+                new PatientLogon(username + "-GP", gppassword, name + "-GP", null, false, nhsno, unitcode, true, dummypatient,
                         null, 0, false, "", "");
         DatabaseDAO dao = getDao(request);
         PatientLogon existingPatientwithSameUsername = (PatientLogon) dao.retrieveItem(new PatientLogonDao(patient));
@@ -53,6 +54,7 @@ public class PatientAddAction extends DatabaseAction {
             dao.insertItem(new LogonDao(hashedGp));
             AddLog.addLog(request.getUserPrincipal().getName(), AddLog.PATIENT_ADD, patient.getUsername(),
                     patient.getNhsno(), patient.getUnitcode(), "");
+            EmailVerificationUtils.createEmailVerification(patient.getUsername(), patient.getEmail(), request);
             mappingToFind = "success";
         }
         HibernateUtil.putListInRequest(Unit.class, "units", request);

@@ -77,6 +77,11 @@ public class Comment {
         }
     }
 
+    public String getIsoFormattedDatestamp() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        return dateFormat.format(datestamped.getTime());
+    }
+
     public String getBodyForHtml() {
         return getBody().replaceAll("\r\n", "<br />");
     }
