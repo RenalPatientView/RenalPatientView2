@@ -26,6 +26,8 @@ public class XmlImportUtils {
 
             if (null == unit || null == unit.getRpvadminemail() || "".equals(unit.getRpvadminemail())) {
                 toAddress = context.getInitParameter("support.email");
+            } else {
+                toAddress = unit.getRpvadminemail();
             }
 
             String newLine = System.getProperty("line.separator");

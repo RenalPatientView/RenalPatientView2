@@ -16,8 +16,7 @@ import java.util.GregorianCalendar;
 public class EmailVerificationUtils {
 
     public static void createEmailVerification(String username, String email, HttpServletRequest request) {
-        //TODO: remove last if clause here
-        if (null != email && !"".equals(email) && "rob@robworth.com".equals(email)) {
+        if (null != email && !"".equals(email)) {
             try {
                 Session session = HibernateUtil.currentSession();
                 Transaction tx = session.beginTransaction();
