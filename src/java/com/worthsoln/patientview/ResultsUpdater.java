@@ -46,7 +46,7 @@ public class ResultsUpdater {
         } catch (Exception e) {
             e.printStackTrace();
             AddLog.addLog(AddLog.ACTOR_SYSTEM, AddLog.PATIENT_DATA_FAIL, "",
-                    extractFromXMLFileNameNhsno(xmlFile.getName()), extractFromXMLFileNameUnitcode(xmlFile.getName()),
+                    XmlImportUtils.extractFromXMLFileNameNhsno(xmlFile.getName()), XmlImportUtils.extractFromXMLFileNameUnitcode(xmlFile.getName()),
                     xmlFile.getName() + " : " +XmlImportUtils.extractStringFromStackTrace(e));
             XmlImportUtils.sendEmailOfExpectionStackTraceToUnitAdmin(e, xmlFile, context);
         }
@@ -168,25 +168,6 @@ public class ResultsUpdater {
             } catch (HibernateException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    private String extractFromXMLFileNameNhsno(String filename) {
-        try {
-            int firstUnderscore = filename.indexOf("_");
-            int secondUnderscore = filename.indexOf("_", firstUnderscore + 1);
-            int firstPeriod = filename.indexOf(".", secondUnderscore + 1);
-            return filename.substring(secondUnderscore + 1, firstPeriod);
-        } catch (Exception e) {
-            return "";
-        }
-    }
-
-    private String extractFromXMLFileNameUnitcode(String filename) {
-        try {
-            return filename.substring(0, filename.indexOf("_")).toUpperCase();
-        } catch (Exception e) {
-            return "";
         }
     }
 }
