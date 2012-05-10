@@ -16,10 +16,12 @@ On <dt:format
         <td><b>User Name</b></td>
         <td><bean:write name="adminuser" property="username"/></td>
     </tr>
-    <tr>
-        <td><b>Password</b></td>
-        <td><bean:write name="adminuser" property="password"/></td>
-    </tr>
+    <logic:notEqual value="" name="adminuser" property="password">
+      <tr>
+          <td><b>Password</b></td>
+          <td><bean:write name="adminuser" property="password"/></td>
+      </tr>
+    </logic:notEqual>    
     <tr>
         <td><b>Name</b></td>
         <td><bean:write name="adminuser" property="name"/></td>

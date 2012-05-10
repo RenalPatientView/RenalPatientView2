@@ -26,7 +26,7 @@ On <dt:format pattern="d MMM yyyy"><dt:currentTime/></dt:format> you successfull
     </tr>
     <tr>
       <td><b>NHS Number</b></td>
-      <td><bean:write name="patient" property="nhsno" /></td>
+      <td><bean:write name="userMapping" property="nhsno" /></td>
     </tr>
     <tr>
       <td><b>Email Address</b></td>

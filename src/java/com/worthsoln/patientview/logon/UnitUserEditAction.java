@@ -25,7 +25,7 @@ public class UnitUserEditAction extends DatabaseAction {
         String unitcode = BeanUtils.getProperty(form, "unitcode");
         String role = BeanUtils.getProperty(form, "role");
         boolean firstlogon = "true".equals(BeanUtils.getProperty(form, "firstlogon"));
-        UnitAdmin unitAdmin = new UnitAdmin(username, password, name, email, emailverified, unitcode, role, firstlogon);
+        UnitAdmin unitAdmin = new UnitAdmin(username, password, name, email, emailverified, role, firstlogon);
         DatabaseDAO dao = getDao(request);
 
         dao.updateItem(new LogonDao(unitAdmin));

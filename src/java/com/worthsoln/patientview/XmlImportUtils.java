@@ -27,7 +27,7 @@ public class XmlImportUtils {
             String emailBody = createEmailBody(context, stacktrace, fileName);
 
             EmailUtils.sendEmail(context, context.getInitParameter("noreply.email"), toAddress,
-                    "[RPV] File upload failed: " + fileName, emailBody);
+                    "[RPV] File import failed: " + fileName, emailBody);
 
         } catch (Exception e1) {
             e1.printStackTrace();
@@ -38,25 +38,33 @@ public class XmlImportUtils {
         String newLine = System.getProperty("line.separator");
 
         String emailBody = "";
-        emailBody += "[This is an automated email from Renal PatientView - do not reply to this email]" + newLine;
+        emailBody += "[This is an automated email from Renal PatientView - do not reply to this email]";
         emailBody += newLine;
-        emailBody += "The file named: " + newLine;
+        emailBody += newLine + "The file named: ";
         emailBody += newLine;
-        emailBody += fileName + newLine;
+        emailBody += newLine + fileName;
         emailBody += newLine;
-        emailBody += "Has failed to load." + newLine;
+        emailBody += newLine + "Has failed to import.";
         emailBody += newLine;
-        emailBody += "Please check that it is well formed XML" + newLine;
-        emailBody += "Please carefully read the stack trace below, there is often a good hint in there as to why " +
-                "your file failed:" + newLine;
+        emailBody += newLine + "This means that the file has been received by RPV but there is something wrong with the file that prevents it being imported properly.";
+        emailBody += newLine + "It might be that there is an XML tag missing or an empty result value or something similar.";
         emailBody += newLine;
-        emailBody += "Stack Trace:" + newLine;
+        emailBody += newLine + "Before contacting the email address below please ensure that:";
+        emailBody += newLine + " - The file is not empty.";
+        emailBody += newLine + " - The file is well formed XML.";
+        emailBody += newLine + " - The file matches the RPV XML schema.";
+        emailBody += newLine + " - There are no missing values.";
+        emailBody += newLine + " - There are no empty tags in letters, medicines, results etc.";
         emailBody += newLine;
-        emailBody += stacktrace + newLine;
+        emailBody += newLine + "Please carefully read the stack trace below, there is often a good hint in there as to why your file failed:";
+        emailBody += newLine;
+        emailBody += newLine + "Stack Trace:";
+        emailBody += newLine;
+        emailBody += newLine + stacktrace;
         emailBody += newLine;
         emailBody += newLine;
         emailBody += newLine;
-        emailBody += "For further help, please contact " + context.getInitParameter("support.email") + newLine;
+        emailBody += newLine + "For further help, please contact " + context.getInitParameter("support.email");
         emailBody += newLine;
         return emailBody;
     }

@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -64,8 +65,8 @@ public class LogViewAction extends Action {
         return startdate;
     }
 
-    private static List getLogEntries(String nhsno, String user, String actor, String action, String unitcode,
-                                      Calendar startdate, Calendar enddate) throws HibernateException {
+    private List getLogEntries(String nhsno, String user, String actor, String action, String unitcode,
+                               Calendar startdate, Calendar enddate) throws HibernateException {
         List logEntries = new ArrayList();
         if (!((nhsno.equals("")) && (user.equals("")) && (actor.equals("")) && (action.equals("")))) {
             Session session = HibernateUtil.currentSession();

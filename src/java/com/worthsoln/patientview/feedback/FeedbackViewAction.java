@@ -32,5 +32,4 @@ public class FeedbackViewAction extends Action {
 
         return LogonUtils.logonChecks(mapping, request);
     }
-
 }

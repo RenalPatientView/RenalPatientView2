@@ -714,4 +714,8 @@ public class Unit {
     public void setHaemodialysisuniturl12(String haemodialysisuniturl12) {
         this.haemodialysisuniturl12 = haemodialysisuniturl12;
     }
+
+    public String getUnitNamePlusCode() {
+        return name + " - " + unitcode;
+    }
 }

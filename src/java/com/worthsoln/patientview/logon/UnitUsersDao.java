@@ -29,7 +29,8 @@ public class UnitUsersDao extends LogonDao {
 
         parameters.addAll(getRetrieveListWhereClauseParameters());
 
-        String sql = "SELECT * FROM user WHERE unitcode = ? AND ( role = ? OR role = ? )";
+        String sql = "SELECT user.* FROM user, usermapping WHERE user.username = usermapping.username " +
+                "AND usermapping.unitcode = ? AND ( user.role = ? OR user.role = ? )";
 
         ResultSetHandler rsHandler = new BeanListHandler(getTableMapper());
 

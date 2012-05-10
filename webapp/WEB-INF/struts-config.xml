@@ -212,7 +212,7 @@
       <form-property name="unitcode" type="java.lang.String"/>
       <form-property name="comment" type="java.lang.String"/>
       <form-property name="commentedited" type="java.lang.String"/>
-      <form-property name="annonymous" type="java.lang.String"/>
+      <form-property name="anonymous" type="java.lang.String"/>
       <form-property name="makepublic" type="java.lang.String"/>
     </form-bean>
     <form-bean name="aboutmeImageUploadForm" type="com.worthsoln.patientview.aboutme.AboutmeImageUploadForm"/>
@@ -622,7 +622,17 @@
             input="input"
             scope="request">
       <forward name="input" path="/control/patient_add_input.jsp"/>
+      <forward name="samenhsno" path="/control/patient_add_samenhsno.jsp"/>
       <forward name="success" path="/control/patient_add_confirm.jsp"/>
+    </action>
+
+    <action path="/control/patientAddToUnit"
+            type="com.worthsoln.patientview.logon.PatientAddToUnitAction"
+            name="patientForm"
+            input="input"
+            scope="request">
+      <forward name="input" path="/control/patient_add_samenhsno.jsp"/>
+      <forward name="success" path="/control/patient_add_to_unit_confirm.jsp"/>
     </action>
 
     <action path="/control/userDelete"
@@ -644,7 +654,7 @@
       <forward name="success" path="/control/patient_edit_input.jsp"/>
     </action>
 
-    <action path="/control/patientEdit"
+    <action path="/control/patientEditX"
             type="com.worthsoln.patientview.logon.PatientEditAction"
             name="patientForm"
             input="input"
@@ -682,6 +692,14 @@
             input="input"
             scope="request">
       <forward name="input" path="/control/unit_admin_add_input.jsp"/>
+      <forward name="existinguser" path="/control/unit_admin_add_same_username.jsp"/>
+      <forward name="success" path="/control/admin_add_confirm.jsp"/>
+    </action>
+
+    <action path="/control/unitAdminAddToUnit"
+            type="com.worthsoln.patientview.logon.UnitAdminAddToUnitAction"
+            name="patientForm"
+            scope="request">
       <forward name="success" path="/control/admin_add_confirm.jsp"/>
     </action>
 
@@ -950,6 +968,14 @@
             type="com.worthsoln.patientview.IndexAction" parameter="index">
       <forward name="success" path="/control/version.jsp"/>
     </action>
+
+    <action path="/control/xmlFileView"
+            type="com.worthsoln.patientview.XmlFileViewAction"
+            name="newsForm"
+            scope="request">
+        <forward name="success" path="/control/xml_file_view.jsp"/>
+      </action>
+
     <!--
         <action path="/control/sha"
           type="com.worthsoln.ShaAction" parameter="index">

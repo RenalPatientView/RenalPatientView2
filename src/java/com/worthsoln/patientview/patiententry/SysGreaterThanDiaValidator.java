@@ -30,7 +30,6 @@ public class SysGreaterThanDiaValidator {
             int intValue = Integer.decode(value);
             int intValue2 = Integer.decode(value2);
 
-
             try {
                 if (intValue2 <= intValue) {
                     errors.add(field.getKey(), Resources.getActionMessage(request, va, field));
@@ -44,6 +43,4 @@ public class SysGreaterThanDiaValidator {
 
         return true;
     }
-
-
 }

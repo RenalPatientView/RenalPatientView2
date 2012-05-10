@@ -15,10 +15,10 @@ public class ActionUtils {
 
     public static String retrieveStringPropertyValue(String propertyName, ActionForm form, HttpServletRequest request)
             throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-        String nhsno = BeanUtils.getProperty(form, propertyName);
-        if (nhsno == null) {
-            nhsno = (String) request.getAttribute(propertyName);
+        String propertyValue = BeanUtils.getProperty(form, propertyName);
+        if (propertyValue == null) {
+            propertyValue = (String) request.getAttribute(propertyName);
         }
-        return nhsno;
+        return propertyValue;
     }
 }

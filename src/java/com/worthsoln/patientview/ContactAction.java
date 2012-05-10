@@ -1,33 +1,47 @@
 package com.worthsoln.patientview;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import com.worthsoln.database.action.DatabaseAction;
+import com.worthsoln.patientview.contact.Contact;
+import com.worthsoln.patientview.logon.LogonUtils;
+import com.worthsoln.patientview.logon.UserMapping;
+import com.worthsoln.patientview.unit.Unit;
+import com.worthsoln.patientview.unit.UnitUtils;
+import com.worthsoln.patientview.user.UserUtils;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.DynaActionForm;
-import com.worthsoln.HibernateUtil;
-import com.worthsoln.database.action.DatabaseAction;
-import com.worthsoln.patientview.logon.LogonUtils;
-import com.worthsoln.patientview.unit.Unit;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactAction extends DatabaseAction {
 
     public ActionForward execute(
-        ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
+            ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        Patient patient = PatientUtils.retrievePatient(request, getDao(request));
+        User user = UserUtils.retrieveUser(request);
+        List<UserMapping> userMappings = UserUtils.retrieveUserMappings(user);
 
-        if (patient != null) {
-            request.setAttribute("patient", patient);
-            HibernateUtil.retrievePersistentObjectAndAddToRequestWithIdParameter(request, Unit.class,
-                patient.getCentreCode(), "unit");
-        } else if (!request.isUserInRole("patient")) {
-            return LogonUtils.logonChecks(mapping, request, "control");
+        List<Contact> contacts = new ArrayList();
+
+        for (UserMapping userMapping : userMappings) {
+            if (!UnitUtils.PATIENT_ENTERS_UNITCODE.equalsIgnoreCase(userMapping.getUnitcode())) {
+                Patient patient = PatientUtils.retrievePatient(userMapping.getNhsno(), userMapping.getUnitcode(), getDao(request));
+
+                Unit unit = UnitUtils.retrieveUnit(userMapping.getUnitcode());
+                Contact contact = new Contact(patient, unit, userMapping);
+
+                contacts.add(contact);
+            }
         }
 
+        request.setAttribute("contacts", contacts);
+
         DynaActionForm feedbackForm = (DynaActionForm) form;
-        feedbackForm.set("annonymous","true");
+        feedbackForm.set("anonymous", "true");
 
         return LogonUtils.logonChecks(mapping, request);
     }

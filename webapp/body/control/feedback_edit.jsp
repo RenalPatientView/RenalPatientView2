@@ -26,11 +26,11 @@
        <tr>
            <td class="tablecell"><bean:write name="feedback" property="formattedDatestamp" /></td>
            <td class="tablecell"><bean:write name="feedback" property="comment" /></td>
-         <logic:equal value="true" name="feedback" property="annonymous">
-             <td class="tablecell" colspan="3">Comment is annonymous</td>
+         <logic:equal value="true" name="feedback" property="anonymous">
+             <td class="tablecell" colspan="3">Comment is anonymous</td>
 
          </logic:equal>
-         <logic:notEqual value="true" name="feedback" property="annonymous">
+         <logic:notEqual value="true" name="feedback" property="anonymous">
              <td class="tablecell"><bean:write name="feedback" property="name" /></td>
              <td class="tablecell"><bean:write name="feedback" property="username" /></td>
              <td class="tablecell"><bean:write name="feedback" property="nhsno" /></td>

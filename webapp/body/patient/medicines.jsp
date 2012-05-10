@@ -30,12 +30,12 @@
 
   <logic:notEmpty name="medicines">
 
-    <logic:present name="patient">
+    <logic:present name="user">
 
         <bean:define id="previousunit" value=""/>
 
         <tr valign="top">
-          <td class="tableheader" colspan="4"><b>Medicines for <bean:write name="patient" property="forename"/> <bean:write name="patient" property="surname"/></b></td>
+          <td class="tableheader" colspan="4"><b>Medicines for <bean:write name="user" property="name"/></b></td>
         </tr>
 
 
@@ -49,7 +49,7 @@
 
         <logic:iterate name="medicines" id="medicine">
         <tr>
-          <td class="tablecell"><bean:write name="medicine" property="formattedStartDate"/></td>
+          <td class="tablecell"><bean:write name="medicine" property="formattedStartDate"/></td> 
           <td class="tablecell"><bean:write name="medicine" property="name"/></td>
           <td class="tablecell"><bean:write name="medicine" property="dose"/></td>
           <td class="tablecell"><bean:write name="medicine" property="shortname"/></td>

@@ -26,11 +26,11 @@
 
   <logic:notEmpty name="letters">
 
-    <logic:present name="patient">
+    <logic:present name="user">
 
       <tr valign="top">
         <td><img src="images/space.gif" width="15"  height="1"/></td>
-        <td class="tableheader" colspan="3"><b>Letters for <bean:write name="patient" property="forename"/> <bean:write name="patient" property="surname"/></b></td>
+        <td class="tableheader" colspan="3"><b>Letters for <bean:write name="user" property="name"/></b></td>
       </tr>
 
       <tr>
@@ -43,7 +43,7 @@
       <logic:iterate name="letters" id="letter">
         <tr>
           <td><img src="images/space.gif" width="15" height="1"/></td>
-          <td class="tablecell"><bean:write name="letter" property="formattedDate"/></td>
+           <td class="tablecell"><bean:write name="letter" property="formattedDate"/></td>
           <td class="tablecell"><bean:write name="letter" property="type"/></td>
           <td class="tablecell"><html:link action="/patient/letterDetail" paramName="letter" paramProperty="id" paramId="letterId">read letter...</html:link></td>
         </tr>

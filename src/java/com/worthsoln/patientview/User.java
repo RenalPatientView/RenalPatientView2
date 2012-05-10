@@ -10,8 +10,6 @@ public class User {
     private String name;
     private String email;
     private boolean emailverified;
-    private String nhsno;
-    private String unitcode;
     private boolean firstlogon;
     private boolean dummypatient;
     private Date lastlogon;
@@ -27,22 +25,6 @@ public class User {
         this.username = username;
     }
 
-/*
-    public User(String username, String password, String role, String email, boolean emailverified, String name, String nhsno, String unitcode,
-                boolean dummypatient) {
-        this.name = name;
-        this.email = email;
-        this.emailverified = emailverified;
-        setUnitcode(unitcode);
-        this.password = password;
-        this.role = role;
-        this.username = username;
-        this.nhsno = nhsno;
-        this.firstlogon = true;
-        this.dummypatient = dummypatient;
-    }
-
-*/
     public String getName() {
         return name;
     }
@@ -75,14 +57,6 @@ public class User {
         this.username = username;
     }
 
-    public String getNhsno() {
-        return nhsno;
-    }
-
-    public void setNhsno(String nhsno) {
-        this.nhsno = nhsno;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -97,14 +71,6 @@ public class User {
 
     public void setEmailverified(boolean emailverified) {
         this.emailverified = emailverified;
-    }
-
-    public String getUnitcode() {
-        return unitcode;
-    }
-
-    public void setUnitcode(String unitcode) {
-        this.unitcode = (unitcode != null) ? unitcode.toUpperCase() : unitcode;
     }
 
     public boolean isFirstlogon() {

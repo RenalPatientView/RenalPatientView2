@@ -68,10 +68,10 @@
 
   <logic:notEmpty name="results">
 
-    <logic:present name="patient">
+    <logic:present name="user">
 
       <tr valign="top">
-        <td class="tableheader" colspan="14"><b>Test results for <bean:write name="patient" property="forename"/> <bean:write name="patient" property="surname"/></b></td>
+        <td class="tableheader" colspan="14"><b>Test results for <bean:write name="user" property="name"/></b></td>
       </tr>
 
       <tr>

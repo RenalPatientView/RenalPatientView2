@@ -7,8 +7,13 @@ import com.worthsoln.database.DatabaseDAO;
 
 public class UktUtils {
 
-    public static void addUktStatusToRequest(String nhsno, DatabaseDAO dao, HttpServletRequest request)
+    public static void addUktStatusToRequest(String nhsno, HttpServletRequest request)
             throws HibernateException {
+        UktStatusForPatient readableStatus = retreiveUktStatus(nhsno);
+        request.setAttribute("uktstatus", readableStatus);
+    }
+
+    public static UktStatusForPatient retreiveUktStatus(String nhsno) {
         UktStatusForPatient readableStatus = null;
         UktStatus status = (UktStatus) HibernateUtil.getPersistentObject(UktStatus.class, nhsno);
         if (status != null) {
@@ -17,8 +22,7 @@ public class UktUtils {
         } else {
             readableStatus = new UktStatusForPatient("", "", "");
         }
-        request.setAttribute("uktstatus", readableStatus);
-
+        return readableStatus;
     }
 
     static String makeRawStatusReadable(String rawStaus) {

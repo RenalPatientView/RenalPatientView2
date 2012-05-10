@@ -4,6 +4,7 @@ import com.worthsoln.HibernateUtil;
 import com.worthsoln.actionutils.ActionUtils;
 import com.worthsoln.database.action.DatabaseAction;
 import com.worthsoln.patientview.User;
+import com.worthsoln.patientview.user.UserUtils;
 import com.worthsoln.patientview.logging.AddLog;
 import com.worthsoln.patientview.logging.LogEntry;
 import com.worthsoln.patientview.news.NewsUtils;
@@ -63,7 +64,7 @@ public class LoggedInAction extends DatabaseAction {
             tx.commit();
             HibernateUtil.closeSession();
             if ("patient".equals(user.getRole())) {
-                String nhsno = user.getNhsno();
+                String nhsno = UserUtils.retrieveUsersRealNhsnoBestGuess(username);
                 if (nhsno != null && !nhsno.equals("")) {
                     session = HibernateUtil.currentSession();
                     tx = session.beginTransaction();

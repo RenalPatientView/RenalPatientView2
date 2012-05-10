@@ -14,8 +14,10 @@ public class PatientNhsnoLogonDao extends LogonDao {
         return "nhsno";
     }
 
+/*  TODO : Delete this class
     public Object getIdParameter() {
         return getNhsnumber();
     }
+*/
 
 }

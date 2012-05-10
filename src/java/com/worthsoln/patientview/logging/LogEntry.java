@@ -103,7 +103,33 @@ public class LogEntry {
         return extrainfo;
     }
 
+    public String getExtrainfolessxmlfilename() {
+        String extrainfoReturn = extrainfo;
+        String xmlFilename =  getXmlfilename();
+        if(xmlFilename.length() != 0) {
+           extrainfoReturn = extrainfo.substring(xmlFilename.length());
+        }        
+        return extrainfoReturn;
+    }
+
     public void setExtrainfo(String extrainfo) {
         this.extrainfo = extrainfo;
     }
+
+    public String getXmlfilename() {
+        String filename = "";
+
+        if (extrainfo != null && !extrainfo.equals("")) {
+            String suffix = ".xml";
+            int endFilename = extrainfo.indexOf(suffix);
+
+            if (endFilename != -1) {
+                filename = extrainfo.substring(0, endFilename + suffix.length());
+            }
+        }
+
+        return filename;
+    }
+
+
 }

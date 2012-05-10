@@ -9,6 +9,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import com.worthsoln.HibernateUtil;
 import com.worthsoln.patientview.User;
+import com.worthsoln.patientview.user.NhsnoUnitcode;
 
 public class UnitUserEditInputAction extends Action {
 
@@ -16,9 +17,12 @@ public class UnitUserEditInputAction extends Action {
         ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         String username = BeanUtils.getProperty(form, "username");
+        String unitcode = BeanUtils.getProperty(form, "unitcode");
         User user = (User) HibernateUtil.getPersistentObject(User.class, username);
+        NhsnoUnitcode unitcodeThing = new NhsnoUnitcode("", unitcode);
 
         request.getSession().setAttribute("unitUser", user);
+        request.getSession().setAttribute("unitcodeThing", unitcodeThing);
 
         return LogonUtils.logonChecks(mapping, request);
     }

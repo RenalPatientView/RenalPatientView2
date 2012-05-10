@@ -25,9 +25,9 @@ public class UktPatientDao extends PatientDao {
         ArrayList parameters = new ArrayList();
         parameters.addAll(getRetrieveListWhereClauseParameters());
         String sql = "SELECT DISTINCT patient.nhsno, patient.surname, patient.forename, " +
-                "patient.dateofbirth, patient.postcode FROM patient, user " +
-                "WHERE patient.nhsno REGEXP '^[0-9]{10}$' " + "AND patient.nhsno = user.nhsno " +
-                "AND user.username NOT LIKE '%-GP' " + "AND user.dummypatient = 0";
+                " patient.dateofbirth, patient.postcode FROM patient, user, usermapping " +
+                " WHERE patient.nhsno REGEXP '^[0-9]{10}$' AND patient.nhsno = usermapping.nhsno AND user.username = usermapping.username " +
+                " AND usermapping.username NOT LIKE '%-GP' AND user.dummypatient = 0";
         ResultSetHandler rsHandler = new BeanListHandler(getTableMapper());
         return new DatabaseQuery(sql, parameters.toArray(), rsHandler);
     }

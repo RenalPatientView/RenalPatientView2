@@ -60,7 +60,7 @@
         <logic:present role="superadmin">
           <html:option value="">-- All units --</html:option>
         </logic:present>
-        <html:options collection="units" property="unitcode" labelProperty="name"/>
+        <html:options collection="units" property="unitcode" labelProperty="unitNamePlusCode"/>
       </html:select></td>
     </tr>
 
@@ -104,7 +104,17 @@
         <td class="tablecell"><bean:write name="logentry" property="action"/></td>
         <td class="tablecell"><bean:write name="logentry" property="actor"/></td>
         <td class="tablecell"><bean:write name="logentry" property="unitcode"/></td>
-        <td class="tablecell"><bean:write name="logentry" property="extrainfo"/></td>
+        <logic:notEqual value="patient data load" name="logentry" property="action" >
+          <logic:notEqual value="patient data fail" name="logentry" property="action">
+            <td class="tablecell"><bean:write name="logentry" property="extrainfo"/></td>
+          </logic:notEqual>
+        </logic:notEqual>
+        <logic:equal value="patient data load" name="logentry" property="action">
+          <td class="tablecell"><html:link action="/control/xmlFileView" paramId="xmlfile" paramName="logentry" paramProperty="xmlfilename"><bean:write name="logentry" property="extrainfo"/></html:link></td>
+        </logic:equal>
+        <logic:equal value="patient data fail" name="logentry" property="action">
+          <td class="tablecell"><html:link action="/control/xmlFileView" paramId="xmlfile" paramName="logentry" paramProperty="xmlfilename"><bean:write name="logentry" property="xmlfilename"/></html:link><bean:write name="logentry" property="extrainfolessxmlfilename"/></td>
+        </logic:equal>
       </tr>
     </logic:iterate>
 

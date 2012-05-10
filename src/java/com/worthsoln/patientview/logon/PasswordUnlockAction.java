@@ -11,6 +11,7 @@ import com.worthsoln.database.DatabaseDAO;
 import com.worthsoln.database.action.DatabaseAction;
 import com.worthsoln.patientview.logging.AddLog;
 import com.worthsoln.patientview.unit.Unit;
+import com.worthsoln.patientview.user.UserUtils;
 
 public class PasswordUnlockAction extends DatabaseAction {
 
@@ -26,7 +27,7 @@ public class PasswordUnlockAction extends DatabaseAction {
             patient.setAccountlocked(false);
             dao.updateItem(new LogonDao(patient));
             AddLog.addLog(request.getUserPrincipal().getName(), AddLog.PASSWORD_UNLOCKED, patient.getUsername(), "",
-                    patient.getUnitcode(), "");
+                    UserUtils.retrieveUsersRealUnitcodeBestGuess(username), "");
             mappingToFind = "success";
         }
         HibernateUtil.putListInRequest(Unit.class, "units", request);

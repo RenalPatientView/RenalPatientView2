@@ -1,15 +1,17 @@
 package com.worthsoln.patientview.logon;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import com.worthsoln.HibernateUtil;
+import com.worthsoln.patientview.User;
+import com.worthsoln.patientview.logging.AddLog;
+import com.worthsoln.patientview.user.UserUtils;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import com.worthsoln.HibernateUtil;
-import com.worthsoln.patientview.User;
-import com.worthsoln.patientview.logging.AddLog;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class PasswordChangeAction extends Action {
 
@@ -24,7 +26,8 @@ public class PasswordChangeAction extends Action {
             user.setPassword(LogonUtils.hashPassword(BeanUtils.getProperty(form, "newpassword")));
             user.setFirstlogon(false);
             HibernateUtil.saveOrUpdateWithTransaction(user);
-            AddLog.addLog(user.getUsername(), AddLog.PASSWORD_CHANGE, user.getUsername(), "", user.getUnitcode(), "");
+            AddLog.addLog(user.getUsername(), AddLog.PASSWORD_CHANGE, user.getUsername(), "",
+                    UserUtils.retrieveUsersRealUnitcodeBestGuess(username), "");
             return mapping.findForward("success");
         } else {
             request.setAttribute("error", "incorrect current password");

@@ -120,9 +120,10 @@
       <field property="name" depends="required">
         <msg key="name.required" name="required"/>
       </field>
-      <field property="nhsno" depends="required,mask">
+      <field property="nhsno" depends="required,mask,nhsnochecksum">
         <msg key="nhsno.required" name="required"/>
         <msg key="nhsno.mask" name="mask" />
+        <msg key="nhsno.checksum" name="nhsnochecksum" />
         <var>
           <var-name>mask</var-name>
           <var-value>^[a-zA-Z0-9]{10}$</var-value>
@@ -135,16 +136,17 @@
         <msg key="unitcode.required" name="required"/>
       </field>
     </form>
-    <form name="/control/patientEdit">
+    <form name="/control/patientEditX">
       <field property="username" depends="required">
         <msg key="username.required" name="required"/>
       </field>
       <field property="name" depends="required">
         <msg key="name.required" name="required"/>
       </field>
-      <field property="nhsno" depends="required,mask">
-        <msg key="nhsno.required" name="required"/>
-        <msg key="nhsno.mask" name="mask" />
+        <field property="nhsno" depends="required,mask,nhsnochecksum">
+          <msg key="nhsno.required" name="required"/>
+          <msg key="nhsno.mask" name="mask" />
+          <msg key="nhsno.checksum" name="nhsnochecksum" />
         <var>
           <var-name>mask</var-name>
           <var-value>^[a-zA-Z0-9]{10}$</var-value>

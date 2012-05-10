@@ -4,11 +4,11 @@ import java.util.Calendar;
 
 public class EmailVerification {
 
-    public int id;
-    public String username;
-    public String email;
-    public String verificationcode;
-    public Calendar expirydatestamp;
+    private int id;
+    private String username;
+    private String email;
+    private String verificationcode;
+    private Calendar expirydatestamp;
 
     public EmailVerification() {
     }

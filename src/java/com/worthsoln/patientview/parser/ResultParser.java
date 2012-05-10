@@ -122,7 +122,7 @@ public class ResultParser {
                 Node letterDetailNode = letterDetailNodes.item(j);
                 if ((letterDetailNode.getNodeType() == Node.ELEMENT_NODE) &&
                         (letterDetailNode.getNodeName().equals("letterdate"))) {
-                    letter.setDate(letterDetailNode.getFirstChild().getNodeValue());
+                    letter.setStringDate(letterDetailNode.getFirstChild().getNodeValue());
                 } else if ((letterDetailNode.getNodeType() == Node.ELEMENT_NODE) &&
                         (letterDetailNode.getNodeName().equals("lettertype"))) {
                     letter.setType(letterDetailNode.getFirstChild().getNodeValue());

@@ -40,7 +40,7 @@ public class ResultDao extends StorableItem {
     }
 
     public Object getIdParameter() {
-//        return result.getNhsno();
+//        return result.getUsername();
         return null;
     }
 
@@ -59,7 +59,7 @@ public class ResultDao extends StorableItem {
     public Collection getRetrieveListWhereClauseParameters() {
         ArrayList params = new ArrayList();
 
-//        params.add(result.getNhsno());
+//        params.add(result.getUsername());
 
         return params;
     }

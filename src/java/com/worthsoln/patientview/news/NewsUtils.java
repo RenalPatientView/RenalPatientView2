@@ -2,7 +2,9 @@ package com.worthsoln.patientview.news;
 
 import java.security.Principal;
 import java.util.List;
+import java.lang.reflect.Array;
 import javax.servlet.http.HttpServletRequest;
+
 import net.sf.hibernate.Hibernate;
 import net.sf.hibernate.HibernateException;
 import net.sf.hibernate.Session;
@@ -29,19 +31,42 @@ public class NewsUtils {
             if ("superadmin".equals(userType)) {
                 hsql = "from " + News.class.getName() + " as news";
             } else if ("unitadmin".equals(userType) || "unitstaff".equals(userType)) {
-                String unitcode = UnitUtils.usersUnitCode(request);
+                List<String> unitcodes = UnitUtils.usersUnitCodes(request);
+
+                String unitCodeClause = "";
+                params = new Object[unitcodes.size() + 4];
+                types = new Type[unitcodes.size() + 4];
+                unitCodeClause = createUnitCodeStringParamsAndTypes(params, types, unitcodes, unitCodeClause);
+
                 hsql = "from " + News.class.getName() +
-                        " as news where ((news.unitcode = ? or news.unitcode = ?) and (news.admin = ? or news.patient = ?)) " +
+                        " as news where (( " + unitCodeClause + " ) and (news.admin = ? or news.patient = ?)) " +
                         " or news.everyone = ?";
-                params = new Object[]{unitcode, "all", 1, 1, 1};
-                types = new Type[]{Hibernate.STRING, Hibernate.STRING, Hibernate.INTEGER, Hibernate.INTEGER,
-                        Hibernate.INTEGER};
+                params[unitcodes.size()] = "all";
+                params[unitcodes.size() + 1] = 1;
+                params[unitcodes.size() + 2] = 1;
+                params[unitcodes.size() + 3] = 1;
+
+                types[unitcodes.size()] = Hibernate.STRING;
+                types[unitcodes.size() + 1] = Hibernate.INTEGER;
+                types[unitcodes.size() + 2] = Hibernate.INTEGER;
+                types[unitcodes.size() + 3] = Hibernate.INTEGER;
             } else if ("patient".equals(userType)) {
-                String unitcode = UnitUtils.usersUnitCode(request);
+                List<String> unitcodes = UnitUtils.usersUnitCodes(request);
+
+                String unitCodeClause = "";
+                params = new Object[unitcodes.size() + 3];
+                types = new Type[unitcodes.size() + 3];
+                unitCodeClause = createUnitCodeStringParamsAndTypes(params, types, unitcodes, unitCodeClause);
+
                 hsql = "from " + News.class.getName() +
-                        " as news where ((news.unitcode = ? or news.unitcode = ?) and news.patient = ?) or news.everyone = ?";
-                params = new Object[]{unitcode, "all", 1, 1};
-                types = new Type[]{Hibernate.STRING, Hibernate.STRING, Hibernate.INTEGER, Hibernate.INTEGER};
+                        " as news where (( " + unitCodeClause + " ) and news.patient = ?) or news.everyone = ?";
+                params[unitcodes.size()] = "all";
+                params[unitcodes.size() + 1] = 1;
+                params[unitcodes.size() + 2] = 1;
+
+                types[unitcodes.size()] = Hibernate.STRING;
+                types[unitcodes.size() + 1] = Hibernate.INTEGER;
+                types[unitcodes.size() + 2] = Hibernate.INTEGER;
             }
         }
 
@@ -49,6 +74,16 @@ public class NewsUtils {
 
         List items = getNewsList(hsql, params, types);
         request.setAttribute("newses", items);
+    }
+
+    private static String createUnitCodeStringParamsAndTypes(Object[] params, Type[] types, List<String> unitcodes, String unitCodeClause) {
+        for (int i = 0; i < unitcodes.size(); i++) {
+            unitCodeClause += " news.unitcode = ? or ";
+            params[i] = unitcodes.get(i);
+            types[i] = Hibernate.STRING;
+        }
+        unitCodeClause += " news.unitcode = ? ";
+        return unitCodeClause;
     }
 
     public static void putAppropriateNewsForEditInRequest(HttpServletRequest request) throws HibernateException {
@@ -66,11 +101,27 @@ public class NewsUtils {
             if ("superadmin".equals(userType)) {
                 hsql = "from " + News.class.getName() + " as news";
             } else if ("unitadmin".equals(userType)) {
-                String unitcode = UnitUtils.usersUnitCode(request);
+
+                List<String> unitcodes = UnitUtils.usersUnitCodes(request);
+
+                String unitCodeClause = "";
+                params = new Object[unitcodes.size() + 2];
+                types = new Type[unitcodes.size() + 2];
+
+                for (int i = 0; i < unitcodes.size(); i++) {
+                    unitCodeClause += " news.unitcode = ? or ";
+                    params[i] = unitcodes.get(i);
+                    types[i] = Hibernate.STRING;
+                }
+                unitCodeClause = unitCodeClause.substring(0, unitCodeClause.length() - 3);
+
                 hsql = "from " + News.class.getName() +
-                        " as news where (news.unitcode = ? and (news.admin = ? or news.patient = ?)) ";
-                params = new Object[]{unitcode, 1, 1};
-                types = new Type[]{Hibernate.STRING, Hibernate.INTEGER, Hibernate.INTEGER};
+                        " as news where (" + unitCodeClause + " and (news.admin = ? or news.patient = ?)) ";
+                params[unitcodes.size()] = 1;
+                params[unitcodes.size() + 1] = 1;
+
+                types[unitcodes.size()] = Hibernate.INTEGER;
+                types[unitcodes.size() + 1] = Hibernate.INTEGER;
             }
         }
         List items = getNewsList(hsql, params, types);
@@ -89,8 +140,5 @@ public class NewsUtils {
             e.printStackTrace();
         }
         return items;
-
     }
-
-
 }

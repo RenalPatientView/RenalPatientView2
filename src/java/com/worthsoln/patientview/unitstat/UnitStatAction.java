@@ -62,6 +62,7 @@ public class UnitStatAction extends Action {
         statsHeadings.add(new StatsHeading(AddLog.PATIENT_VIEW));
         statsHeadings.add(new StatsHeading(AddLog.PATIENT_ADD));
         statsHeadings.add(new StatsHeading(AddLog.PATIENT_DATA_FOLLOWUP));
+        statsHeadings.add(new StatsHeading(AddLog.PATIENT_DATA_FAIL));
         statsHeadings.add(new StatsHeading("unique data load"));
         statsHeadings.add(new StatsHeading(AddLog.PASSWORD_CHANGE));
         statsHeadings.add(new StatsHeading(AddLog.PASSWORD_RESET));

@@ -22,6 +22,7 @@
         <logic:present role="superadmin,unitadmin">
           <html:form action="/control/unitUserEditInput">
             <html:hidden name="unitUser" property="username" />
+            <html:hidden name="unit" property="unitcode" />
             <td><html:submit value="Edit" styleClass="formbutton" /></td>
           </html:form>
         </logic:present>

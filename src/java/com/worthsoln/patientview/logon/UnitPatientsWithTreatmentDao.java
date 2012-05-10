@@ -1,10 +1,12 @@
 package com.worthsoln.patientview.logon;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import com.worthsoln.database.DatabaseQuery;
+import com.worthsoln.patientview.unit.UnitUtils;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
-import com.worthsoln.database.DatabaseQuery;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class UnitPatientsWithTreatmentDao extends LogonDao {
 
@@ -38,15 +40,18 @@ public class UnitPatientsWithTreatmentDao extends LogonDao {
         ArrayList parameters = new ArrayList();
         parameters.addAll(getRetrieveListWhereClauseParameters());
         String sql = "SELECT "
-                + "user.username,  user.password, user.name, user.email, user.nhsno, user.unitcode, "
+                + "user.username,  user.password, user.name, user.email, usermapping.nhsno, usermapping.unitcode, "
                 + "user.firstlogon, patient.treatment "
-                + "FROM user "
-                + "LEFT JOIN patient ON user.nhsno = patient.nhsno AND user.unitcode = patient.centreCode "
-                + "WHERE user.role = ? ";
+                + "FROM user, usermapping "
+                + "LEFT JOIN patient ON usermapping.nhsno = patient.nhsno AND usermapping.unitcode = patient.centreCode "
+                + "WHERE user.role = ? "
+                + "AND user.username = usermapping.username "
+                + "AND usermapping.unitcode <> '" + UnitUtils.PATIENT_ENTERS_UNITCODE + "' ";
+
         if (!"".equals(unitcode)) {
-            sql += "AND user.unitcode = ? ";
+            sql += "AND usermapping.unitcode = ? ";
         }
-        sql += "AND user.nhsno LIKE ? "
+        sql += "AND usermapping.nhsno LIKE ? "
                 + "AND user.name LIKE ? ";
         if (!showgps) {
             sql += "AND user.name NOT LIKE ? ";

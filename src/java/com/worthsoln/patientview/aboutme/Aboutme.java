@@ -17,7 +17,7 @@ public class Aboutme {
         this.talkabout = talkabout;
     }
 
-    public Aboutme(int id, String nhsno, String talkabout, String aboutme) {
+    public Aboutme(int id, String nhsno, String aboutme, String talkabout) {
         this.id = id;
         this.nhsno = nhsno;
         this.talkabout = talkabout;

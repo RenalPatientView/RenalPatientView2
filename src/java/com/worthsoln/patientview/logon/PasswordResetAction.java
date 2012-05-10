@@ -11,6 +11,7 @@ import com.worthsoln.database.DatabaseDAO;
 import com.worthsoln.database.action.DatabaseAction;
 import com.worthsoln.patientview.logging.AddLog;
 import com.worthsoln.patientview.unit.Unit;
+import com.worthsoln.patientview.user.UserUtils;
 
 public class PasswordResetAction extends DatabaseAction {
 
@@ -25,7 +26,7 @@ public class PasswordResetAction extends DatabaseAction {
             String password = LogonUtils.generateNewPassword();
             patient.setPassword(password);
             AddLog.addLog(request.getUserPrincipal().getName(), AddLog.PASSWORD_RESET, patient.getUsername(), "",
-                    patient.getUnitcode(), "");
+                    UserUtils.retrieveUsersRealUnitcodeBestGuess(username), "");
             PatientLogon hashedPatient = (PatientLogon) patient.clone();
             hashedPatient.setPassword(LogonUtils.hashPassword(hashedPatient.getPassword()));
             hashedPatient.setFirstlogon(true);

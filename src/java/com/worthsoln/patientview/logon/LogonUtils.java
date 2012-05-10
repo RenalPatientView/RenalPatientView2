@@ -22,6 +22,8 @@ public class LogonUtils {
 
     public static final String USER_ALREADY_EXISTS = "userAlreadyExists";
     public static final String NHSNO_ALREADY_EXISTS = "nhsnoAlreadyExists";
+    public static final String PATIENTS_WITH_SAME_NHSNO = "nhsnoAlreadyExists";
+    public static final String PATIENT_ALREADY_IN_UNIT = "patientAlreadyInUnit";
 
     public static ActionForward logonChecks(ActionMapping mapping, HttpServletRequest request, String defaultForward) {
         String resultForward = defaultForward;
@@ -95,8 +97,9 @@ public class LogonUtils {
         String logonRecorded = (String) session.getAttribute("logonRecorded");
         if (logonRecorded == null && request.getUserPrincipal() != null) {
             String userName = request.getUserPrincipal().getName();
-            String unitCode = UserUtils.retrieveUnitcode(userName);
-            AddLog.addLog(userName, AddLog.LOGGED_ON, userName, "", unitCode, "");
+            String unitCode = UserUtils.retrieveUsersRealUnitcodeBestGuess(userName);
+            String nhsno = UserUtils.retrieveUsersRealNhsnoBestGuess(userName);
+            AddLog.addLog(userName, AddLog.LOGGED_ON, userName, nhsno, unitCode, "");
             session.setAttribute("logonRecorded", "true");
         }
     }

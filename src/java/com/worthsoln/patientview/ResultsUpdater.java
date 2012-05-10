@@ -43,6 +43,7 @@ public class ResultsUpdater {
                 AddLog.addLog(AddLog.ACTOR_SYSTEM, AddLog.PATIENT_DATA_FOLLOWUP, "", parser.getPatient().getNhsno(),
                         parser.getPatient().getCentreCode(), xmlFile.getName());
             }
+            //xmlFile.delete();
         } catch (Exception e) {
             e.printStackTrace();
             AddLog.addLog(AddLog.ACTOR_SYSTEM, AddLog.PATIENT_DATA_FAIL, "",
@@ -50,6 +51,8 @@ public class ResultsUpdater {
                     xmlFile.getName() + " : " +XmlImportUtils.extractStringFromStackTrace(e));
             XmlImportUtils.sendEmailOfExpectionStackTraceToUnitAdmin(e, xmlFile, context);
         }
+        String directory = context.getInitParameter("xml.patient.data.load.directory");
+        xmlFile.renameTo(new File(directory, xmlFile.getName()));
     }
 
     private void removePatientFromSystem(ResultParser parser) {

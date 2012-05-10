@@ -5,6 +5,8 @@ import com.worthsoln.database.action.DatabaseAction;
 import com.worthsoln.patientview.logon.LogonUtils;
 import com.worthsoln.patientview.Patient;
 import com.worthsoln.patientview.PatientUtils;
+import com.worthsoln.patientview.User;
+import com.worthsoln.patientview.user.UserUtils;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -18,13 +20,11 @@ public class AboutmeDisplay extends DatabaseAction {
             ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
-        DatabaseDAO dao = getDao(request);
-        Patient patient = PatientUtils.retrievePatient(request, dao);
-        String nhsno = patient.getNhsno();
+        User user = UserUtils.retrieveUser(request);
 
-        Aboutme aboutme = AboutmeUtils.fetchAboutmeForPatient(nhsno);
+        Aboutme aboutme = AboutmeUtils.fetchAboutmeForPatient(user);
 
-        request.setAttribute("patient", patient);
+        request.setAttribute("user", user);
         
         if (null != aboutme) {
             request.setAttribute("aboutme", aboutme);

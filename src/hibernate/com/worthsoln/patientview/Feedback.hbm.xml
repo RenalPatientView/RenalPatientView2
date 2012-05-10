@@ -15,7 +15,7 @@
       <property name="datestamp"/>
       <property name="comment"/>
       <property name="commentedited"/>
-      <property name="annonymous"/>
+      <property name="anonymous"/>
       <property name="makepublic"/>
   </class>
 </hibernate-mapping>

@@ -4,6 +4,7 @@ import com.worthsoln.HibernateUtil;
 import com.worthsoln.database.action.DatabaseAction;
 import com.worthsoln.patientview.logging.AddLog;
 import com.worthsoln.patientview.logon.LogonUtils;
+import com.worthsoln.patientview.user.UserUtils;
 import net.sf.hibernate.Criteria;
 import net.sf.hibernate.Session;
 import net.sf.hibernate.expression.Expression;
@@ -52,7 +53,8 @@ public class ForgottenPasswordAction extends DatabaseAction {
                                 "Renal Patient View - Your password has been reset", message);
                         session.save(user);
 
-                        AddLog.addLog("system", AddLog.PASSWORD_RESET_FORGOTTEN, username, "", user.getUnitcode(), user.getEmail());
+                        AddLog.addLog("system", AddLog.PASSWORD_RESET_FORGOTTEN, username, "",
+                                UserUtils.retrieveUsersRealUnitcodeBestGuess(username), user.getEmail());
                     } else {
                         request.setAttribute("noMatch", true);
                         forwardMapping = "input";

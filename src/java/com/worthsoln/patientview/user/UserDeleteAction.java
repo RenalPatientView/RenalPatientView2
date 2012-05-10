@@ -27,11 +27,11 @@ public class UserDeleteAction extends DatabaseAction {
         if (patient != null) {
             // TODO check whether remove patient should only remove user or remove data too
             //if ("patient".equals(patient.getRole())) {
-            //   UserUtils.removePatientFromSystem(patient.getNhsno(), patient.getUnitcode());
+            //   UserUtils.removePatientFromSystem(patient.getUsername(), patient.getUnitcode());
             //}
             dao.deleteItem(new PatientLogonDao(patient));
             AddLog.addLog(request.getUserPrincipal().getName(), AddLog.PATIENT_DELETE, patient.getUsername(),
-                    patient.getNhsno(), patient.getUnitcode(), "");
+                    UserUtils.retrieveUsersRealNhsnoBestGuess(username), UserUtils.retrieveUsersRealUnitcodeBestGuess(username), "");
             mappingToFind = "success";
         } else {
             mappingToFind = "input";

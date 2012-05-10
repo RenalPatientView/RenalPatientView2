@@ -2,6 +2,7 @@ package com.worthsoln.patientview.medicine;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.sql.Timestamp;
 
 import com.worthsoln.patientview.utils.TimestampUtils;
 
@@ -17,7 +18,8 @@ public class Medicine {
     public Medicine() {
     }
 
-    public Medicine(String nhsno, String unitcode, Calendar startdate, String name, String dose) {
+    public Medicine(int id, String nhsno, String unitcode, Calendar startdate, String name, String dose) {
+        this.id = id;
         this.nhsno = nhsno;
         setUnitcode(unitcode);
         this.dose = dose;
@@ -31,6 +33,10 @@ public class Medicine {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setId(String id) {
+        this.id = Integer.decode(id);
     }
 
     public String getNhsno() {
@@ -63,6 +69,12 @@ public class Medicine {
 
     public void setStartdate(Calendar startdate) {
         this.startdate = startdate;
+    }
+
+    public void setStartdate(Timestamp datestamped) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(datestamped.getTime());
+        this.startdate = cal;
     }
 
     public void setStartdate(String dateString) {

@@ -42,23 +42,32 @@
         Map <String, String> patientKeyParams = new HashMap <String, String>();
         patientKeyParams.put("nhsno", patient.getNhsno() );
         patientKeyParams.put("unitcode", patient.getUnitcode());
+        patientKeyParams.put("username", patient.getUsername());
         request.setAttribute("patientKeyParams", patientKeyParams);
       %>
 
       <tr>
         <td class="tablecell">
           <logic:present role="superadmin,unitadmin">
+            <%--
             <html:link action="/control/patientEditInput" paramId="username" paramName="patient" paramProperty="username">
               <bean:write name="patient" property="name"/>
             </html:link>
+--%>
+              <html:link action="/control/patientEditInput" name="patientKeyParams">
+                <bean:write name="patient" property="name"/>
+              </html:link>
+
           </logic:present>
-          <logic:present role="unitstaff">
+
+            <logic:present role="unitstaff">
               <bean:write name="patient" property="name"/>
           </logic:present>
         </td>
         <td class="tablecell">
        <%--   <html:link action="/control/patientView" paramId="nhsno" paramName="patient" paramProperty="nhsno" >   --%>
-          <html:link action="/control/patientView" name="patientKeyParams" >
+       <%--   <html:link action="/control/patientView" name="patientKeyParams" > --%>
+        <html:link action="/control/patientView" paramId="username" paramName="patient" paramProperty="username" >
             <bean:write name="patient" property="nhsno"/>
           </html:link>
         </td>

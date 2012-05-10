@@ -25,15 +25,16 @@ public class UnitPatientsAllWithTreatmentDao extends LogonDao {
     public DatabaseQuery getRetrieveListQuery() {
         ArrayList parameters = new ArrayList();
         parameters.addAll(getRetrieveListWhereClauseParameters());
-        String sql = "SELECT "
-                + "user.username,  user.password, user.name, user.email, user.nhsno, user.unitcode, "
-                + "user.firstlogon, patient.treatment "
-                + "FROM user "
-                + "LEFT JOIN patient ON user.nhsno = patient.nhsno "
-                + "WHERE user.unitcode = ? "
-                + "AND user.role = ? "
-                + "AND user.name NOT LIKE ? "
-                + "ORDER BY user.name ASC ";
+        String sql = "SELECT " +
+                " user.username,  user.password, user.name, user.email, usermapping.nhsno, usermapping.unitcode, " +
+                " user.firstlogon, patient.treatment " +
+                " FROM user, usermapping " +
+                " LEFT JOIN patient ON usermapping.nhsno = patient.nhsno " +
+                " WHERE usermapping.username = user.username " +
+                " AND usermapping.unitcode = ? " +
+                " AND user.role = ? " +
+                " AND user.name NOT LIKE ? " +
+                " ORDER BY user.name ASC";
         ResultSetHandler rsHandler = new BeanListHandler(getTableMapper());
         return new DatabaseQuery(sql, parameters.toArray(), rsHandler);
     }

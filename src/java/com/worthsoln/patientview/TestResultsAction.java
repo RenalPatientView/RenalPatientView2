@@ -1,14 +1,21 @@
 package com.worthsoln.patientview;
 
+import com.worthsoln.HibernateUtil;
 import com.worthsoln.actionutils.ActionUtils;
 import com.worthsoln.database.DatabaseDAO;
 import com.worthsoln.database.action.DatabaseAction;
+import com.worthsoln.patientview.comment.Comment;
 import com.worthsoln.patientview.logon.LogonUtils;
+import com.worthsoln.patientview.logon.UserMapping;
 import com.worthsoln.patientview.resultheading.ResultHeading;
 import com.worthsoln.patientview.resultheading.ResultHeadingDao;
-import com.worthsoln.patientview.unit.Unit;
-import com.worthsoln.patientview.comment.Comment;
-import com.worthsoln.HibernateUtil;
+import com.worthsoln.patientview.unit.UnitUtils;
+import com.worthsoln.patientview.user.UserUtils;
+import net.sf.hibernate.Hibernate;
+import net.sf.hibernate.HibernateException;
+import net.sf.hibernate.Session;
+import net.sf.hibernate.Transaction;
+import net.sf.hibernate.type.Type;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -18,24 +25,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
-import net.sf.hibernate.Session;
-import net.sf.hibernate.Transaction;
-import net.sf.hibernate.Hibernate;
-import net.sf.hibernate.HibernateException;
-import net.sf.hibernate.type.Type;
-
 public class TestResultsAction extends DatabaseAction {
 
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
                                  HttpServletResponse response)
             throws Exception {
         DatabaseDAO dao = getDao(request);
-        Patient patient = PatientUtils.retrievePatient(request, dao);
-        if (patient != null) {
-            request.setAttribute("patient", patient);
+        User user = UserUtils.retrieveUser(request);
+        if (user != null) {
+            request.setAttribute("user", user);
 
             Panel currentPanel = managePanels(request, dao);
-            List<TestResultWithUnitShortname> results = extractTestResultsWithComments(dao, currentPanel, patient.getNhsno());
+            List<TestResultWithUnitShortname> results = extractTestResultsWithComments(dao, currentPanel, user);
             Collection<Result> resultsInRecords = turnResultsListIntoRecords(results);
             managePages(request, resultsInRecords);
             request.setAttribute("results", resultsInRecords);
@@ -50,23 +51,34 @@ public class TestResultsAction extends DatabaseAction {
     }
 
     private List<TestResultWithUnitShortname> extractTestResultsWithComments(DatabaseDAO dao,
-                                                                             Panel currentPanel, String nhsno) {
-        TestResultForPatientDao resultDao = new TestResultForPatientDao(nhsno, currentPanel);
+                                                                             Panel currentPanel, User user) {
+        TestResultForPatientDao resultDao = new TestResultForPatientDao(user.getUsername(), currentPanel);
         List<TestResultWithUnitShortname> results = dao.retrieveList(resultDao);
 
+        List userMappings = UserUtils.retrieveUserMappings(user);
+
+        for (Object obj : userMappings) {
+            UserMapping userMapping = (UserMapping) obj;
+            addCommentsForNhsno(userMapping.getNhsno(), currentPanel, results);
+        }
+
+        return results;
+    }
+
+    private void addCommentsForNhsno(String nhsno, Panel currentPanel, List<TestResultWithUnitShortname> results) {
         List comments = null;
 
         try {
             Session session = HibernateUtil.currentSession();
             Transaction tx = session.beginTransaction();
 
-            String thisPanel =  (currentPanel == null) ? "1" : Integer.toString(currentPanel.getPanel());
+            String thisPanel = (currentPanel == null) ? "1" : Integer.toString(currentPanel.getPanel());
 
 
             comments = session.find("from " + Comment.class.getName() + " as comment," + ResultHeading.class.getName() +
                     " as result_heading where comment.nhsno = ? " +
                     " and result_heading.headingcode = 'resultcomment' and result_heading.panel = ?",
-                                 new Object[] {nhsno, thisPanel}, new Type[] {Hibernate.STRING, Hibernate.STRING});
+                    new Object[]{nhsno, thisPanel}, new Type[]{Hibernate.STRING, Hibernate.STRING});
             tx.commit();
             HibernateUtil.closeSession();
         } catch (HibernateException e) {
@@ -76,11 +88,9 @@ public class TestResultsAction extends DatabaseAction {
         for (Object commentObj : comments) {
             Object[] commentArray = (Object[]) commentObj;
             Comment comment = (Comment) commentArray[0];
-            results.add(new TestResultWithUnitShortname(nhsno, "PATIENT", comment.getDatestamp(),
-                                                      "resultcomment", Integer.toString(comment.getId()),"PATIENT"));
+            results.add(new TestResultWithUnitShortname(nhsno, UnitUtils.PATIENT_ENTERS_UNITCODE, comment.getDatestamp(),
+                    "resultcomment", Integer.toString(comment.getId()), UnitUtils.PATIENT_ENTERS_UNITCODE));
         }
-
-        return results;
     }
 
     private Panel managePanels(HttpServletRequest request, DatabaseDAO dao) {

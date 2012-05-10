@@ -16,6 +16,10 @@
   <p><font color="red">The NHS number <b><bean:write name="nhsnoAlreadyExists" /></b> you entered is already allocated to another user. <br/> You may override this using the checkbox below. But please use this with care!!</font></p>
 </logic:present>
 
+<logic:present name="patientAlreadyInUnit" >
+  <p><font color="red">The patient with NHS number <b><bean:write name="patientAlreadyInUnit" /></b> already exists in your unit. You can't add another patient with the same NHS no to your unit. Please check the NHS number.</font></p>
+</logic:present>
+
 <html:form action="/control/patientAdd">
 <table cellpadding="3" >
     <tr>

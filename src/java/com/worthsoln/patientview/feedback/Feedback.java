@@ -14,7 +14,7 @@ public class Feedback {
     private Calendar datestamped;
     private String comment;
     private String commentedited;
-    private boolean annonymous;
+    private boolean anonymous;
     private boolean makepublic;
 
     public Feedback() {
@@ -24,14 +24,14 @@ public class Feedback {
         this.id = id;
     }
 
-    public Feedback(String username, String name, String nhsno, String unitcode, String comment, boolean annonymous) {
+    public Feedback(String username, String name, String nhsno, String unitcode, String comment, boolean anonymous) {
         setUsername(username);
         setName(name);
         setNhsno(nhsno);
         setUnitcode(unitcode);
         setComment(comment);
         setCommentedited(comment);
-        setAnnonymous(annonymous);
+        setAnonymous(anonymous);
         this.datestamped = Calendar.getInstance();
         setMakepublic(false);
     }
@@ -100,12 +100,12 @@ public class Feedback {
         this.commentedited = commentedited;
     }
 
-    public boolean isAnnonymous() {
-        return annonymous;
+    public boolean isAnonymous() {
+        return anonymous;
     }
 
-    public void setAnnonymous(boolean annonymous) {
-        this.annonymous = annonymous;
+    public void setAnonymous(boolean anonymous) {
+        this.anonymous = anonymous;
     }
 
     public boolean isMakepublic() {
@@ -124,5 +124,5 @@ public class Feedback {
         } else {
             return dateTimeFormat.format(datestamped.getTime());
         }
-    }    
+    }
 }

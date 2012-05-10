@@ -14,9 +14,8 @@
 
     <logic:notEmpty name="aboutme">
         <html:hidden name="aboutme" property="id"/>
+        <html:hidden name="aboutme" property="nhsno"/>
     </logic:notEmpty>
-
-    <html:hidden name="patient" property="nhsno" />
 
     <tr>
         <td align="center" >
@@ -69,7 +68,7 @@
     <tr>
         <td >&nbsp;</td>
     </tr>
-
+<%--
     <tr>
         <td >
             <p><b>Upload an Image</b><br />
@@ -79,7 +78,7 @@
 
     <html:form action="/patient/aboutmeImageUpload" method="post" enctype="multipart/form-data">
     <tr>
-        <html:hidden name="patient" property="nhsno"  />
+        <html:hidden name="user" property="username"  />
         <td align="left">
              <html:file property="aboutmeImageFile"/>
 </td>
@@ -90,7 +89,7 @@
         </td>
     </tr>
 </html:form>
-
+--%>
 </table>
 
 

@@ -25,6 +25,13 @@ public class AddLog {
 
     public static void addLog(String actor, String action, String user, String nhsno, String unitcode,
                               String extrainfo) {
+        actor = (actor == null) ? "" : actor;
+        action = (action == null) ? "" : action;
+        user = (user == null) ? "" : user;
+        nhsno = (nhsno == null) ? "" : nhsno;
+        unitcode = (unitcode == null) ? "" : unitcode;
+        extrainfo = (extrainfo == null) ? "" : extrainfo;
+
         LogEntry entry = new LogEntry(nhsno, user, action, actor, unitcode, extrainfo);
         try {
             HibernateUtil.saveOrUpdateWithTransaction(entry);

@@ -51,7 +51,7 @@ public class EmailVerificationAction extends DatabaseAction {
                         tx1.commit();
 
                         AddLog.addLog(emailVerification.getUsername(), AddLog.EMAIL_VERIFY, emailVerification.getUsername(),
-                                user.getNhsno(), user.getUnitcode(), emailVerification.getEmail());
+                                UserUtils.retrieveUsersRealNhsnoBestGuess(emailVerification.getUsername()), UserUtils.retrieveUsersRealUnitcodeBestGuess(emailVerification.getUsername()), emailVerification.getEmail());
 
                         mappingToFind = "success";
                     }

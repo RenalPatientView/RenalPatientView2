@@ -14,7 +14,7 @@
 </logic:present>
 
 <table cellpadding="3">
-  <html:form action="/control/patientEdit">
+  <html:form action="/control/patientEditX">
     <tr>
       <td><img src="images/space.gif" height="10"/></td>
     </tr>
@@ -26,9 +26,12 @@
       <td><b>Name</b></td>
       <td><html:text name="patient" property="name"/></td>
     </tr>
+
+
     <tr>
       <td><b>NHS Number</b></td>
-      <td><html:text name="patient" property="nhsno"/></td>
+      <td><html:text property="nhsno" name="nhsnot"/></td>
+       <html:hidden property="unitcode" name="nhsnot"/>
       <logic:present name="nhsnoAlreadyExists">
         <td><b>Override Duplicate</b></td>
         <td><html:checkbox property="overrideDuplicateNhsno"/></td>
@@ -37,6 +40,7 @@
         <html:hidden property="overrideDuplicateNhsno" value=""/>
       </logic:notPresent>
     </tr>
+
     <tr>
       <td><b>Email Address</b></td>
       <td><html:text name="patient" property="email"/></td>
@@ -45,7 +49,6 @@
       <td><b>Dummy Patient</b></td>
       <td><html:checkbox name="patient" property="dummypatient" value="true"/></td>
     </tr>
-    <html:hidden name="patient" property="unitcode"/>
     <html:hidden name="patient" property="emailverified"/>
     <html:hidden name="patient" property="firstlogon"/>
     <html:hidden name="patient" property="password"/>

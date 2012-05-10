@@ -29,12 +29,13 @@ public class FeedbackFormAction extends DatabaseAction {
             User user = (User) HibernateUtil.getPersistentObject(User.class, username);
 
             String unitcode = BeanUtils.getProperty(form, "unitcode");
+            String nhsno = BeanUtils.getProperty(form, "nhsno");
             String comment = BeanUtils.getProperty(form, "comment");
-            String annonymous = BeanUtils.getProperty(form, "annonymous");
-            String nhsno = (null != user.getNhsno()) ? user.getNhsno() : "";
-            boolean isAnnonymous = "on".equals(annonymous);
+            String anonymous = BeanUtils.getProperty(form, "anonymous");
+            //String nhsno = (null != user.getNhsno()) ? user.getNhsno() : "";
+            boolean isAnonymous = "on".equals(anonymous);
 
-            Feedback feedback = new Feedback(user.getUsername(), user.getName(), nhsno, unitcode, comment, isAnnonymous);
+            Feedback feedback = new Feedback(user.getUsername(), user.getName(), nhsno, unitcode, comment, isAnonymous);
 
             HibernateUtil.saveOrUpdateWithTransaction(feedback);
 
@@ -51,7 +52,7 @@ public class FeedbackFormAction extends DatabaseAction {
             }
 
             DynaActionForm feedbackForm = (DynaActionForm) form;
-            feedbackForm.set("annonymous", "true");
+            feedbackForm.set("anonymous", "true");
             feedbackForm.set("comment", "");
 
             request.setAttribute("commentSent", true);
@@ -76,7 +77,7 @@ public class FeedbackFormAction extends DatabaseAction {
         emailBody += newLine;
         emailBody += feedback.getComment() + newLine;
         emailBody += newLine;
-        if (feedback.isAnnonymous()) {
+        if (feedback.isAnonymous()) {
             emailBody += "The feedback is anonymous." + newLine;
             emailBody += newLine;
         } else {

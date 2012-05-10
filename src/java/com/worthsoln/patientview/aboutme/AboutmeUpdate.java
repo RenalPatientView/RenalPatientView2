@@ -1,11 +1,12 @@
 package com.worthsoln.patientview.aboutme;
 
 import com.worthsoln.HibernateUtil;
-import com.worthsoln.database.DatabaseDAO;
 import com.worthsoln.database.action.DatabaseAction;
-import com.worthsoln.patientview.Patient;
-import com.worthsoln.patientview.PatientUtils;
+import com.worthsoln.patientview.User;
 import com.worthsoln.patientview.logon.LogonUtils;
+import com.worthsoln.patientview.logon.UserMapping;
+import com.worthsoln.patientview.user.UserUtils;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -20,12 +21,31 @@ public class AboutmeUpdate extends DatabaseAction {
             ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
-        DatabaseDAO dao = getDao(request);
-        Patient patient = PatientUtils.retrievePatient(request, dao);
+        User user = UserUtils.retrieveUser(request);
 
-        HibernateUtil.extractDataFromFormMakeObjectAndUpdate(new Aboutme(), form, request, "aboutme");
+        String id = BeanUtils.getProperty(form, "id");
+        String aboutme = BeanUtils.getProperty(form, "aboutme");
+        String talkabout = BeanUtils.getProperty(form, "talkabout");
+        String nhsno = BeanUtils.getProperty(form, "nhsno");
 
-        request.setAttribute("patient", patient);
+        Aboutme aboutMe = null;
+
+        if (id == null || "".equals(id)) {
+            UserMapping userMapping = UserUtils.retrieveUserMappingsPatientEntered(user);
+            nhsno = userMapping.getNhsno();
+
+            aboutMe = new Aboutme(nhsno, aboutme, talkabout);
+        } else {
+            int idInt = Integer.decode(id);
+
+            aboutMe = new Aboutme(idInt, nhsno, aboutme, talkabout);
+        }
+
+
+        HibernateUtil.saveOrUpdateWithTransaction(aboutMe);
+
+        request.setAttribute("user", user);
+        request.setAttribute("aboutme", aboutMe);
 
         return LogonUtils.logonChecks(mapping, request, "success");
     }

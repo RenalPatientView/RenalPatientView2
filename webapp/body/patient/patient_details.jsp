@@ -6,19 +6,34 @@
 
 <p class="header">Patient Details</p>
 
-<table width="440" border="0" cellspacing="1" cellpadding="3">
-
-<logic:notPresent name="patient">
-  <tr valign="top">
-    <td class="tableheader" colspan="2">Patient details not uploaded</td>
-  </tr>
+<logic:notPresent name="patientDetails">
+  <table width="440" border="0" cellspacing="1" cellpadding="3">
+    <tr valign="top">
+      <td class="tableheader" colspan="2">Patient details not uploaded</td>
+    </tr>
+  </table>
 </logic:notPresent>
 
-<logic:present name="patient">
+<logic:present name="patientDetails">
+
+<logic:empty name="patientDetails">
+  <table width="440" border="0" cellspacing="1" cellpadding="3">
+    <tr valign="top">
+      <td class="tableheader" colspan="2">Patient details not uploaded</td>
+    </tr>
+  </table>
+</logic:empty>
+
+<logic:notEmpty name="patientDetails">
+
+<logic:iterate id="patientDetail" name="patientDetails">
+
+<table width="440" border="0" cellspacing="1" cellpadding="3">
+
 <tr valign="top">
   <td class="tableheader" colspan="2">Patient Details for
-    <bean:write name="patient" property="forename"/>
-    <bean:write name="patient" property="surname"/>
+    <bean:write name="patientDetail" property="patient.forename"/>
+    <bean:write name="patientDetail" property="patient.surname"/>, uploaded by unit: <bean:write name="patientDetail" property="unit.shortname"/>      
   </td>
 </tr>
 
@@ -26,7 +41,7 @@
   <td class="tablecellbold">Last Name</td>
 
   <td class="tablecell">
-    <bean:write name="patient" property="surname"/>
+    <bean:write name="patientDetail" property="patient.surname"/>
   </td>
 </tr>
 
@@ -34,7 +49,7 @@
   <td class="tablecellbold">First Name</td>
 
   <td class="tablecell">
-    <bean:write name="patient" property="forename"/>
+    <bean:write name="patientDetail" property="patient.forename"/>
   </td>
 </tr>
 
@@ -42,7 +57,7 @@
   <td class="tablecellbold">Date of Birth (yyyy-mm-dd)</td>
 
   <td class="tablecell">
-    <bean:write name="patient" property="dateofbirth"/>
+    <bean:write name="patientDetail" property="patient.dateofbirth"/>
   </td>
 </tr>
 
@@ -50,7 +65,7 @@
   <td class="tablecellbold">NHS Number</td>
 
   <td class="tablecell">
-    <bean:write name="patient" property="nhsno"/>
+    <bean:write name="patientDetail" property="patient.nhsno"/>
   </td>
 </tr>
 
@@ -58,7 +73,7 @@
   <td class="tablecellbold">Hospital Number</td>
 
   <td class="tablecell">
-    <bean:write name="patient" property="hospitalnumber"/>
+    <bean:write name="patientDetail" property="patient.hospitalnumber"/>
   </td>
 </tr>
 
@@ -66,11 +81,11 @@
   <td class="tablecellbold">Address</td>
 
   <td class="tablecell">
-    <bean:write name="patient" property="address1"/>
+    <bean:write name="patientDetail" property="patient.address1"/>
     <br/>
-    <bean:write name="patient" property="address2"/>
+    <bean:write name="patientDetail" property="patient.address2"/>
     <br/>
-    <bean:write name="patient" property="address3"/>
+    <bean:write name="patientDetail" property="patient.address3"/>
   </td>
 </tr>
 
@@ -78,70 +93,59 @@
   <td class="tablecellbold">Postcode</td>
 
   <td class="tablecell">
-    <bean:write name="patient" property="postcode"/>
+    <bean:write name="patientDetail" property="patient.postcode"/>
   </td>
 </tr>
 
-<logic:notEmpty name="patient" property="telephone1">
+<logic:notEmpty name="patientDetail" property="patient.telephone1">
   <tr valign="top">
     <td class="tablecellbold">Telephone 1</td>
 
     <td class="tablecell">
-      <bean:write name="patient" property="telephone1"/>
+      <bean:write name="patientDetail" property="patient.telephone1"/>
     </td>
   </tr>
 </logic:notEmpty>
 
-<logic:notEmpty name="patient" property="telephone2">
+<logic:notEmpty name="patientDetail" property="patient.telephone2">
   <tr valign="top">
     <td class="tablecellbold">Telephone 2</td>
 
     <td class="tablecell">
-      <bean:write name="patient" property="telephone2"/>
+      <bean:write name="patientDetail" property="patient.telephone2"/>
     </td>
   </tr>
 </logic:notEmpty>
 
-<logic:notEmpty name="patient" property="mobile">
+<logic:notEmpty name="patientDetail" property="patient.mobile">
   <tr valign="top">
     <td class="tablecellbold">Mobile</td>
 
     <td class="tablecell">
-      <bean:write name="patient" property="mobile"/>
+      <bean:write name="patientDetail" property="patient.mobile"/>
     </td>
   </tr>
 </logic:notEmpty>
-<%--
-            <tr valign="top">
-              <td class="tablecellbold">Email Address</td>
 
-              <td class="tablecell"><bean:write name="patient" property="email"/></td>
-            </tr>
---%>
+<logic:notEmpty name="patientDetail" property="edtaDiagnosis">
 <tr valign="top">
   <td class="tablecellbold">Diagnosis</td>
-  <logic:present name="edtaCode">
     <td class="tablecell">
-      <bean:write name="edtaCode" property="description"/>
-    </td>
-  </logic:present>
-  <logic:notPresent name="edtaCode">
-    <td class="tablecell">&nbsp;</td>
-  </logic:notPresent>
+      <bean:write name="patientDetail" property="edtaDiagnosis.description"/>
+    </td>   
 </tr>
+</logic:notEmpty>
 
-<tr valign="top">
+<logic:notEmpty name="patientDetail" property="edtaTreatment">
+<tr align="top">
   <td class="tablecellbold">Treatment</td>
-
-  <logic:present name="treatmentCode">
     <td class="tablecell">
-      <bean:write name="treatmentCode" property="description"/>
+      <bean:write name="patientDetail" property="edtaTreatment.description"/>
     </td>
-  </logic:present>
-  <logic:notPresent name="treatmentCode">
-    <td class="tablecell">&nbsp;</td>
-  </logic:notPresent>
 </tr>
+</logic:notEmpty>
+
+
 
 <tr valign="top">
   <td class="tablecellbold">Transplant Status</td>
@@ -151,21 +155,21 @@
 
 
 
-      <logic:equal value="" name="uktstatus" property="uktkidney">
+      <logic:equal value="" name="patientDetail" property="uktStatus.uktkidney">
         <bean:message key="ukt.status.none"/>
       </logic:equal>
 
 
-        <logic:notEqual value="" name="uktstatus" property="uktkidney">
+        <logic:notEqual value="" name="patientDetail" property="uktStatus.uktkidney">
           Kidney :
-          <bean:write name="uktstatus" property="uktkidney"/>
+          <bean:write name="patientDetail" property="uktStatus.uktkidney"/>
         </logic:notEqual>
 
-        <logic:notEqual value="" name="uktstatus" property="uktpancreas">
-          <logic:notEqual value="Not on list" name="uktstatus" property="uktpancreas">
+        <logic:notEqual value="" name="patientDetail" property="uktStatus.uktpancreas">
+          <logic:notEqual value="Not on list" name="patientDetail" property="uktStatus.uktpancreas">
             <br/>
              Pancreas :
-             <bean:write name="uktstatus" property="uktpancreas"/>
+             <bean:write name="patientDetail" property="uktStatus.uktpancreas"/>
           </logic:notEqual>
         </logic:notEqual>
 
@@ -179,14 +183,21 @@
   <td class="tablecellbold">Other Conditions</td>
 
   <td class="tablecell">
-    <logic:present name="otherDiagnoses">
-      <logic:iterate id="otherDiagnosis" name="otherDiagnoses">
+      <logic:iterate id="otherDiagnosis" name="patientDetail" property="otherDiagnoses">
         <bean:write name="otherDiagnosis" property="diagnosis"/>
         <br/>
       </logic:iterate>
-    </logic:present>
   </td>
 </tr>
-</logic:present>
 
 </table>
+<br /><br />
+
+</logic:iterate>
+
+</logic:notEmpty>
+
+</logic:present>
+
+
+
