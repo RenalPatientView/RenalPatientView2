@@ -107,6 +107,8 @@
     <html:hidden name="patient" property="username"/>
     <tr align="left">
       <td><html:submit value="Delete Patient" styleClass="formbutton"/></td>
+        <html:hidden property="unitcode" name="nhsnot"/>
+        <html:hidden property="nhsno" name="nhsnot"/>
     </tr>
   </html:form>
 

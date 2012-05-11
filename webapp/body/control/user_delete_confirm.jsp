@@ -24,12 +24,10 @@ On <dt:format pattern="d MMM yyyy"><dt:currentTime/></dt:format> you successfull
       <td><b>NHS Number</b></td>
       <td><bean:write name="patient" property="nhsno" /></td>
     </tr>
-    <tr>
-      <td><b>Email Address</b></td>
-      <td><bean:write name="patient" property="email" /></td>
-    </tr>
-    <tr>
+   <tr>
       <td>&nbsp;</td>
     </tr>
  </table>
+
+From the unit called <b><bean:write name="unit" property="shortname" /></b>
 

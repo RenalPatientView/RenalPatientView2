@@ -37,6 +37,10 @@ public class UserUtils {
     }
 
     public static List<UserMapping> retrieveUserMappings(User user) {
+        return retrieveUserMappings(user.getUsername());
+    }
+
+    public static List<UserMapping> retrieveUserMappings(String username) {
         List userMappings = new ArrayList();
         try {
             Session session = HibernateUtil.currentSession();
@@ -45,7 +49,45 @@ public class UserUtils {
 
             userMappings = session.find("from " + UserMapping.class.getName() + " as usermapping " +
                     " where usermapping.username = ? ",
-                    new Object[]{user.getUsername()}, new Type[]{Hibernate.STRING});
+                    new Object[]{username}, new Type[]{Hibernate.STRING});
+            tx.commit();
+            HibernateUtil.closeSession();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        }
+
+        return userMappings;
+    }
+
+    public static List<UserMapping> retrieveUserMappingsExcludeUnitcode(String username, String unitcode) {
+        List userMappings = new ArrayList();
+        try {
+            Session session = HibernateUtil.currentSession();
+            Transaction tx = session.beginTransaction();
+
+
+            userMappings = session.find("from " + UserMapping.class.getName() + " as usermapping " +
+                    " where usermapping.username = ? and usermapping.unitcode != ?",
+                    new Object[]{username, unitcode}, new Type[]{Hibernate.STRING, Hibernate.STRING});
+            tx.commit();
+            HibernateUtil.closeSession();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        }
+
+        return userMappings;
+    }
+
+    public static List<UserMapping> retrieveUserMappings(String username, String unitcode) {
+        List userMappings = new ArrayList();
+        try {
+            Session session = HibernateUtil.currentSession();
+            Transaction tx = session.beginTransaction();
+
+
+            userMappings = session.find("from " + UserMapping.class.getName() + " as usermapping " +
+                    " where usermapping.username = ? and usermapping.unitcode = ?",
+                    new Object[]{username, unitcode}, new Type[]{Hibernate.STRING, Hibernate.STRING});
             tx.commit();
             HibernateUtil.closeSession();
         } catch (HibernateException e) {

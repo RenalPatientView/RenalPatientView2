@@ -4,8 +4,16 @@
 
 <html:xhtml/>
 
-<p class="header">Patient Details</p>
+<div align="center">
 
+   <table width="440">
+     <tr>
+       <td><p class="header">Patient Details</p></td>
+     </tr>
+   </table>
+
+   <br />
+   
 <logic:notPresent name="patientDetails">
   <table width="440" border="0" cellspacing="1" cellpadding="3">
     <tr valign="top">
@@ -199,5 +207,6 @@
 
 </logic:present>
 
+</div>
 
 
