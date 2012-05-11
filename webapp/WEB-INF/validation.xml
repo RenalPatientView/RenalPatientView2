@@ -17,11 +17,11 @@
         <msg key="oldpassword.required" name="required"/>
         <arg0 key="oldpassword"/>
       </field>
-      <field property="newpassword" depends="required,minlength,validwhen">
-        <msg key="newpassword.required" name="required"/>
-        <msg key="newpassword.minlength" name="minlength"/>
-        <msg key="newpassword.sameasold" name="validwhen"/>
-        <arg0 key="newpassword"/>
+      <field property="passwordPwd" depends="required,minlength,validwhen">
+        <msg key="passwordPwd.required" name="required"/>
+        <msg key="passwordPwd.minlength" name="minlength"/>
+        <msg key="passwordPwd.sameasold" name="validwhen"/>
+        <arg0 key="passwordPwd"/>
         <arg1 name="minlength" key="${var:minlength}" resource="false"/>
         <var>
           <var-name>minlength</var-name>
@@ -37,7 +37,7 @@
         <msg key="newpasswordagain.match" name="validwhen"/>
         <var>
           <var-name>test</var-name>
-          <var-value>(*this* == newpassword)</var-value>
+          <var-value>(*this* == passwordPwd)</var-value>
         </var>
       </field>
     </form>
@@ -46,10 +46,10 @@
         <msg key="oldpassword.required" name="required"/>
         <arg0 key="oldpassword"/>
       </field>
-      <field property="newpassword" depends="required,minlength">
-        <msg key="newpassword.required" name="required"/>
-        <msg key="newpassword.minlength" name="minlength"/>
-        <arg0 key="newpassword"/>
+      <field property="passwordPwd" depends="required,minlength">
+        <msg key="passwordPwd.required" name="required"/>
+        <msg key="passwordPwd.minlength" name="minlength"/>
+        <arg0 key="passwordPwd"/>
         <arg1 name="minlength" key="${var:minlength}" resource="false"/>
         <var>
           <var-name>minlength</var-name>
@@ -61,7 +61,7 @@
         <msg key="newpasswordagain.match" name="validwhen"/>
         <var>
           <var-name>test</var-name>
-          <var-value>(*this* == newpassword)</var-value>
+          <var-value>(*this* == passwordPwd)</var-value>
         </var>
       </field>
     </form>
@@ -120,7 +120,7 @@
       <field property="name" depends="required">
         <msg key="name.required" name="required"/>
       </field>
-      <field property="nhsno" depends="required,mask,nhsnochecksum">
+      <field property="nhsno" depends="required,mask">
         <msg key="nhsno.required" name="required"/>
         <msg key="nhsno.mask" name="mask" />
         <msg key="nhsno.checksum" name="nhsnochecksum" />
@@ -143,7 +143,7 @@
       <field property="name" depends="required">
         <msg key="name.required" name="required"/>
       </field>
-        <field property="nhsno" depends="required,mask,nhsnochecksum">
+        <field property="nhsno" depends="required,mask">
           <msg key="nhsno.required" name="required"/>
           <msg key="nhsno.mask" name="mask" />
           <msg key="nhsno.checksum" name="nhsnochecksum" />

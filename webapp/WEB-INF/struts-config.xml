@@ -154,7 +154,7 @@
     </form-bean>
     <form-bean name="passwordForm" type="org.apache.struts.validator.DynaValidatorActionForm">
       <form-property name="oldpassword" type="java.lang.String"/>
-      <form-property name="newpassword" type="java.lang.String"/>
+      <form-property name="passwordPwd" type="java.lang.String"/>
       <form-property name="newpasswordagain" type="java.lang.String"/>
     </form-bean>
     <form-bean name="logForm" type="org.apache.struts.validator.DynaValidatorActionForm">
