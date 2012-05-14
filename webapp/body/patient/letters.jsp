@@ -4,7 +4,7 @@
 
 <html:xhtml/>
 
-<table width="400" border="0" cellspacing="1" cellpadding="3">
+<table width="90%" border="0" cellspacing="1" cellpadding="3">
 
   <tr valign="top">
     <td colspan="5"><img src="images/space.gif" height="5"/></td>
@@ -45,7 +45,7 @@
           <td><img src="images/space.gif" width="15" height="1"/></td>
            <td class="tablecell"><bean:write name="letter" property="formattedDate"/></td>
           <td class="tablecell"><bean:write name="letter" property="type"/></td>
-          <td class="tablecell"><html:link action="/patient/letterDetail" paramName="letter" paramProperty="id" paramId="letterId">read letter...</html:link></td>
+          <td class="tablecell"><html:link action="/patient/letterDetail" paramName="letter" paramProperty="id" paramId="letterId">read letter...</html:link>&nbsp;</td>
         </tr>
       </logic:iterate>
 

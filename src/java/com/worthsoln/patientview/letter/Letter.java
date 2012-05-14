@@ -17,6 +17,15 @@ public class Letter {
     public Letter() {
     }
 
+    public Letter(int id, String nhsno, String unitcode, Calendar date, String type, String content) {
+        this.id = id;
+        this.nhsno = nhsno;
+        setUnitcode(unitcode);
+        this.content = content;
+        this.date = date;
+        this.type = type;
+    }
+
     public Letter(String nhsno, String unitcode, Calendar date, String type, String content) {
         this.nhsno = nhsno;
         setUnitcode(unitcode);
@@ -87,4 +96,26 @@ public class Letter {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Letter letter = (Letter) o;
+
+        if (id != letter.id) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (nhsno != null ? nhsno.hashCode() : 0);
+        result = 31 * result + (unitcode != null ? unitcode.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (content != null ? content.hashCode() : 0);
+        return result;
+    }
 }
