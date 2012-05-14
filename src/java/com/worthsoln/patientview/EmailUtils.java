@@ -21,7 +21,7 @@ public class EmailUtils {
     }
 
     public static void sendEmail(ServletContext context, String toAddress, String subject, String emailText) {
-        String from = context.getInitParameter("admin.email.from");
+        String from = context.getInitParameter("noreply.email");
         sendEmail(context, from, toAddress, subject, emailText);
     }
 

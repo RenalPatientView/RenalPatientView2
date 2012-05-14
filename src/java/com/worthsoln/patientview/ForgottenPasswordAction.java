@@ -49,7 +49,8 @@ public class ForgottenPasswordAction extends DatabaseAction {
                                 password + "\n" +
                                 "\n" +
                                 "Renal Patient View";
-                        EmailUtils.sendEmail(request.getSession().getServletContext(), user.getEmail(),
+                        String fromAddress = request.getSession().getServletContext().getInitParameter("noreply.email");
+                        EmailUtils.sendEmail(request.getSession().getServletContext(), fromAddress, user.getEmail(),
                                 "Renal Patient View - Your password has been reset", message);
                         session.save(user);
 
