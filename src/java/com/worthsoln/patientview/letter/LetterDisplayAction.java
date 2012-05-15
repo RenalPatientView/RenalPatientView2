@@ -41,7 +41,8 @@ public class LetterDisplayAction extends DatabaseAction {
             lettersAndUserMappings = session.find("from " + Letter.class.getName() + " as letter, " +
                     UserMapping.class.getName() + " as usermapping " +
                     " where usermapping.username = ? " +
-                    " and letter.nhsno = usermapping.nhsno ",
+                    " and letter.nhsno = usermapping.nhsno " +
+                    " order by letter.date desc",
                     new Object[]{username}, new Type[]{Hibernate.STRING});
 
             tx.commit();
