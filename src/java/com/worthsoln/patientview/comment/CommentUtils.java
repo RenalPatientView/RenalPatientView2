@@ -26,13 +26,13 @@ public class CommentUtils {
                 List<UserMapping> userMappingsForComment = UserUtils.retrieveUserMappingsForNhsno(nhsno);
 
                 for (UserMapping userMappingComment : userMappingsForComment) {
-                    if ("patient".equalsIgnoreCase(user.getRole()) && userMappingComment.getUsername().equals(user.getUsername())) {
+                    if ("patient".equalsIgnoreCase(user.getRole()) && userMappingComment.getUsername().equalsIgnoreCase(user.getUsername())) {
                         permissionToReadComment = true;
                         break;
                     }
                     for (UserMapping userMappingUser : userMappingsForUser) {
                         if ("unitadmin".equalsIgnoreCase(user.getRole()) || "unitstaff".equalsIgnoreCase(user.getRole())) {
-                            if (userMappingComment.getUnitcode().equals(userMappingUser.getUnitcode())) {
+                            if (userMappingComment.getUnitcode().equalsIgnoreCase(userMappingUser.getUnitcode())) {
                                 permissionToReadComment = true;
                                 break;
                             }
