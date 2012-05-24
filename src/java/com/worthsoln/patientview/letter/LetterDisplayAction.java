@@ -42,7 +42,7 @@ public class LetterDisplayAction extends DatabaseAction {
                     UserMapping.class.getName() + " as usermapping " +
                     " where usermapping.username = ? " +
                     " and letter.nhsno = usermapping.nhsno " +
-                    " order by letter.date desc",
+                    " order by letter.date asc",
                     new Object[]{username}, new Type[]{Hibernate.STRING});
 
             tx.commit();
