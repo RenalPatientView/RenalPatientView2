@@ -103,14 +103,6 @@
   </taglib>
   <taglib>
     <taglib-uri>
-      /tags/struts-tiles
-    </taglib-uri>
-    <taglib-location>
-      /WEB-INF/struts/struts-tiles.tld
-    </taglib-location>
-  </taglib>
-  <taglib>
-    <taglib-uri>
       /tags/datetime
     </taglib-uri>
     <taglib-location>
