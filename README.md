@@ -9,7 +9,6 @@ Getting Started
 ---------------
 
 
-* Assuming you're on Tomcat 6+, edit `build.xml` - find the `tomcat.root` filesets, delete one, and replace the dir in the other with `${tomcat.root}/lib`
 * Set `tomcat.root` in `build.properties`
 * Edit database details (three times) in `src/conf/dev/context.xml` and `src/conf/dev/mysql.properties`
 * Update all the paths in `src/conf/dev/context.xml`

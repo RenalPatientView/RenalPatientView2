@@ -58,10 +58,7 @@
                     <include name="**/*.jar"/>
                 </fileset>
                 <!--Also need the Tomcat jars to compile against-->
-                <fileset dir="${tomcat.root}/common/lib">
-                    <include name="**/*.jar"/>
-                </fileset>
-                <fileset dir="${tomcat.root}/server/lib">
+                <fileset dir="${tomcat.root}/lib">
                     <include name="**/*.jar"/>
                 </fileset>
             </classpath>
