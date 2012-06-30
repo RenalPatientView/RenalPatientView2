@@ -58,7 +58,7 @@ public class ResultParser {
             for (int j = 0; j < testResultNodes.getLength(); j++) {
                 Node testResultNode = testResultNodes.item(j);
                 if ((testResultNode.getNodeType() == Node.ELEMENT_NODE) &&
-                        (testResultNode.getNodeName().equals("daterange"))) {
+                            (testResultNode.getNodeName().equals("daterange"))) {
                     NamedNodeMap attributes = testResultNode.getAttributes();
                     startDate = attributes.getNamedItem("start").getNodeValue();
                     stopDate = attributes.getNamedItem("stop").getNodeValue();

@@ -1227,3 +1227,14 @@ INSERT INTO `usermapping` VALUES ('53', 's', '', ''), ('54', 'p', 'A', '12345678
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+-- ----------------------------
+--  Table structure for `notification`
+-- ----------------------------
+DROP TABLE IF EXISTS `notification`;
+CREATE TABLE `notification` (
+  `name` varchar(100) NOT NULL,
+  `lastnotification` datetime NOT NULL,
+  PRIMARY KEY (`name`)
+);
+
