@@ -4,6 +4,68 @@
 
 <html:xhtml/>
 
+<div>
+    <!-- Who needs CSS... -->
+    <div style="width:345px; float: left;">
+        <h2>K</h2>
+        <div id="k-plot" style="width:340px; height:180px; float: left;">
+            <h2 class="plot-placeholder">Loading...</h2>
+        </div>
+    </div>
+    <div style="width:345px; float: left;">
+        <h2>PO4</h2>
+        <div id="po-plot" style="width:340px; height:180px; float: left;">
+            <h2 class="plot-placeholder">Loading...</h2>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $(".plot-placeholder").remove();
+
+        var k_raw = [];
+        var po_raw = [];
+        $(".result_row").each(function () {
+            var formatted_timestamp = $(this).find(".formatted_timestamp > b").html();
+            //alert(formatted_timestamp);
+            // I'm so sorry for this...
+            var split_timestamp = formatted_timestamp.split(" ");
+            var split_date = split_timestamp[0].split("/");
+            var date_string = "20" + split_date[2] + " " + split_date[1] + " " + split_date[0];
+
+            // Sick hack
+            var k_val = $(this).find("td:nth-child(5)").html();
+            var po_val = $(this).find("td:nth-child(8)").html();
+
+            var timestamp = new Date(date_string).getTime();
+
+            if (k_val) {
+                k_raw.push([timestamp, k_val]);
+                //alert(k_raw);
+            }
+            if (po_val) {
+                po_raw.push([timestamp, po_val]);
+                //alert(po_raw);
+            }
+        });
+
+        var k_data = [{data: k_raw}];
+        //alert(JSON.stringify(k_data));
+        var po_data = [{data: po_raw}];
+        //alert(JSON.stringify(po_data));
+        var options = {
+            xaxis: {mode: "time"},
+            legend: {show: false},
+            series: {
+                lines: {show: true},
+                points: {show: true}
+            }
+        };
+        $.plot($("#k-plot"), k_data, options);
+        $.plot($("#po-plot"), po_data, options);
+    });
+</script>
+
 <table width="690" border="0" cellspacing="1" cellpadding="3">
       <tr valign="top">
         <td colspan="12" align="left">
@@ -84,8 +146,8 @@
       </tr>
 
       <logic:iterate name="results" id="result" type="com.worthsoln.patientview.Result" length="resultsPerPage" offset="resultsOffset" >
-        <tr>
-          <td width="" class="tablecellbold"><b><bean:write name="result" property="formattedTimeStamp"/></b></td>
+        <tr class="result_row">
+          <td width="" class="tablecellbold formatted_timestamp"><b><bean:write name="result" property="formattedTimeStamp"/></b></td>
           <td width="" class="tablecellbold"><bean:write name="result" property="prepost"/></td>
             <logic:iterate name="resultsHeadings" id="heading" type="com.worthsoln.patientview.resultheading.ResultHeading" >
               <bean:define id="content" value="<%= result.getValue(heading.getHeadingcode()) %>" />

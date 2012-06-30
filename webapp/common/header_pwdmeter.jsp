@@ -7,6 +7,8 @@
   <link rel="STYLESHEET" type="text/css" href="<%= request.getParameter("cdToStyles") %>pwdmeter_ie.css" />
     <![endif]-->
   <script type="text/javascript" src="<%= request.getParameter("cdToStyles") %>js/pwdmeter.js" language="javascript"></script>
+  <script type="text/javascript" src="<%= request.getParameter("cdToStyles") %>js/flot/jquery.min.js" language="javascript"></script>
+  <script type="text/javascript" src="<%= request.getParameter("cdToStyles") %>js/flot/jquery.flot.min.js" language="javascript"></script>
 </head>
 
 <body>
