@@ -5,7 +5,10 @@
    <table width="670">
      <tr>
        <td class="w"><html:link action="disclaimer" styleClass="wlink">Disclaimer</html:link>  </td>
-       <td class="w" align=right>Site Powered By <a href="http://www.worthsolutions.com" class="wlink">Worth Solutions</a></td>
+       <td class="w" align=right>
+            <div>Site Powered By <a href="http://www.worthsolutions.com" class="wlink">Worth Solutions</a></div>
+            <div><img src="http://milady.reaperman.org/nhshackday/withlovefrom-web.png" alt="With love from NHSHackDay!"/></div>
+    </td>
      </tr>
    </table>
 

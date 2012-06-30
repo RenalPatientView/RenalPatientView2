@@ -1,38 +1,32 @@
 <%@ taglib uri="/tags/struts-logic" prefix="logic" %>
 
-<td class="left">
-    <table>
-        <tr>
-            <td colspan="2" align="center" height="30"><font class="subheader">PLEASE LOG IN BELOW</font></td>
-        </tr>
-        <form action="j_security_check" method="POST">
-            <tr>
-                <td class="smallform">user name</td>
-                <td><input type="text" name="j_username" class="loginform" tabindex="1" /></td>
-            </tr>
+<td id="left_login" class="left">
+    <div>
+        <div>
+            <img src="http://milady.reaperman.org/nhshackday/beaker.png" alt=""/>
+        </div>
+        <div>
+            <form action="j_security_check" method="POST">
+                <div>
+                    <h3>Username</h3>
+                    <div><input type="text" name="j_username" class="loginform" tabindex="1" /></div>
+                </div>
 
-            <tr>
-                <td class="smallform">password</td>
-                <td><input type="password" name="j_password" class="loginform" tabindex="2" /></td>
-            </tr>
+                <div>
+                    <h3>Password</h3>
+                    <div><input type="password" name="j_password" class="loginform" tabindex="2" /></div>
+                </div>
 
-            <tr>
-                <td colspan="2" align="right">
-                    <input type="submit" value="GO &#187;" class="formbutton" style="border-style: outset;" tabindex="3" />
-                </td>
-            </tr>
-        </form>
+                <br />
 
-        <tr>
-            <td colspan="2"><a href="forgotten-password.jsp">Forgotten password?</a></td>
-        </tr>
+                <div>
+                    <input type="submit" value="Log in" class="formbutton" style="border-style: outset;" tabindex="3" />
+                </div>
+            </form>
+        </div>
 
-        <tr>
-            <td colspan="2"><img src="images/space.gif" height="20" border="0" alt="" class="picture" /></td>
-        </tr>
-        <tr>
-            <td align="center" colspan="2"><img src="images/nurse.jpg" width="134" height="141" border="0" alt="" />
-            </td>
-        </tr>
-    </table>
+        <div>
+            <a href="forgotten-password.jsp">Forgotten password?</a>
+        </div>
+    </div>
 </td>
